@@ -1,2 +1,2 @@
-# vexeOnline
+# VexeOnline
 front-end project VexeOnline
