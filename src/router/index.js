@@ -31,6 +31,10 @@ Vue.use(VueRouter)
         }
       ]
     },
+
+    {
+      path : "/admin", redirect : "/admin/dashboard"
+    },
     //admintemplate
     {
       path : "/admin",
@@ -47,9 +51,7 @@ Vue.use(VueRouter)
       component : () => import ('../views/adminTemplate/auth')
     },
 
-    {
-      path : "/admin", redirect : "/admin/dashboard"
-    },
+    
 
 
 
