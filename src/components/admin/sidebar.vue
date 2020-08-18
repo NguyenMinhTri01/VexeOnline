@@ -88,6 +88,12 @@
       </li> -->
 
       <li class="nav-item">
+         <router-link to="/admin/stations" class="nav-link">
+            <i class="fas fa-bus"></i>
+            <span>Bến xe</span>
+         </router-link>
+      </li>
+      <li class="nav-item">
          <router-link to="/admin/blog" class="nav-link">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Blog</span>
