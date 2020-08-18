@@ -22,10 +22,7 @@
 import "../../assets/admin/vendor/jquery/jquery.min.js";
 import "../../assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js";
 import "../../assets/admin/vendor/jquery-easing/jquery.easing.min.js";
-//import "../../assets/admin/js/sb-admin-2.min.js";
-//import "../../assets/admin/vendor/chart.js/Chart.min.js";
-//import "../../assets/admin/js/demo/chart-area-demo.js";
-//import "../../assets/admin/js/demo/chart-pie-demo.js";
+import "../../assets/admin/js/sb-admin-2.js";
   
 import Topbar from '../../components/admin/topbar';
 import SlideBar from '../../components/admin/sidebar';
@@ -37,6 +34,10 @@ export default {
     Footer
   }
 }
+
+
+
+
 </script>
 
 <style scoped>
