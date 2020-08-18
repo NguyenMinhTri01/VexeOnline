@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import jwtDecode from "jwt-decode";
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,21 @@ Vue.use(VueRouter)
     {
       path : "/admin",
       component : () => import('../views/adminTemplate'),
+      beforeEnter(to, from, next) {
+        if (localStorage.getItem("token")) {
+          try {
+            const decode = jwtDecode(localStorage.getItem("token"));
+            if (decode.userType === "admin") {
+              next();
+            }
+          } catch {
+            localStorage.removeItem("token");
+            next("/auth");
+          }
+        } else {
+          next("/auth");
+        }
+      },
       children : [
         {
           path : "/admin/dashboard",
