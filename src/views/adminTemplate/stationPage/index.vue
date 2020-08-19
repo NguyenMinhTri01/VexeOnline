@@ -2,7 +2,7 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Bến Xe</h1>
-      <DataTable :arrayData="stations"  :columns="columns" :keys="keys" :name="'stations'"  />
+      <DataTable @eventChageStatus="eventChageStatus($event)" :arrayData="stations"  :columns="columns" :keys="keys" :name="'stations'"  />
     </div>
 </template>
 
@@ -30,6 +30,12 @@ export default {
     },
     loading() {
       return this.$store.state.stations.loading;
+    }
+  },
+
+  methods : {
+    eventChageStatus (data) {
+      this.$store.dispatch("fetchStatusStation", data.id)
     }
   }
 };

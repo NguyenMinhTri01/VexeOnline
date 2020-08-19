@@ -19,8 +19,8 @@
               <td>{{index + 1}}</td>
               <td v-for="(key , index) in keys" :key="index">
                 <template v-if="key === 'status'">
-                  <button @click="changeStatus(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
-                  <button @click="changeStatus(item._id)" class="badge badge-primary" v-else> Hiện</button>
+                  <button v-on:click="changeStatus(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
+                  <button v-on:click="changeStatus(item._id)" class="badge badge-primary" v-else> Hiện</button>
 
                   <!-- <router-link class="btn btn-info"   v-if="item[key]==false">Detail</router-link> -->
 
@@ -69,14 +69,15 @@ export default {
     arrayData: function () {
       moment.locale("vi");
       this.data = this.arrayData.map((item) => {
-        item.createdAt = moment(item.createdAt).format("LLLL");
+        let newOject = {...item}
+        newOject.createdAt = moment(item.createdAt).format("LLLL");
         if (item.startTime) {
           item.startTime = moment(item.startTime).format("LLLL");
         }
         if (item.endTime) {
           item.endTime = moment(item.endTime).format("LLLL");
         }
-        return item;
+        return newOject;
       });
     },
   },
@@ -88,7 +89,7 @@ export default {
   },
   methods:{
     changeStatus(id){
-      this.$store.dispatch("fetchStatusBlog",id);
+      this.$emit("eventChageStatus", {id})
     }
   }
 };
