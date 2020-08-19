@@ -19,10 +19,13 @@ export default {
     DataTable
     //Loader
   },
-    created() {
+  created() {
       this.$store.dispatch("fetchListBlogs");
       
   },
+  // updated(){
+  //    this.$store.dispatch("fetchListBlogs");
+  // },
   computed: {
       blogs() {
       // let data = this.$store.state.stations.data;

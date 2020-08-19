@@ -15,21 +15,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in data" :key="item._id">
+            <tr v-for="(item, index) in arrayData" :key="item._id">
               <td>{{index + 1}}</td>
               <td v-for="(key , index) in keys" :key="index">
                 <template v-if="key === 'status'">
                   <button @click="changeStatus(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
                   <button @click="changeStatus(item._id)" class="badge badge-primary" v-else> Hiện</button>
-
-                  <!-- <router-link class="btn btn-info"   v-if="item[key]==false">Detail</router-link> -->
-
-                  <!-- <router-link class="badge badge-info" :to="`/admin/${name}/status/${item._id}`" v-if="item[key]==false">Ẩn</router-link>
-                  <router-link class="badge badge-primary" :to="`/admin/${name}/status/${item._id}`" v-else>Hiện</router-link> -->
                 </template>
                 <template v-else-if="key === 'hot'">
-                  <button class="badge badge-info" v-if="item[key]==false">Ẩn</button>
-                  <button class="badge badge-primary" v-else>Hiện</button>
+                  <button @click="changeHot(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
+                  <button @click="changeHot(item._id)" class="badge badge-primary" v-else>Hiện</button>
                 </template>
                 <template v-else-if="key === 'avatar'">
                   <img
@@ -41,8 +36,11 @@
                 <template v-else>{{item[key]}}</template>
               </td>
               <td>
+                <button class="btn btn-warning">
+                  <i class="fas fa-edit">Sửa</i>
+                </button>&nbsp;
                 <button class="btn btn-danger">
-                  <i class="fas fa-trash-alt"></i>Xóa
+                  <i class="fas fa-trash-alt">Xóa</i>
                 </button>
               </td>
             </tr>
@@ -54,7 +52,7 @@
 </template>
 
 <script>
-import moment from "moment";
+//import moment from "moment";
 export default {
   data () {
     return {
@@ -62,18 +60,21 @@ export default {
     }
   },
   props: ["columns", "arrayData", "keys","name"],
-  watch: {
-    arrayData: function () {
-      moment.locale("vi");
-      this.data = this.arrayData.map((item) => {
-        item.createdAt = moment(item.createdAt).format("LLLL");
-        return item;
-      });
-    },
-  },
+  // watch: {
+  //   arrayData: function () {
+  //     moment.locale("vi");
+  //     this.data = this.arrayData.map((item) => {
+  //       item.createdAt = moment(item.createdAt).format("LLLL");
+  //       return item;
+  //     });
+  //   },
+  // },
   methods:{
     changeStatus(id){
       this.$store.dispatch("fetchStatusBlog",id);
+    },
+    changeHot(id){
+      this.$store.dispatch("fetchHotBlog",id);
     }
   }
 };
