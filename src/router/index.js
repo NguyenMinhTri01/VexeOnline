@@ -67,6 +67,10 @@ Vue.use(VueRouter)
         {
           path : "/admin/stations",
           component : () => import ('../views/adminTemplate/stationPage')
+        },
+        {
+          path : "*",
+          component: () => import ('../views/adminTemplate/pageNotFound')
         }
       ]
     },

@@ -36,5 +36,5 @@ export default {
 </script>
 
 <style scoped>
-@import url("../../../assets/admin/vendor/datatables/dataTables.bootstrap4.min.css");
+
 </style>

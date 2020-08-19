@@ -50,11 +50,14 @@
 
 <script>
 import moment from "moment";
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;
 export default {
-  data () {
+  data() {
     return {
-      data : null
-    }
+      data: null,
+    };
   },
   props: ["columns", "arrayData", "keys"],
   watch: {
@@ -62,9 +65,21 @@ export default {
       moment.locale("vi");
       this.data = this.arrayData.map((item) => {
         item.createdAt = moment(item.createdAt).format("LLLL");
+        if (item.startTime) {
+          item.startTime = moment(item.startTime).format("LLLL");
+        }
+        if (item.endTime) {
+          item.endTime = moment(item.endTime).format("LLLL");
+        }
         return item;
       });
     },
+  },
+
+  mounted() {
+    $(document).ready(function () {
+      console.log("jquery ok")
+    });
   },
 };
 </script>
