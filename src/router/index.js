@@ -61,7 +61,7 @@ Vue.use(VueRouter)
           component: () => import ('../views/adminTemplate/dashboardPage')
         },
         {
-          path : "/admin/blog",
+          path : "/admin/blogs",
           component : () => import ('../views/adminTemplate/blogPage')
         },
         {

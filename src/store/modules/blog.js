@@ -46,6 +46,27 @@ const actions = {
       .catch(err => {
         commit("storeBlogFailed", err);
       })
+  },
+
+  fetchStatusBlog({ commit }, id) {
+    commit("storeBlogRequest");
+    api.get(`/blogs/status/${id}`)
+      .then(result => {
+        commit("storeBlogSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      })
+  },
+  fetchHotBlog({ commit }, id) {
+    commit("storeBlogRequest");
+    api.get(`/blogs/hot/${id}`)
+      .then(result => {
+        commit("storeBlogSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      })
   }
 }
 

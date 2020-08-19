@@ -94,7 +94,7 @@
          </router-link>
       </li>
       <li class="nav-item">
-         <router-link to="/admin/blog" class="nav-link">
+         <router-link to="/admin/blogs" class="nav-link">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Blog</span>
          </router-link>
