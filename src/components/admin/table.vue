@@ -19,12 +19,17 @@
               <td>{{index + 1}}</td>
               <td v-for="(key , index) in keys" :key="index">
                 <template v-if="key === 'status'">
-                  <button class="badge badge-primary" v-if="item[key]">Ẩn</button>
-                  <button class="badge badge-secondary" v-else>Hiện</button>
+                  <button @click="changeStatus(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
+                  <button @click="changeStatus(item._id)" class="badge badge-primary" v-else> Hiện</button>
+
+                  <!-- <router-link class="btn btn-info"   v-if="item[key]==false">Detail</router-link> -->
+
+                  <!-- <router-link class="badge badge-info" :to="`/admin/${name}/status/${item._id}`" v-if="item[key]==false">Ẩn</router-link>
+                  <router-link class="badge badge-primary" :to="`/admin/${name}/status/${item._id}`" v-else>Hiện</router-link> -->
                 </template>
                 <template v-else-if="key === 'hot'">
-                  <button class="badge badge-danger" v-if="item[key]">Ẩn</button>
-                  <button class="badge badge-secondary" v-else>Hiện</button>
+                  <button class="badge badge-info" v-if="item[key]==false">Ẩn</button>
+                  <button class="badge badge-primary" v-else>Hiện</button>
                 </template>
                 <template v-else-if="key === 'avatar'">
                   <img
@@ -56,7 +61,7 @@ export default {
       data : null
     }
   },
-  props: ["columns", "arrayData", "keys"],
+  props: ["columns", "arrayData", "keys","name"],
   watch: {
     arrayData: function () {
       moment.locale("vi");
@@ -66,6 +71,11 @@ export default {
       });
     },
   },
+  methods:{
+    changeStatus(id){
+      this.$store.dispatch("fetchStatusBlog",id);
+    }
+  }
 };
 </script>
 
