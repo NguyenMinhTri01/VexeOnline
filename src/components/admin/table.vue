@@ -27,7 +27,11 @@
                   <button class="badge badge-secondary" v-else>Hiện</button>
                 </template>
                 <template v-else-if="key === 'avatar'">
-                  <img class="imageTable" v-bind:src="`${item[key]}`" alt="avatar" />
+                  <img
+                    class="imageTable"
+                    v-lazy="`https://res.cloudinary.com/vexeonline/VexeOnlineMedia${item[key]}`"
+                    alt="avatar"
+                  />
                 </template>
                 <template v-else>{{item[key]}}</template>
               </td>
@@ -45,13 +49,33 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
-  props: ["columns", "data", "keys"],
+  data () {
+    return {
+      data : null
+    }
+  },
+  props: ["columns", "arrayData", "keys"],
+  watch: {
+    arrayData: function () {
+      moment.locale("vi");
+      this.data = this.arrayData.map((item) => {
+        item.createdAt = moment(item.createdAt).format("LLLL");
+        return item;
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
 .imageTable {
+  max-width: 120px;
+  height: auto;
+}
+.table-responsive > table > tbody > tr > td {
+  vertical-align: middle;
 }
 @import url("../../assets/admin/vendor/datatables/dataTables.bootstrap4.min.css");
 </style>

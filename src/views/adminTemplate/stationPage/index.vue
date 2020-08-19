@@ -2,7 +2,7 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Bến Xe</h1>
-      <DataTable :data="stations"  :columns="columns" :keys="keys"  />
+      <DataTable :arrayData="stations"  :columns="columns" :keys="keys"  />
     </div>
 </template>
 
@@ -19,11 +19,13 @@ export default {
     DataTable
     //Loader
   },
-  created() {
-    this.$store.dispatch("fetchListStations");
+    created() {
+      this.$store.dispatch("fetchListStations");
   },
   computed: {
-    stations() {
+      stations() {
+      // let data = this.$store.state.stations.data;
+      // data.createdAt =   
       return this.$store.state.stations.data;
     },
     loading() {
