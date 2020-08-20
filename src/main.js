@@ -7,6 +7,11 @@ import VueLazyload from 'vue-lazyload'
 // import "jquery/dist/jquery.min.js";
 // import "popper.js/dist/umd/popper.min.js";
 // import "bootstrap/dist/js/bootstrap.min.js"; 
+
+import CKEditor from '@ckeditor/ckeditor5-vue';
+
+Vue.use( CKEditor );
+
 Vue.use(VueLazyload)
 Vue.config.productionTip = false
 

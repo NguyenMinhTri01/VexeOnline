@@ -3,6 +3,9 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      <router-link class="btn btn-success" :to="`/admin/${name}/add`">
+        <i class="fas fa-plus"> Thêm mới</i>
+      </router-link>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,8 +22,13 @@
               <td>{{index + 1}}</td>
               <td v-for="(key , index) in keys" :key="index">
                 <template v-if="key === 'status'">
-                  <button @click="changeStatus(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
-                  <button @click="changeStatus(item._id)" class="badge badge-primary" v-else> Hiện</button>
+                  <button v-on:click="changeStatus(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
+                  <button v-on:click="changeStatus(item._id)" class="badge badge-primary" v-else> Hiện</button>
+
+                  <!-- <router-link class="btn btn-info"   v-if="item[key]==false">Detail</router-link> -->
+
+                  <!-- <router-link class="badge badge-info" :to="`/admin/${name}/status/${item._id}`" v-if="item[key]==false">Ẩn</router-link>
+                  <router-link class="badge badge-primary" :to="`/admin/${name}/status/${item._id}`" v-else>Hiện</router-link> -->
                 </template>
                 <template v-else-if="key === 'hot'">
                   <button @click="changeHot(item._id)" class="badge badge-info" v-if="item[key]==false">Ẩn</button>
@@ -36,11 +44,11 @@
                 <template v-else>{{item[key]}}</template>
               </td>
               <td>
-                <button class="btn btn-warning">
-                  <i class="fas fa-edit">Sửa</i>
-                </button>&nbsp;
+                <router-link class="btn btn-warning" :to="`/admin/${name}/edit/${item._id}`">
+                  <i class="fas fa-edit"> Sửa</i>
+                </router-link>&nbsp;
                 <button class="btn btn-danger">
-                  <i class="fas fa-trash-alt">Xóa</i>
+                  <i class="fas fa-trash-alt"> Xóa</i>
                 </button>
               </td>
             </tr>
@@ -52,29 +60,45 @@
 </template>
 
 <script>
-//import moment from "moment";
+import moment from "moment";
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;
 export default {
-  data () {
+  data() {
     return {
-      data : null
-    }
+      data: null,
+    };
   },
   props: ["columns", "arrayData", "keys","name"],
-  // watch: {
-  //   arrayData: function () {
-  //     moment.locale("vi");
-  //     this.data = this.arrayData.map((item) => {
-  //       item.createdAt = moment(item.createdAt).format("LLLL");
-  //       return item;
-  //     });
-  //   },
-  // },
+  watch: {
+    arrayData: function () {
+      moment.locale("vi");
+      this.data = this.arrayData.map((item) => {
+        let newOject = {...item}
+        newOject.createdAt = moment(item.createdAt).format("LLLL");
+        if (item.startTime) {
+          item.startTime = moment(item.startTime).format("LLLL");
+        }
+        if (item.endTime) {
+          item.endTime = moment(item.endTime).format("LLLL");
+        }
+        return newOject;
+      });
+    },
+  },
+
+  mounted() {
+    $(document).ready(function () {
+      console.log("jquery ok")
+    });
+  },
   methods:{
     changeStatus(id){
-      this.$store.dispatch("fetchStatusBlog",id);
+      this.$emit("eventChangeStatus", {id})
     },
     changeHot(id){
-      this.$store.dispatch("fetchHotBlog",id);
+      this.$emit("eventChangeHot",{id})
     }
   }
 };

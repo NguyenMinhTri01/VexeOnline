@@ -1,4 +1,5 @@
 import { api } from "../../api"
+import router from "./../../router";
 const state = {
   loading: false,
   data: null,
@@ -22,6 +23,17 @@ const mutations = {
     state.loading = false
     state.data = null;
     state.err = payload
+  },
+
+  storeUpdateBlog(state, blog){
+    if (blog) {
+      state.data = state.data.map(item => {
+        if (item._id === blog._id){
+          item = blog
+        }
+        return item
+      })
+    }
   }
 };
 
@@ -49,24 +61,34 @@ const actions = {
   },
 
   fetchStatusBlog({ commit }, id) {
-    commit("storeBlogRequest");
     api.get(`/blogs/status/${id}`)
       .then(result => {
-        commit("storeBlogSuccess", result.data);
+        commit("storeUpdateBlog", result.data);
       })
       .catch(err => {
         commit("storeBlogFailed", err);
       })
   },
   fetchHotBlog({ commit }, id) {
-    commit("storeBlogRequest");
     api.get(`/blogs/hot/${id}`)
       .then(result => {
-        commit("storeBlogSuccess", result.data);
+        commit("storeUpdateBlog", result.data);
       })
       .catch(err => {
         commit("storeBlogFailed", err);
       })
+  },
+  postBlog({ commit }, blog) {
+    commit("storeBlogRequest");
+    api
+    .post("/blogs",blog)
+    .then(result=>{
+      commit("storeBlogSuccess", result.data);
+      router.replace("/admin/blogs/add");
+    })
+    .catch(err => {
+      commit("storeBlogFailed", err);
+    })
   }
 }
 

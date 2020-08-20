@@ -62,11 +62,23 @@ Vue.use(VueRouter)
         },
         {
           path : "/admin/blogs",
-          component : () => import ('../views/adminTemplate/blogPage')
+          component : () => import ('../views/adminTemplate/blogPage'),
+        },
+        {
+          path : "/admin/blogs/add",
+          component : () => import ('../views/adminTemplate/blogPage/add.vue')
+        },
+        {
+          path : "/admin/blogs/edit/:id",
+          component : () => import ('../views/adminTemplate/blogPage/edit.vue')
         },
         {
           path : "/admin/stations",
           component : () => import ('../views/adminTemplate/stationPage')
+        },
+        {
+          path : "*",
+          component: () => import ('../views/adminTemplate/pageNotFound')
         }
       ]
     },

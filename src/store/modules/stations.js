@@ -9,7 +9,7 @@ const mutations = {
   storeStationRequest(state) {
     state.loading = true;
     state.data = null,
-      state.err = null
+    state.err = null
   },
 
   storeStationSuccess(state, payload) {
@@ -22,6 +22,17 @@ const mutations = {
     state.loading = false
     state.data = null;
     state.err = payload
+  },
+
+  storeUpdateStation(state, station){
+    if (station) {
+      state.data = state.data.map(item => {
+        if (item._id === station._id){
+          item = station
+        }
+        return item
+      })
+    }
   }
 };
 
@@ -46,7 +57,17 @@ const actions = {
       .catch(err => {
         commit("storeStationFailed", err);
       })
-  }
+  },
+
+  fetchStatusStation({ commit }, id) {
+    api.get(`/stations/status/${id}`)
+      .then(result => {
+        commit("storeUpdateStation", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      })
+  },
 }
 
 export default { state, mutations, actions };
