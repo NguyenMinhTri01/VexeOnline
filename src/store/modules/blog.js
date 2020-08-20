@@ -42,15 +42,15 @@ const mutations = {
     state.oneBlog = blog
   },
 
-  storeGetOneBlog(state) {
-    return state.oneBlog
-  }
+  // storeGetOneBlog(state) {
+  //   return state.oneBlog
+  // }
   
 };
 
 const actions = {
   fetchListBlogs({ commit }) {
-    //commit("storeBlogRequest");
+    commit("storeBlogRequest");
     api.get("/blogs/")
       .then((result) => {
         commit("storeBlogSuccess", result.data);
