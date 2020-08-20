@@ -46,7 +46,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Hủy bỏ </button>&nbsp;
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Thêm mới </button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Cập mới </button>
                         </div>
                     </div>
                 </div>
@@ -68,21 +68,18 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 editorConfig: {
                     // The configuration of the editor.
                 },
-                name:this.blog.name,//ví dụ nè
+                name:'',
                 description:'',
-               // content:"",
                 titleSeo:'',
                 descriptionSeo:'',
                 keywordSeo:''
             };
         },
         created() {
-          this.$store.dispatch("fetchDetailBlog", this.$route.params.id);// cái này phải làm sao mà có dữ liệu rồi mới bỏ vào data
-          console.log(this.$store.state.blog.data)// push code lên đi đê xem thử
+          this.$store.dispatch("fetchDetailBlog", this.$route.params.id);
         },
-
         computed:{
-          blog(){// blog này là sao vậy //tương tự như ông thầy đí
+          blog(){
             return this.$store.state.blog.data
           }
         }
