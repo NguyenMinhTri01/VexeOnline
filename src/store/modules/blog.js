@@ -4,21 +4,22 @@ const state = {
   loading: false,
   data: null,
   err: null,
-  oneBlog: null,
+  //oneBlog: null,
 };
 
 const mutations = {
   storeBlogRequest(state) {
     state.loading = true;
     state.data = null,
-    state.err = null,
-    state.oneBlog =  null
+    state.err = null
+    //state.oneBlog =  null
   },
 
   storeBlogSuccess(state, payload) {
     state.loading = false
     state.data = payload;
     state.err = null
+   // state.oneBlog = payload
   },
 
   storeBlogFailed(state, payload) {
@@ -42,9 +43,9 @@ const mutations = {
     state.oneBlog = blog
   },
 
-  // storeGetOneBlog(state) {
-  //   return state.oneBlog
-  // }
+  storeGetOneBlog(state) {
+    return state.oneBlog
+  }
   
 };
 
@@ -64,7 +65,7 @@ const actions = {
     commit("storeBlogRequest");
     api.get(`/blogs/${id}`)
       .then(result => {
-        commit("storeSetOneBlog", result.data);
+        commit("storeBlogSuccess", result.data);
       })
       .catch(err => {
         commit("storeBlogFailed", err);
@@ -100,7 +101,19 @@ const actions = {
       .catch(err => {
         commit("storeBlogFailed", err);
       })
-  }
+  },
+  putBlog({commit},id,blog){
+    commit("storeBlogRequest");
+    api
+      .put(`/blogs/${id}`,blog)
+      .then(result => {
+        commit("storeBlogSuccess", result.data);
+        router.replace("/admin/blogs");
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      })
+  },
 }
 
 export default { state, mutations, actions };

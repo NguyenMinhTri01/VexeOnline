@@ -44,7 +44,10 @@
                 <div class="col-sm-12 ">
                     <div class="card shadow mb-4">
                         <div class="card-footer text-center">
-                            <button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Hủy bỏ </button>&nbsp;
+                            <!-- <button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Hủy bỏ </button> -->
+                            <router-link class="btn btn-warning" :to="`/admin/blogs`">
+                                <i class="fas fa-times"> Hủy bỏ</i>
+                            </router-link>&nbsp;
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Thêm mới </button>
                         </div>
                     </div>
@@ -86,6 +89,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 keywordSeo: this.keywordSeo
             };
                 this.$store.dispatch("postBlog", fromData);
+                this.name= '',
+                this.description= ''
+                this.editorData= ''
+                this.titleSeo= ''
+                this.descriptionSeo= ''
+                this.keywordSeo= ''
             }
         },
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <h1 class="h4 mb-2 text-gray-800">Cập Nhập Bài Viết</h1>
-    <form @submit.prevent="handleSubmit" role="form" method="POST" enctype="multipart/form-data">
+    <form @submit.prevent="handleSubmit" method="POST" role="form" enctype="multipart/form-data">
       <div class="row">
         <div class="col-sm-8">
           <div class="card shadow mb-4">
@@ -74,7 +74,7 @@
                 <i class="fa fa-save"></i> Hủy bỏ
               </button>&nbsp;
               <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save"></i> Thêm mới
+                <i class="fa fa-save"></i> Cập nhập
               </button>
             </div>
           </div>
@@ -97,9 +97,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 editorConfig: {
                     // The configuration of the editor.
                 },
-                name: "",//ví dụ nè
+                name: "",
                 description: "",
-               // content:"",
                 titleSeo: "",
                 descriptionSeo: "",
                 keywordSeo: ""
@@ -107,6 +106,26 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
         },
         beforeCreate () {
             this.$store.dispatch("fetchDetailBlog", this.$route.params.id);
+        },
+        methods: {
+            handleSubmit() {
+                console.log(this.$route.params.id)
+            const fromData = {
+                name: this.name,
+                description: this.description,
+                content: this.editorData,
+                titleSeo: this.titleSeo,
+                descriptionSeo: this.descriptionSeo,
+                keywordSeo: this.keywordSeo
+            };
+                this.$store.dispatch("putBlog",this.$route.params.id, fromData);
+               
+            }
+        },
+        computed:{
+          blog(){
+            return this.$store.state.blog.data
+          }
         },
         watch : {
           blog () {
@@ -117,13 +136,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             this.keywordSeo = this.blog.keywordSeo;
             this.editorData = this.blog.content
           }
-        },
-
-        computed:{
-          blog(){// blog này là sao vậy //tương tự như ông thầy đí
-            return this.$store.state.blog.oneBlog
-          }
-        },
+        }
     }
 </script>
 
