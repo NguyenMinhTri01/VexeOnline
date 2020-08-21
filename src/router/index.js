@@ -62,7 +62,7 @@ Vue.use(VueRouter)
         },
         {
           path : "/admin/blogs",
-          component : () => import ('../views/adminTemplate/blogPage'),
+          component : () => import ('../views/adminTemplate/blogPage')
         },
         {
           path : "/admin/blogs/add",
@@ -75,6 +75,14 @@ Vue.use(VueRouter)
         {
           path : "/admin/stations",
           component : () => import ('../views/adminTemplate/stationPage')
+        },
+        {
+          path : "/admin/stations/add",
+          component : () => import ('../views/adminTemplate/stationPage/add.vue')
+        },
+        {
+          path : "/admin/stations/edit/:id",
+          component : () => import ('../views/adminTemplate/stationPage/edit.vue')
         },
         {
           path : "*",

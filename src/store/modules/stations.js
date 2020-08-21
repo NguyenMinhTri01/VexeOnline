@@ -68,6 +68,16 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
+
+  fetchHotStation ( {commit}, id) {
+    api.get(`/stations/hot/${id}`)
+    .then(result => {
+      commit("storeUpdateStation", result.data);
+    })
+    .catch(err => {
+      commit("storeBlogFailed", err);
+    })
+  }
 }
 
 export default { state, mutations, actions };
