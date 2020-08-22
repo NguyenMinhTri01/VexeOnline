@@ -2,12 +2,21 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Bến Xe</h1>
-      <DataTable @eventChangeStatus="eventChangeStatus($event)" @eventChangeHot="eventChangeHot($event)"  :arrayData="stations"  :columns="columns" :keys="keys" :name="'stations'"  />
+      <DataTable 
+        @eventChangeStatus="eventChangeStatus($event)" 
+        @eventChangeHot="eventChangeHot($event)"  
+        :arrayData="stations"  
+        :columns="columns" 
+        :keys="keys" 
+        :name="'stations'" 
+        :loading="loading" />
+      
   </div>
 </template>
 
 <script>
 import DataTable from "../../../components/admin/table";
+// import Loader from "../../../components/loader"
 
 export default {
   data () {
@@ -17,8 +26,8 @@ export default {
     }
   },
   components: {
-    DataTable
-    //Loader
+    DataTable,
+    // Loader
   },
     created() {
       this.$store.dispatch("fetchListStations");
