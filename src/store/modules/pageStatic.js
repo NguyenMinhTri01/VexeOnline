@@ -4,13 +4,15 @@ const state = {
   loading: false,
   data: null,
   err: null,
+  pagestatic:null
 };
 
 const mutations = {
   storePageStaticRequest(state) {
     state.loading = true;
     state.data = null,
-    state.err = null
+    state.err = null,
+    state.pageStatic = null
   },
 
   storePageStaticSuccess(state, payload) {
@@ -35,7 +37,11 @@ const mutations = {
       })
     }
   },
-  
+  storeSetPageStatic(state, pageStatic) {
+    state.pagestatic = pageStatic
+    state.loading = false;
+    state.err = null
+  },
 };
 
 const actions = {
@@ -66,8 +72,7 @@ const actions = {
     api
       .post("/pagestatics", pageStatic)
       .then(result => {
-        commit("storePageStaticSuccess", result.data);
-        router.replace("/admin/pagestatics/add");
+        commit("storeSetPageStatic", result.data);
       })
       .catch(err => {
         commit("storePageStaticFailed", err);
@@ -76,7 +81,7 @@ const actions = {
   fetchEditPageStatic({commit},data){
     commit("storePageStaticRequest");
     api
-      .put(`/pagestatics/${data._id}`,data.blog)
+      .put(`/pagestatics/${data._id}`,data.pagestatic)
       .then((result) => {
         commit("storePageStaticSuccess", result.data);
         router.replace("/admin/pagestatics");

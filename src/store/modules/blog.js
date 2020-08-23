@@ -1,5 +1,5 @@
 import { api } from "../../api"
-//import router from "./../../router";
+import router from "./../../router";
 const state = {
   loading: false,
   data: null,
@@ -40,7 +40,6 @@ const mutations = {
 
   storeSetBlog(state, blog) {
     state.blog = blog,
-    state.data = blog
     state.loading = false;
     state.err = null
   },
@@ -109,7 +108,7 @@ const actions = {
       .put(`/blogs/${data._id}`,data.blog)
       .then((result) => {
         commit("storeBlogSuccess", result.data);
-        //router.replace("/admin/blogs");
+        router.replace("/admin/blogs");
       })
       .catch(err => {
         commit("storeBlogFailed", err);

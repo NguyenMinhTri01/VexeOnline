@@ -100,6 +100,12 @@
          </router-link>
       </li>
       <li class="nav-item">
+         <router-link to="/admin/pagestatics" class="nav-link">
+            <i class="fas fa-fw fa-file"></i>
+            <span>Page Static</span>
+         </router-link>
+      </li>
+      <li class="nav-item">
          <router-link to="/admin/contacts" class="nav-link">
             <i class="fas fa-fw fa-address-card"></i>
             <span>Contact</span>

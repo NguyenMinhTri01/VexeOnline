@@ -233,6 +233,9 @@ export default {
     blog() {
       return this.$store.state.blog.data;
     },
+    blog2() {
+      return this.$store.state.blog.blog;
+    },
     err() {
       return this.$store.state.blog.err;
     },
@@ -243,6 +246,13 @@ export default {
   watch: {
     blog(newValue) {
       this.formBlog = newValue;
+    },
+    blog2(newValue) {
+      if (newValue){
+                    this.$toast.success('ccc bài viết thành công', {
+                        position : 'bottom-right'
+                    })
+                }
     }
   },
   // mounted() {
