@@ -96,7 +96,6 @@ const actions = {
       .post("/blogs", blog)
       .then(result => {
         commit("storeBlogSuccess", result.data);
-        router.replace("/admin/blogs/add");
       })
       .catch(err => {
         commit("storeBlogFailed", err);

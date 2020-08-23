@@ -2,14 +2,16 @@ import { api } from "../../api"
 const state = {
   loading: false,
   data: null,
+  station : null,
   err: null
 };
 
 const mutations = {
   storeStationRequest(state) {
     state.loading = true;
-    state.data = null,
-    state.err = null
+    state.data = null;
+    state.station = null;
+    state.err = null;
   },
 
   storeStationSuccess(state, payload) {
@@ -23,7 +25,6 @@ const mutations = {
     state.data = null;
     state.err = payload
   },
-
   storeUpdateStation(state, station){
     if (station) {
       state.data = state.data.map(item => {
@@ -33,7 +34,12 @@ const mutations = {
         return item
       })
     }
-  }
+  },
+  storeSetStation(state, station) {
+    state.station = station
+    state.loading = false;
+    state.err = null
+  },
 };
 
 const actions = {
@@ -68,6 +74,27 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
+
+  fetchHotStation ( {commit}, id) {
+    api.get(`/stations/hot/${id}`)
+    .then(result => {
+      commit("storeUpdateStation", result.data);
+    })
+    .catch(err => {
+      commit("storeBlogFailed", err);
+    })
+  },
+  postStation ({commit}, formData) {
+    commit("storeStationRequest");
+    api.post('/stations',formData )
+    .then(result => {
+      commit("storeSetStation", result.data);
+    })
+    .catch(err => {
+      commit("storeBlogFailed", err);
+    })
+  }
+
 }
 
 export default { state, mutations, actions };
