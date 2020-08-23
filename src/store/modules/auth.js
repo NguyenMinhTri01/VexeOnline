@@ -79,6 +79,19 @@ const actions = {
     setHeader(token);
     commit("storeLoginSuccess", token);
   }
+  // tryAutoLogin({ commit }) {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     return;
+  //   }
+  //   const exp = localStorage.getItem("exp");
+  //   const date = new Date().getTime() / 1000;
+  //   if (date > exp) {
+  //     router.replace("/");
+  //   }
+  //   setHeader(token);
+  //   commit("storeLoginSuccess", token);
+  // }git
 };
 
 export default { state, mutations, actions };

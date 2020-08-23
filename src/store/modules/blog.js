@@ -4,7 +4,7 @@ const state = {
   loading: false,
   data: null,
   err: null,
-  //oneBlog: null,
+  blog:null
 };
 
 const mutations = {
@@ -12,14 +12,13 @@ const mutations = {
     state.loading = true;
     state.data = null,
     state.err = null
-    //state.oneBlog =  null
+    state.blog =  null
   },
 
   storeBlogSuccess(state, payload) {
     state.loading = false
     state.data = payload;
     state.err = null
-   // state.oneBlog = payload
   },
 
   storeBlogFailed(state, payload) {
@@ -39,8 +38,10 @@ const mutations = {
     }
   },
 
-  storeSetOneBlog(state, blog) {
-    state.oneBlog = blog
+  storeSetBlog(state, blog) {
+    state.blog = blog,
+    state.loading = false;
+    state.err = null
   },
 
   storeGetOneBlog(state) {
@@ -90,29 +91,39 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
-  postBlog({ commit }, blog) {
+  fetchCreateBlog({ commit }, blog) {
     commit("storeBlogRequest");
     api
       .post("/blogs", blog)
       .then(result => {
-        commit("storeBlogSuccess", result.data);
-        router.replace("/admin/blogs/add");
+        commit("storeSetBlog", result.data);
       })
       .catch(err => {
         commit("storeBlogFailed", err);
       })
   },
-  putBlog({commit},id,blog){
+  fetchEditBlog({commit},data){
     commit("storeBlogRequest");
     api
-      .put(`/blogs/${id}`,blog)
-      .then(result => {
+      .put(`/blogs/${data._id}`,data.blog)
+      .then((result) => {
         commit("storeBlogSuccess", result.data);
         router.replace("/admin/blogs");
       })
       .catch(err => {
         commit("storeBlogFailed", err);
       })
+  },
+  fetchDeleteBlog({ commit, dispatch }, id) {
+    commit("storeBlogRequest");
+    api
+      .delete(`/blogs/${id}`)
+      .then(() => {
+        dispatch("fetchListBlogs");
+      })
+      .catch((err) => {
+        commit("storeBlogFailed", err);
+      });
   },
 }
 

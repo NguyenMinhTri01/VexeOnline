@@ -9,6 +9,8 @@
         :columns="columns" 
         :keys="keys" 
         :name="'stations'" 
+        :name2="'Stations'"
+        :addandedit="'addandedit'"
         :loading="loading" />
       
   </div>

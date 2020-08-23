@@ -60,6 +60,8 @@ Vue.use(VueRouter)
           path : "/admin/dashboard",
           component: () => import ('../views/adminTemplate/dashboardPage')
         },
+
+        //blog
         {
           path : "/admin/blogs",
           component : () => import ('../views/adminTemplate/blogPage')
@@ -72,6 +74,8 @@ Vue.use(VueRouter)
           path : "/admin/blogs/edit/:id",
           component : () => import ('../views/adminTemplate/blogPage/edit.vue')
         },
+
+        //station
         {
           path : "/admin/stations",
           component : () => import ('../views/adminTemplate/stationPage')
@@ -84,6 +88,30 @@ Vue.use(VueRouter)
           path : "/admin/stations/edit/:id",
           component : () => import ('../views/adminTemplate/stationPage/edit.vue')
         },
+
+
+        //contact
+        {
+          path : "/admin/contacts",
+          component : () => import ('../views/adminTemplate/contactPage'),
+        },
+
+
+        //pagestatic
+        {
+          path : "/admin/pagestatics",
+          component : () => import ('../views/adminTemplate/pageStaticPage')
+        },
+        {
+          path : "/admin/pagestatics/add",
+          component : () => import ('../views/adminTemplate/pageStaticPage/add.vue')
+        },
+        {
+          path : "/admin/pagestatics/edit/:id",
+          component : () => import ('../views/adminTemplate/pageStaticPage/edit.vue')
+        },
+
+
         {
           path : "*",
           component: () => import ('../views/adminTemplate/pageNotFound')

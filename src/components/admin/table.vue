@@ -5,7 +5,7 @@
     <div v-else class="card shadow mb-4">
       <div class="card-header py-3">
         <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
-        <router-link class="btn btn-sm btn-success" :to="`/admin/${name}/add`">
+        <router-link class="btn btn-sm btn-success" :to="`/admin/${name}/add`" v-if="addandedit === 'addandedit'">
           <i class="fas fa-plus"> Thêm mới</i>
         </router-link>
       </div>
@@ -41,10 +41,10 @@
                   <template v-else>{{item[key]}}</template>
                 </td>
                 <td class="text-center">
-                  <router-link class="btn btn-sm btn-warning m-1" :to="`/admin/${name}/edit/${item._id}`">
+                  <router-link class="btn btn-sm btn-warning m-1" :to="`/admin/${name}/edit/${item._id}`" v-if="addandedit === 'addandedit'">
                     <i class="fas fa-edit"> Sửa</i>
                   </router-link>
-                  <button class="btn btn-sm btn-danger m-1">
+                  <button class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#logoutModal" @click="id=item._id">
                     <i class="fas fa-trash-alt"> Xóa</i>
                   </button>
                 </td>
@@ -54,11 +54,13 @@
         </div>
       </div>
     </div>  
+    <DeleteConfirm :id="id" :deleteFetch="deleteFetch" />
   </div>
 
 </template>
 
 <script>
+import DeleteConfirm from "./deleteConfirm";
 import moment from "moment";
 import Loader from "../loader"
 // global.jQuery = require('jquery');
@@ -67,12 +69,18 @@ import Loader from "../loader"
 // import '../../assets/admin/vendor/datatables/jquery.dataTables';
 // import '../../assets/admin/vendor/datatables/dataTables.bootstrap4.js';
 export default {
+  components: {
+    DeleteConfirm,
+    Loader
+  },
   data() {
     return {
       data: null,
+      id: "",
+      deleteFetch:this.name2
     };
   },
-  props: ["columns", "arrayData", "keys","name", "loading"],
+  props: ["columns", "arrayData", "keys","name","name2","addandedit","loading"],
   watch: {
     arrayData: function () {
       moment.locale("vi");
@@ -89,6 +97,13 @@ export default {
       });
     },
   },
+
+  // mounted() {
+  //   $(document).ready(function () {
+  //     console.log(this.addandedit)
+  //     console.log("jquery ok")
+  //   });
+  // },
   methods:{
     changeStatus(id){
       this.$emit("eventChangeStatus", {id})
@@ -97,14 +112,14 @@ export default {
       this.$emit("eventChangeHot",{id})
     }
   },
-  components: {
-    Loader
-  },
-    mounted() {
-    // $(document).ready(function () {
-    //   $('#dataTable').DataTable();
-    // });
-  },
+  // components: {
+  //   Loader
+  // },
+  //   mounted() {
+  //   // $(document).ready(function () {
+  //   //   $('#dataTable').DataTable();
+  //   // });
+  // },
 };
 </script>
 
