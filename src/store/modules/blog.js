@@ -90,7 +90,7 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
-  postBlog({ commit }, blog) {
+  fetchCreateBlog({ commit }, blog) {
     commit("storeBlogRequest");
     api
       .post("/blogs", blog)
@@ -102,17 +102,28 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
-  putBlog({commit},id,blog){
+  fetchEditBlog({commit},data){
     commit("storeBlogRequest");
     api
-      .put(`/blogs/${id}`,blog)
-      .then(result => {
+      .put(`/blogs/${data._id}`,data.blog)
+      .then((result) => {
         commit("storeBlogSuccess", result.data);
         router.replace("/admin/blogs");
       })
       .catch(err => {
         commit("storeBlogFailed", err);
       })
+  },
+  fetchDeleteBlog({ commit, dispatch }, id) {
+    commit("storeBlogRequest");
+    api
+      .delete(`/blogs/${id}`)
+      .then(() => {
+        dispatch("fetchListBlogs");
+      })
+      .catch((err) => {
+        commit("storeBlogFailed", err);
+      });
   },
 }
 

@@ -88,7 +88,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 descriptionSeo: this.descriptionSeo,
                 keywordSeo: this.keywordSeo
             };
-                this.$store.dispatch("postBlog", fromData);
+                this.$store.dispatch("fetchCreateBlog", fromData);
                 this.name= '',
                 this.description= ''
                 this.editorData= ''

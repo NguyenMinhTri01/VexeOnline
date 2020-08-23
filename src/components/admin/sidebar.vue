@@ -99,7 +99,12 @@
             <span>Blog</span>
          </router-link>
       </li>
-
+      <li class="nav-item">
+         <router-link to="/admin/contacts" class="nav-link">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>Contact</span>
+         </router-link>
+      </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="tables.html">

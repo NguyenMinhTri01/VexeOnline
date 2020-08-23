@@ -3,7 +3,7 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-      <router-link class="btn btn-success" :to="`/admin/${name}/add`">
+      <router-link class="btn btn-success" :to="`/admin/${name}/add`"  v-if="addandedit === 'addandedit'">
         <i class="fas fa-plus"> Thêm mới</i>
       </router-link>
     </div>
@@ -44,10 +44,10 @@
                 <template v-else>{{item[key]}}</template>
               </td>
               <td>
-                <router-link class="btn btn-warning" :to="`/admin/${name}/edit/${item._id}`">
+                <router-link class="btn btn-warning" :to="`/admin/${name}/edit/${item._id}`" v-if="addandedit === 'addandedit'">
                   <i class="fas fa-edit"> Sửa</i>
                 </router-link>&nbsp;
-                <button class="btn btn-danger">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#logoutModal" @click="id=item._id">
                   <i class="fas fa-trash-alt"> Xóa</i>
                 </button>
               </td>
@@ -56,21 +56,29 @@
         </table>
       </div>
     </div>
+    <DeleteConfirm :id="id" :deleteFetch="deleteFetch" />
   </div>
 </template>
 
 <script>
+import DeleteConfirm from "./deleteConfirm";
 import moment from "moment";
 global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;
 export default {
+  components: {
+    DeleteConfirm,
+    //Loader
+  },
   data() {
     return {
       data: null,
+      id: "",
+      deleteFetch:this.name2
     };
   },
-  props: ["columns", "arrayData", "keys","name"],
+  props: ["columns", "arrayData", "keys","name","name2","addandedit"],
   watch: {
     arrayData: function () {
       moment.locale("vi");
@@ -90,6 +98,7 @@ export default {
 
   mounted() {
     $(document).ready(function () {
+      console.log(this.addandedit)
       console.log("jquery ok")
     });
   },

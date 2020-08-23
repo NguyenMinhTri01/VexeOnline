@@ -2,26 +2,25 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Bài Viết</h1>
-      <DataTable @eventChangeStatus="eventChangeStatus($event)" @eventChangeHot="eventChangeHot($event)" :arrayData="blogs"  :columns="columns" :keys="keys" :name="'blogs'"  />
+      <DataTable @eventChangeStatus="eventChangeStatus($event)" @eventChangeHot="eventChangeHot($event)" :arrayData="blogs"  :columns="columns" :keys="keys" :name="'blogs'" :name2="'Blog'" :addandedit="'addandedit'" />
     </div>
 </template>
 
 <script>
-import DataTable from "../../../components/admin/table"
+import DataTable from "../../../components/admin/table";
 export default {
   data () {
     return {
-      columns : ["Tên bài viết", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
+      columns : ["Tên Bài Viết", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
       keys : ["name", "hot", "status", "createdAt"]
     }
   },
   components: {
-    DataTable
+    DataTable,
     //Loader
   },
   created() {
       this.$store.dispatch("fetchListBlogs");
-      
   },
   computed: {
       blogs() {
