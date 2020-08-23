@@ -1,5 +1,4 @@
-import { api } from "../../api"
-import router from "./../../router";
+import { api } from "../../api" 
 const state = {
   loading: false,
   data: null,
@@ -60,7 +59,7 @@ const actions = {
     commit("storePageStaticRequest");
     api.get(`/pagestatics/${id}`)
       .then(result => {
-        commit("storePageStaticSuccess", result.data);
+        commit("storeSetPageStatic", result.data);
       })
       .catch(err => {
         commit("storePageStaticFailed", err);
@@ -79,12 +78,12 @@ const actions = {
       })
   },
   fetchEditPageStatic({commit},data){
-    commit("storePageStaticRequest");
+  //  commit("storePageStaticRequest");
     api
       .put(`/pagestatics/${data._id}`,data.pagestatic)
       .then((result) => {
-        commit("storePageStaticSuccess", result.data);
-        router.replace("/admin/pagestatics");
+        commit("storeSetPageStatic", result.data);
+       // router.replace("/admin/pagestatics");
       })
       .catch(err => {
         commit("storePageStaticFailed", err);

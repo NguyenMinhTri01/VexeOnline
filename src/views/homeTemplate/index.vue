@@ -10,7 +10,8 @@ import NavbarHome from '../../components/navbarHome';
 export default {  
   components : {
     NavbarHome
-  }
+  },
+  
 
 }
 </script>

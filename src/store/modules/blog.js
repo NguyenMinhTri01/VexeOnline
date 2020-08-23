@@ -1,5 +1,5 @@
 import { api } from "../../api"
-import router from "./../../router";
+//import router from "./../../router";
 const state = {
   loading: false,
   data: null,
@@ -66,7 +66,7 @@ const actions = {
     commit("storeBlogRequest");
     api.get(`/blogs/${id}`)
       .then(result => {
-        commit("storeBlogSuccess", result.data);
+        commit("storeSetBlog", result.data);
       })
       .catch(err => {
         commit("storeBlogFailed", err);
@@ -103,12 +103,12 @@ const actions = {
       })
   },
   fetchEditBlog({commit},data){
-    commit("storeBlogRequest");
+    //commit("storeBlogRequest");
     api
       .put(`/blogs/${data._id}`,data.blog)
       .then((result) => {
-        commit("storeBlogSuccess", result.data);
-        router.replace("/admin/blogs");
+        commit("storeSetBlog", result.data);
+        //router.replace("/admin/blogs");
       })
       .catch(err => {
         commit("storeBlogFailed", err);

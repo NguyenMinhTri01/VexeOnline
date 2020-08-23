@@ -162,7 +162,7 @@
 <script>
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-global.jQuery = require('jquery');
+global.jQuery = require("jquery");
 var $ = global.jQuery;
 window.$ = $;
 export default {
@@ -181,7 +181,8 @@ export default {
         descriptionSeo: "",
         keywordSeo: "",
         content: ""
-      }
+      },
+      count: 0
     };
   },
   validations: {
@@ -223,6 +224,7 @@ export default {
   },
   methods: {
     handleSubmit(formBlog) {
+      this.count = 1;
       this.$store.dispatch("fetchEditBlog", {
         _id: this.$route.params.id,
         blog: formBlog
@@ -231,11 +233,11 @@ export default {
   },
   computed: {
     blog() {
-      return this.$store.state.blog.data;
-    },
-    blog2() {
       return this.$store.state.blog.blog;
     },
+    // blog2() {
+    //   return this.$store.state.blog.blog;
+    // },
     err() {
       return this.$store.state.blog.err;
     },
@@ -246,15 +248,15 @@ export default {
   watch: {
     blog(newValue) {
       this.formBlog = newValue;
-    },
-    blog2(newValue) {
-      if (newValue){
-                    this.$toast.success('ccc bài viết thành công', {
-                        position : 'bottom-right'
-                    })
-                }
+      if (newValue) {
+        if (this.count === 1) {
+          this.$toast.success("Cập nhập bài viết thành công", {
+            position: "bottom-right"
+          });
+        }
+      }
     }
-  },
+  }
   // mounted() {
   //   $(document).ready(function () {
   //     console.log(this.formBlog)
