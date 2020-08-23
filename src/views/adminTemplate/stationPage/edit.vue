@@ -88,12 +88,12 @@
                 <div class="col-sm-12 ">
                     <div class="card shadow mb-4">
                         <div class="card-footer text-center">
-                            <button type="button" class="btn btn-sm btn-warning btn-icon-split">
+                            <router-link to="/admin/stations" type="button" class="btn btn-sm btn-warning btn-icon-split">
                               <span class="icon text-white-50">
                                 <i class="fas fa-exclamation-triangle"></i>
                               </span>
                               <span class="text">Hủy Bỏ</span>                              
-                            </button>&nbsp;
+                            </router-link>&nbsp;
                             <button type="submit" class="btn btn-sm btn-primary btn-icon-split">
                               <span class="icon text-white-50">
                                 <i v-if="loadingEdit" class="fa fa-spinner fa-spin"></i>

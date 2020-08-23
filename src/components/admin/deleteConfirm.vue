@@ -10,8 +10,8 @@
         </div>
         <div class="modal-body">Bạn có chắc chắn xóa không?</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="button" data-dismiss="modal" @click="handleDeleteItem">Delete</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+          <button class="btn btn-primary" type="button" data-dismiss="modal" @click="handleDeleteItem">Xóa</button>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@
         :columns="columns" 
         :keys="keys" 
         :name="'stations'" 
-        :name2="'Stations'"
+        :name2="'Station'"
         :addandedit="'addandedit'"
         :loading="loading" />
       

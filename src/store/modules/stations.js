@@ -71,7 +71,7 @@ const actions = {
         commit("storeUpdateStation", result.data);
       })
       .catch(err => {
-        commit("storeBlogFailed", err);
+        commit("storeStationFailed", err);
       })
   },
 
@@ -81,7 +81,7 @@ const actions = {
       commit("storeUpdateStation", result.data);
     })
     .catch(err => {
-      commit("storeBlogFailed", err);
+      commit("storeStationFailed", err);
     })
   },
   postStation ({commit}, formData) {
@@ -91,7 +91,7 @@ const actions = {
       commit("storeSetStation", result.data);
     })
     .catch(err => {
-      commit("storeBlogFailed", err);
+      commit("storeStationFailed", err);
     })
   },
 
@@ -101,8 +101,20 @@ const actions = {
       commit("storeSetStation", result.data);
     })
     .catch(err => {
-      commit("storeBlogFailed", err);
+      commit("storeStationFailed", err);
     })
+  },
+
+  fetchDeleteStation({ commit, dispatch }, id) {
+    commit("storeContactRequest");
+    api
+      .delete(`/stations/${id}`)
+      .then(() => {
+        dispatch("fetchListStations");
+      })
+      .catch((err) => {
+        commit("storeStationFailed", err);
+      });
   },
 
 }
