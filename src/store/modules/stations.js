@@ -35,11 +35,15 @@ const mutations = {
       })
     }
   },
+  
   storeSetStation(state, station) {
     state.station = station
     state.loading = false;
     state.err = null
   },
+  storeDeleteStationInData (state, id) {
+    state.data = state.data.filter(station => station._id != id)
+  }
 };
 
 const actions = {
@@ -85,7 +89,7 @@ const actions = {
     })
   },
   postStation ({commit}, formData) {
-    commit("storeStationRequest");
+
     api.post('/stations',formData )
     .then(result => {
       commit("storeSetStation", result.data);
@@ -105,12 +109,11 @@ const actions = {
     })
   },
 
-  fetchDeleteStation({ commit, dispatch }, id) {
-    commit("storeContactRequest");
+  fetchDeleteStation({ commit}, id) {
     api
       .delete(`/stations/${id}`)
       .then(() => {
-        dispatch("fetchListStations");
+        commit("storeDeleteStationInData", id)
       })
       .catch((err) => {
         commit("storeStationFailed", err);
