@@ -174,6 +174,7 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
             if (this.selectedProvince != '0'){
               this.province = this.provinces[`${this.selectedProvince}`].name_with_type;
               this.districts = require (`../../../assets/data/dataAddress/districts/${this.selectedProvince}.json`);
+              this.selectedDistrict = '0'
             } else {
               this.districts = {};
             }
@@ -181,7 +182,8 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
 
           selectedDistrict () {
             if (this.selectedDistrict != '0'){
-              this.wards = require (`../../../assets/data/dataAddress/wards/${this.selectedDistrict}.json`)
+              this.wards = require (`../../../assets/data/dataAddress/wards/${this.selectedDistrict}.json`);
+              this.selectedWards = '0'
             } else {
               this.wards = {};
             }            
@@ -203,7 +205,7 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
           }
         },
         methods: {
-            handleSubmit() {
+            handleSubmit(event) {
               if (this.$v.$anyDirty && !this.$v.$anyError && !this.errImage){
                 const fromData = {
                   name: this.name,
@@ -212,8 +214,9 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
                   titleSeo: this.titleSeo,
                   descriptionSeo: this.descriptionSeo,
                   keywordSeo: this.keywordSeo
-                  };
+                  };  
                 this.$store.dispatch("postStation", fromData);
+                event.target.reset()
               }
             },
             previewFile (event) {

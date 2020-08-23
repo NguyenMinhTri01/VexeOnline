@@ -58,7 +58,7 @@ const actions = {
     commit("storeStationRequest");
     api.get(`/stations/${id}`)
       .then(result => {
-        commit("storeStationSuccess", result.data);
+        commit("storeSetStation", result.data);
       })
       .catch(err => {
         commit("storeStationFailed", err);
@@ -93,7 +93,17 @@ const actions = {
     .catch(err => {
       commit("storeBlogFailed", err);
     })
-  }
+  },
+
+  putStation ({commit}, formData) {
+    api.put(`/stations/${formData.id}`,formData)
+    .then(result => {
+      commit("storeSetStation", result.data);
+    })
+    .catch(err => {
+      commit("storeBlogFailed", err);
+    })
+  },
 
 }
 
