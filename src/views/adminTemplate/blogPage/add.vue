@@ -153,7 +153,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
         },
         computed:{
             blog() {
-                return this.$store.state.blog.data
+                return this.$store.state.blog.blog
             },
             loading() {
                 return this.$store.state.blog.loading;
