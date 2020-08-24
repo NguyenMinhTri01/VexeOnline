@@ -34,7 +34,7 @@
                   <template v-else-if="key === 'avatar'">
                     <img
                       class="imageTable"
-                      v-lazy="`https://res.cloudinary.com/vexeonline/VexeOnlineMedia${item[key]}`"
+                      v-lazy="`https://res.cloudinary.com/vexeonline/${item[key]}`"
                       alt="avatar"
                     />
                   </template>
@@ -62,12 +62,8 @@
 <script>
 import DeleteConfirm from "./deleteConfirm";
 import moment from "moment";
-import Loader from "../loader"
-// global.jQuery = require('jquery');
-// var $ = global.jQuery;
-// window.$ = $;
-// import '../../assets/admin/vendor/datatables/jquery.dataTables';
-// import '../../assets/admin/vendor/datatables/dataTables.bootstrap4.js';
+import Loader from "../loader";
+
 export default {
   components: {
     DeleteConfirm,
@@ -98,12 +94,9 @@ export default {
     },
   },
 
-  // mounted() {
-  //   $(document).ready(function () {
-  //     console.log(this.addandedit)
-  //     console.log("jquery ok")
-  //   });
-  // },
+  mounted() {
+    
+  },
   methods:{
     changeStatus(id){
       this.$emit("eventChangeStatus", {id})
@@ -131,5 +124,5 @@ export default {
 .table-responsive > table > tbody > tr > td {
   vertical-align: middle;
 }
-@import url("../../assets/admin/vendor/datatables/dataTables.bootstrap4.min.css");
+
 </style>

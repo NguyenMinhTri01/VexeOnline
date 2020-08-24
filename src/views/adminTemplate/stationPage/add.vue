@@ -130,7 +130,8 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
               descriptionSeo:"",
               keywordSeo:"",
               urlImage : null,
-              errImage : null
+              errImage : null,
+              file : null
             };
         },
         validations : {
@@ -207,15 +208,21 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
         methods: {
             handleSubmit(event) {
               if (this.$v.$anyDirty && !this.$v.$anyError && !this.errImage){
-                const fromData = {
+                const formData = {
                   name: this.name,
                   address : `${this.street}, ${this.selectedWards}`,
                   province : this.provinces[`${this.selectedProvince}`].name_with_type,
                   titleSeo: this.titleSeo,
                   descriptionSeo: this.descriptionSeo,
                   keywordSeo: this.keywordSeo
-                  };  
-                this.$store.dispatch("postStation", fromData);
+                  };
+                if(this.file) {
+                  let fileAvatar = new FormData ();
+                  fileAvatar.append('avatar', this.file)
+                  this.$store.dispatch("postStation", {formData, fileAvatar});
+                } else {
+                  this.$store.dispatch("postStation", {formData, fileAvatar : null});
+                }  
                 event.target.reset()
               }
             },
@@ -228,6 +235,7 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
                   this.fileName = "Chọn File Ảnh"
                   this.urlImage = null;
                 } else {
+                  this.file = file
                   this.fileName = file.name;
                   this.errImage = null;
                   this.urlImage = URL.createObjectURL(file);
@@ -250,6 +258,8 @@ import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
   border-radius: 4px;
   padding: 5px;
   width: 300px;
+  max-width: 300px;
+  min-width: 300px;
   height: 200px;
 }
 
