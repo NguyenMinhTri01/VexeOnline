@@ -41,6 +41,9 @@ const mutations = {
     state.loading = false;
     state.err = null
   },
+  storeDeletePageStaticInData (state, id) {
+    state.data = state.data.filter(pagestatic => pagestatic._id != id)
+  }
 };
 
 const actions = {
@@ -89,12 +92,11 @@ const actions = {
         commit("storePageStaticFailed", err);
       })
   },
-  fetchDeletePageStatic({ commit, dispatch }, id) {
-    commit("storePageStaticRequest");
+  fetchDeletePageStatic({ commit }, id) {
     api
       .delete(`/pagestatics/${id}`)
       .then(() => {
-        dispatch("fetchListPageStatics");
+        commit("storeDeletePageStaticInData",id);
       })
       .catch((err) => {
         commit("storePageStaticFailed", err);

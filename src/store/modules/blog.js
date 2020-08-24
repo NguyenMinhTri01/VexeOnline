@@ -43,11 +43,9 @@ const mutations = {
     state.loading = false;
     state.err = null
   },
-
-  storeGetOneBlog(state) {
-    return state.oneBlog
+  storeDeleteBlogInData (state, id) {
+    state.data = state.data.filter(blog => blog._id != id)
   }
-  
 };
 
 const actions = {
@@ -114,12 +112,11 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
-  fetchDeleteBlog({ commit, dispatch }, id) {
-    commit("storeBlogRequest");
+  fetchDeleteBlog({ commit }, id) {
     api
       .delete(`/blogs/${id}`)
       .then(() => {
-        dispatch("fetchListBlogs");
+        commit("storeDeleteBlogInData",id);
       })
       .catch((err) => {
         commit("storeBlogFailed", err);

@@ -23,7 +23,9 @@ const mutations = {
     state.data = null;
     state.err = payload
   },
-  
+  storeDeleteContactInData (state, id) {
+    state.data = state.data.filter(contact => contact._id != id)
+  }
 };
 
 const actions = {
@@ -48,12 +50,11 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
-  fetchDeleteContact({ commit, dispatch }, id) {
-    commit("storeContactRequest");
+  fetchDeleteContact({ commit }, id) {
     api
       .delete(`/contacts/${id}`)
       .then(() => {
-        dispatch("fetchListContacts");
+        commit("storeDeleteContactInData",id);
       })
       .catch((err) => {
         commit("storeContactFailed", err);
