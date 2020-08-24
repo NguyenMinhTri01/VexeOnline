@@ -73,8 +73,10 @@
                 <div class="col-sm-4">
                   <div class="card shadow mb-4">
                       <div class="card-body">
-                          <img class="image-preview" v-if="urlImage" :src="urlImage" alt="avatar"/>
-                          <img class="image-preview" v-else v-lazy="`https://res.cloudinary.com/vexeonline/VexeOnlineMedia/${station.avatar}`" alt="avatar">
+                          <div class="text-center">
+                            <img class="image-preview " v-if="urlImage" :src="urlImage" alt="avatar"/>
+                            <img class="image-preview " v-else v-lazy="`https://res.cloudinary.com/vexeonline/${station.avatar}`" alt="avatar">
+                          </div>
                         <div class="form-group mt-2">
                           <div class="custom-file">
                             <input @change="previewFile" type="file" class="custom-file-input" id="customFile">
@@ -138,7 +140,8 @@ import Loader from '../../../components/loader'
               errImage : null,
               arrAddress : null,
               count : 0,
-              loadingEdit : false
+              loadingEdit : false,
+              file : null
             };
         },
         created () {
@@ -229,6 +232,8 @@ import Loader from '../../../components/loader'
                 this.$toast.success('Cập nhật bến xe thành công', {
                   position : 'bottom-right'
                 })
+                this.file = null
+                this.fileName = "Chọn File Ảnh"
               }
             }
           }
@@ -244,7 +249,7 @@ import Loader from '../../../components/loader'
         methods: {
             handleSubmit() {
               if (this.$v.$anyDirty && !this.$v.$anyError && !this.errImage){
-                const fromData = {
+                const formData = {
                   id : this.$route.params.id,
                   name: this.name,
                   address : `${this.street}, ${this.selectedWards}`,
@@ -252,11 +257,26 @@ import Loader from '../../../components/loader'
                   titleSeo: this.titleSeo,
                   descriptionSeo: this.descriptionSeo,
                   keywordSeo: this.keywordSeo
-                  };  
-                  // console.log(this.$route.params.id, fromData)
+                  };
                   this.count = 1
                   this.loadingEdit = true
-                  this.$store.dispatch("putStation", fromData);
+                  if(this.file) {
+                    let fileAvatar = new FormData ();
+                    fileAvatar.append('avatar', this.file)
+                    this.$store.dispatch("putStation", {formData, fileAvatar});
+                  } else {
+                    this.$store.dispatch("putStation", {formData, fileAvatar : null});
+                  }                   
+              } else if (!this.errImage && this.file) {
+                let fileAvatar = new FormData ();
+                fileAvatar.append('avatar', this.file)
+                const fileDataOfStation = {
+                  id : this.$route.params.id,
+                  fileAvatar
+                } 
+                this.$store.dispatch("uploadAvatarStation", fileDataOfStation);
+                this.count = 1
+                this.loadingEdit = true               
               }
             },
             previewFile (event) {
@@ -268,6 +288,7 @@ import Loader from '../../../components/loader'
                   this.fileName = "Chọn File Ảnh"
                   this.urlImage = null;
                 } else {
+                  this.file = file
                   this.fileName = file.name;
                   this.errImage = null;
                   this.urlImage = URL.createObjectURL(file);
@@ -291,6 +312,8 @@ import Loader from '../../../components/loader'
   border-radius: 4px;
   padding: 5px;
   width: 300px;
+  max-width: 300px;
+  min-width: 300px;
   height: 200px;
 }
 
