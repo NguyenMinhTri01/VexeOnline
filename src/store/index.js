@@ -5,10 +5,11 @@ import blog from "./modules/blog"
 import auth from "./modules/auth"
 import contact from "./modules/contact"
 import pageStatic from "./modules/pageStatic"
+import garage from "./modules/garage"
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { stations, auth, blog, contact, pageStatic }
+  modules: { stations, auth, blog, contact, pageStatic, garage }
 })

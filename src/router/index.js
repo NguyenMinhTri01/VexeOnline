@@ -111,6 +111,19 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/pageStaticPage/edit.vue')
         },
 
+        //garage
+        {
+          path : "/admin/garages",
+          component : () => import ('../views/adminTemplate/garagePage')
+        },
+        {
+          path : "/admin/garages/add",
+          component : () => import ('../views/adminTemplate/garagePage/add.vue')
+        },
+        {
+          path : "/admin/garages/edit/:id",
+          component : () => import ('../views/adminTemplate/garagePage/edit.vue')
+        },
 
         {
           path : "*",

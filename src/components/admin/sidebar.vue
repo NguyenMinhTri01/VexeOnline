@@ -94,6 +94,12 @@
          </router-link>
       </li>
       <li class="nav-item">
+         <router-link to="/admin/garages" class="nav-link">
+            <i class="fas fa-home"></i>
+            <span>Nhà xe</span>
+         </router-link>
+      </li>
+      <li class="nav-item">
          <router-link to="/admin/blogs" class="nav-link">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Blog</span>
