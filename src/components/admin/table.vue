@@ -63,7 +63,6 @@
 import DeleteConfirm from "./deleteConfirm";
 import moment from "moment";
 import Loader from "../loader";
-
 export default {
   components: {
     DeleteConfirm,
@@ -94,9 +93,11 @@ export default {
     },
   },
 
-  mounted() {
-    
-  },
+  // mounted() {
+  //   $(document).ready(function () {
+  //     //console.log(thi)
+  //   });
+  // },
   methods:{
     changeStatus(id){
       this.$emit("eventChangeStatus", {id})
@@ -107,11 +108,6 @@ export default {
   },
   // components: {
   //   Loader
-  // },
-  //   mounted() {
-  //   // $(document).ready(function () {
-  //   //   $('#dataTable').DataTable();
-  //   // });
   // },
 };
 </script>

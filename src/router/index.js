@@ -133,6 +133,20 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/userPage')
         },
 
+
+        //route
+        {
+          path : "/admin/routes",
+          component : () => import ('../views/adminTemplate/routePage')
+        },
+        {
+          path : "/admin/routes/add",
+          component : () => import ('../views/adminTemplate/routePage/add.vue')
+        },
+        {
+          path : "/admin/routes/edit/:id",
+          component : () => import ('../views/adminTemplate/routePage/edit.vue')
+        },
          
         {
           path : "*",
