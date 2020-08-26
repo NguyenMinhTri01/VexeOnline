@@ -11,6 +11,7 @@
                                 <input v-model="name" type="text" class="form-control" name="name" autocomplete="off" @blur="$v.name.$touch()">
                                 <p v-if="$v.name.$dirty && !$v.name.required" class="alert-danger mt-2">Tên không được để trống !</p>
                                 <p v-if="$v.name.$dirty && (!$v.name.minLength || !$v.name.maxLength)" class="alert-danger mt-2">Độ dài tên phải từ 3 đến 255 ký tự !</p>
+                                <p v-if="err" class="alert-danger mt-2">{{err.response.data.name}}</p>
                             </div>
                             <div class="form-group ">
                                 <label for="exampleInputEmail1">Nội dung</label>
@@ -99,6 +100,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             },
             loading() {
                 return this.$store.state.pageStatic.loading;
+            },
+            err(){
+                return this.$store.state.pageStatic.err;
             }
         }
     }

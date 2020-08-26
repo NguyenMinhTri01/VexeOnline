@@ -55,6 +55,9 @@ export default {
     handleLogout() {
       this.$store.dispatch("logout");
     }
+  },
+  created() {
+    this.$store.dispatch("tryAutoLogin");
   }
 }
 

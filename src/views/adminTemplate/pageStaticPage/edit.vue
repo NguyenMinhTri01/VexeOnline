@@ -77,7 +77,7 @@
 <script>
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-global.jQuery = require('jquery');
+global.jQuery = require("jquery");
 var $ = global.jQuery;
 window.$ = $;
 export default {
@@ -90,7 +90,8 @@ export default {
       },
       formPageStatic: {
         name: "",
-        content: ""
+        content: "",
+        count: 0
       }
     };
   },
@@ -113,6 +114,7 @@ export default {
   },
   methods: {
     handleSubmit(formPageStatic) {
+      this.count = 1;
       this.$store.dispatch("fetchEditPageStatic", {
         _id: this.$route.params.id,
         pagestatic: formPageStatic
@@ -121,7 +123,7 @@ export default {
   },
   computed: {
     pagestatic() {
-      return this.$store.state.pageStatic.data;
+      return this.$store.state.pageStatic.pagestatic;
     },
     err() {
       return this.$store.state.pageStatic.err;
@@ -132,7 +134,12 @@ export default {
   },
   watch: {
     pagestatic(newValue) {
-      this.formPageStatic = newValue;
+      this.formPageStatic=newValue;
+      if (this.count === 1) {
+          this.$toast.success("Cập nhập trang tĩnh thành công", {
+            position: "bottom-right"
+          });
+        }
     }
   }
 };

@@ -1,5 +1,4 @@
-import { api } from "../../api"
-import router from "./../../router";
+import { api } from "../../api" 
 const state = {
   loading: false,
   data: null,
@@ -42,6 +41,9 @@ const mutations = {
     state.loading = false;
     state.err = null
   },
+  storeDeletePageStaticInData (state, id) {
+    state.data = state.data.filter(pagestatic => pagestatic._id != id)
+  }
 };
 
 const actions = {
@@ -60,7 +62,7 @@ const actions = {
     commit("storePageStaticRequest");
     api.get(`/pagestatics/${id}`)
       .then(result => {
-        commit("storePageStaticSuccess", result.data);
+        commit("storeSetPageStatic", result.data);
       })
       .catch(err => {
         commit("storePageStaticFailed", err);
@@ -79,23 +81,22 @@ const actions = {
       })
   },
   fetchEditPageStatic({commit},data){
-    commit("storePageStaticRequest");
+  //  commit("storePageStaticRequest");
     api
       .put(`/pagestatics/${data._id}`,data.pagestatic)
       .then((result) => {
-        commit("storePageStaticSuccess", result.data);
-        router.replace("/admin/pagestatics");
+        commit("storeSetPageStatic", result.data);
+       // router.replace("/admin/pagestatics");
       })
       .catch(err => {
         commit("storePageStaticFailed", err);
       })
   },
-  fetchDeletePageStatic({ commit, dispatch }, id) {
-    commit("storePageStaticRequest");
+  fetchDeletePageStatic({ commit }, id) {
     api
       .delete(`/pagestatics/${id}`)
       .then(() => {
-        dispatch("fetchListPageStatics");
+        commit("storeDeletePageStaticInData",id);
       })
       .catch((err) => {
         commit("storePageStaticFailed", err);
