@@ -6,13 +6,8 @@ import setHeader from "./../../utils/setHeader";
 const state = {
   loading: false,
   token: null,
-<<<<<<< HEAD
   infoUser : null,
   err: null
-=======
-  err: null,
-  
->>>>>>> 2cbc43584d604a8b4c118d5b64f74942b4f4ecd7
 };
 
 const mutations = {

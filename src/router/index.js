@@ -113,7 +113,7 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/pageStaticPage/edit.vue')
         },
 
-<<<<<<< HEAD
+
         // vehicle
 
         {
@@ -129,7 +129,6 @@ Vue.use(VueRouter)
         {
           path : "/admin/vehicles/edit/:id",
           component : () => import ('../views/adminTemplate/vehiclePage/edit.vue')
-=======
         //garage
         {
           path : "/admin/garages",
@@ -142,7 +141,6 @@ Vue.use(VueRouter)
         {
           path : "/admin/garages/edit/:id",
           component : () => import ('../views/adminTemplate/garagePage/edit.vue')
->>>>>>> 2cbc43584d604a8b4c118d5b64f74942b4f4ecd7
         },
 
         //user
@@ -151,6 +149,13 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/userPage')
         },
 
+        },
+
+        //user
+        {
+          path : "/admin/users",
+          component : () => import ('../views/adminTemplate/userPage')
+        },
 
         //route
         {

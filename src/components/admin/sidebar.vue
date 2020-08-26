@@ -94,11 +94,9 @@
          </router-link>
       </li>
       <li class="nav-item">
-<<<<<<< HEAD
          <router-link to="/admin/vehicles" class="nav-link">
             <i class="fas fa-shuttle-van"></i>
             <span>Xe</span>
-=======
          <router-link to="/admin/garages" class="nav-link">
             <i class="fas fa-home"></i>
             <span>Nhà xe</span>
@@ -108,7 +106,6 @@
          <router-link to="/admin/routes" class="nav-link">
             <i class="fas fa-route"></i>
             <span>Tuyến đường</span>
->>>>>>> 2cbc43584d604a8b4c118d5b64f74942b4f4ecd7
          </router-link>
       </li>
       <li class="nav-item">
