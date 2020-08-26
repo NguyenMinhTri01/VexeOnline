@@ -113,6 +113,22 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/pageStaticPage/edit.vue')
         },
 
+
+        // vehicle
+
+        {
+          path : "/admin/vehicles",
+          component : () => import ('../views/adminTemplate/vehiclePage')
+        },
+
+        {
+          path : "/admin/vehicles/add",
+          component : () => import ('../views/adminTemplate/vehiclePage/add.vue')
+        },
+        
+        {
+          path : "/admin/vehicles/edit/:id",
+          component : () => import ('../views/adminTemplate/vehiclePage/edit.vue')
         //garage
         {
           path : "/admin/garages",
@@ -133,6 +149,13 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/userPage')
         },
 
+        },
+
+        //user
+        {
+          path : "/admin/users",
+          component : () => import ('../views/adminTemplate/userPage')
+        },
 
         //route
         {

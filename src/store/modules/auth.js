@@ -6,29 +6,33 @@ import setHeader from "./../../utils/setHeader";
 const state = {
   loading: false,
   token: null,
-  err: null,
-  
+  infoUser : null,
+  err: null
 };
 
 const mutations = {
   clearAuthData(state) {
     state.loading = false;
     state.token = null;
+    state.infoUser = null;
     state.err = null;
   },
   storeLoginRequest(state) {
     state.loading = true;
     state.token = null;
+    state.infoUser = null;
     state.err = null;
   },
   storeLoginSuccess(state, payload) {
     state.loading = false;
-    state.token = payload;
+    state.token = payload.token;
+    state.infoUser = payload.infoUser;
     state.err = null;
   },
   storeLoginFaild(state, payload) {
     state.loading = false;
     state.token = null;
+    state.infoUser = null;
     state.err = payload;
   }
 };
@@ -60,7 +64,10 @@ const actions = {
         localStorage.setItem("exp", decode.exp);
         setHeader(result.data.token);
 
-        commit("storeLoginSuccess", result.data.token);
+        commit("storeLoginSuccess", {
+          token : result.data.token,
+          infoUser : decode
+        });
         router.replace("/admin/dashboard");
       })
       .catch(err => {
@@ -69,6 +76,7 @@ const actions = {
   },
   tryAutoLogin({ commit, dispatch }) {
     const token = localStorage.getItem("token");
+    const decode = jwtDecode(token);
     if (!token) {
       return;
     }
@@ -78,7 +86,10 @@ const actions = {
       dispatch("logout");
     }
     setHeader(token);
-    commit("storeLoginSuccess", token);
+    commit("storeLoginSuccess", {
+      token : token,
+      infoUser : decode
+    });
   }
   // tryAutoLogin({ commit }) {
   //   const token = localStorage.getItem("token");

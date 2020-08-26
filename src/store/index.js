@@ -5,13 +5,16 @@ import blog from "./modules/blog"
 import auth from "./modules/auth"
 import contact from "./modules/contact"
 import pageStatic from "./modules/pageStatic"
+import vehicle from "./modules/vehicle"
 import garage from "./modules/garage"
 import user from "./modules/user"
+import routes from "./modules/routes"
+import garage from "./modules/garage"
 import routes from "./modules/routes"
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { stations, auth, blog, contact, pageStatic, garage ,user,routes}
+  modules: { stations, auth, blog, contact, pageStatic, vehicle, garage, user, routes}
 })
