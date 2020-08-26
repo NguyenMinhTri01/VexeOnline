@@ -106,6 +106,12 @@
          </router-link>
       </li>
       <li class="nav-item">
+         <router-link to="/admin/users" class="nav-link">
+            <i class="fas fa-fw fa-user"></i>
+            <span>User</span>
+         </router-link>
+      </li>
+      <li class="nav-item">
          <router-link to="/admin/pagestatics" class="nav-link">
             <i class="fas fa-fw fa-file"></i>
             <span>Page Static</span>

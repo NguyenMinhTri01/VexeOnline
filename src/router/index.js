@@ -75,6 +75,8 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/blogPage/edit.vue')
         },
 
+        
+
         //station
         {
           path : "/admin/stations",
@@ -125,6 +127,13 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/garagePage/edit.vue')
         },
 
+        //user
+        {
+          path : "/admin/users",
+          component : () => import ('../views/adminTemplate/userPage')
+        },
+
+         
         {
           path : "*",
           component: () => import ('../views/adminTemplate/pageNotFound')

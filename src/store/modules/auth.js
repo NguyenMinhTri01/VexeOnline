@@ -6,7 +6,8 @@ import setHeader from "./../../utils/setHeader";
 const state = {
   loading: false,
   token: null,
-  err: null
+  err: null,
+  
 };
 
 const mutations = {

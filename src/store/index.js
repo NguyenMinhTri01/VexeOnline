@@ -6,10 +6,11 @@ import auth from "./modules/auth"
 import contact from "./modules/contact"
 import pageStatic from "./modules/pageStatic"
 import garage from "./modules/garage"
+import user from "./modules/user"
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { stations, auth, blog, contact, pageStatic, garage }
+  modules: { stations, auth, blog, contact, pageStatic, garage ,user}
 })
