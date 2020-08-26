@@ -94,6 +94,12 @@
          </router-link>
       </li>
       <li class="nav-item">
+         <router-link to="/admin/vehicles" class="nav-link">
+            <i class="fas fa-shuttle-van"></i>
+            <span>Xe</span>
+         </router-link>
+      </li>
+      <li class="nav-item">
          <router-link to="/admin/blogs" class="nav-link">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Blog</span>

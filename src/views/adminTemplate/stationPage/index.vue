@@ -29,15 +29,12 @@ export default {
   },
   components: {
     DataTable,
-    // Loader
   },
-    created() {
+  created() {
       this.$store.dispatch("fetchListStations");
   },
   computed: {
-      stations() {
-      // let data = this.$store.state.stations.data;
-      // data.createdAt =   
+      stations() { 
       return this.$store.state.stations.data;
     },
     loading() {

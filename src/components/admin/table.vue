@@ -118,8 +118,10 @@ export default {
 
 <style scoped>
 .imageTable {
+  width: 120px;
   max-width: 120px;
-  height: auto;
+  height: 78px;
+  max-height: 78px;
 }
 .table-responsive > table > tbody > tr > td {
   vertical-align: middle;
