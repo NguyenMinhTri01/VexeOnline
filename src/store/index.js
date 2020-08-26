@@ -9,8 +9,6 @@ import vehicle from "./modules/vehicle"
 import garage from "./modules/garage"
 import user from "./modules/user"
 import routes from "./modules/routes"
-import garage from "./modules/garage"
-import routes from "./modules/routes"
 
 
 Vue.use(Vuex)
