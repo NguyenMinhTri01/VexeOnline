@@ -180,6 +180,7 @@ export default {
     vehicle(value) {
       this.$refs.myVueDropzone.removeAllFiles();
       if (value) {
+        this.listImages = [];
         this.$toast.success("Thêm xe thành công", {
           position: "bottom-right",
         });

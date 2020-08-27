@@ -208,6 +208,7 @@ export default {
         this.utilities = value.utilities
         if (this.count === 1) {
           this.loadingEdit = false
+          this.listImages = [];
           this.$refs.myVueDropzone.removeAllFiles();
           this.$toast.success('Cập nhật xe thành công', {
             position : 'bottom-right'
