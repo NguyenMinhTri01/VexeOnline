@@ -112,6 +112,12 @@
          </router-link>
       </li>
       <li class="nav-item">
+         <router-link to="/admin/trips" class="nav-link">
+            <i class="fas fa-bus-alt"></i>
+            <span>Chuyến đi</span>
+         </router-link>
+      </li>
+      <li class="nav-item">
          <router-link to="/admin/blogs" class="nav-link">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>Blog</span>

@@ -8,6 +8,7 @@
         <router-link class="btn btn-sm btn-success" :to="`/admin/${name}/add`" v-if="addandedit === 'addandedit'">
           <i class="fas fa-plus"> Thêm mới</i>
         </router-link>
+        
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -38,6 +39,12 @@
                       alt="avatar"
                     />
                   </template>
+                  <template v-else-if="key === 'statusNumber' ">
+                    <span class="badge badge-secondary" v-if="item.statusNumber===0" for="">Chưa được đặt</span>
+                    <span class="badge badge-primary" v-if="item.statusNumber===1" for="">Đã được đặt</span>
+                    <span class="badge badge-info" v-if="item.statusNumber===2" for="">Đang chạy</span>
+                    <span class="badge badge-success" v-if="item.statusNumber===3" for="">Đã hoàn thành</span>
+                  </template>
                   <template v-else>{{item[key]}}</template>
                 </td>
                 <td class="text-center">
@@ -47,6 +54,16 @@
                   <button class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#logoutModal" @click="id=item._id">
                     <i class="fas fa-trash-alt"> Xóa</i>
                   </button>
+                  <template v-if="item.statusNumber===2">
+                    <div class="dropdown no-arrow">
+                      <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Action
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <button v-on:click="changeNumberStatus(item._id)" class="dropdown-item" href="#">Đã hoàn thành</button>
+                      </div>
+                    </div>
+                  </template>
                 </td>
               </tr>
             </tbody>
@@ -104,7 +121,10 @@ export default {
     },
     changeHot(id){
       this.$emit("eventChangeHot",{id})
-    }
+    },
+    changeNumberStatus(id){
+      this.$emit("eventChangeNumberStatus", {id})
+    },
   },
   // components: {
   //   Loader

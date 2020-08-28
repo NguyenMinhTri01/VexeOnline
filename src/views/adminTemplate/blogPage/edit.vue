@@ -162,9 +162,9 @@
 <script>
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-global.jQuery = require("jquery");
-var $ = global.jQuery;
-window.$ = $;
+// global.jQuery = require("jquery");
+// var $ = global.jQuery;
+// window.$ = $;
 export default {
   name: "app",
   data() {

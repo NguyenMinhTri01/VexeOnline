@@ -150,12 +150,6 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/userPage')
         },
 
-        //user
-        {
-          path : "/admin/users",
-          component : () => import ('../views/adminTemplate/userPage')
-        },
-
         //route
         {
           path : "/admin/routes",
@@ -168,6 +162,20 @@ Vue.use(VueRouter)
         {
           path : "/admin/routes/edit/:id",
           component : () => import ('../views/adminTemplate/routePage/edit.vue')
+        },
+
+        //trip
+        {
+          path : "/admin/trips",
+          component : () => import ('../views/adminTemplate/tripPage')
+        },
+        {
+          path : "/admin/trips/add",
+          component : () => import ('../views/adminTemplate/tripPage/add.vue')
+        },
+        {
+          path : "/admin/trips/edit/:id",
+          component : () => import ('../views/adminTemplate/tripPage/edit.vue')
         },
          
         {

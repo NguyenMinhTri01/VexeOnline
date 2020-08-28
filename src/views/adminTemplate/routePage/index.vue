@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       columns: ["Tên Tuyến Đường","Xuất Phát","Kết Thúc", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
-      keys: ["name","fromStationId","toStationId", "hot", "status", "createdAt"]
+      keys: ["name","fromStation","toStation", "hot", "status", "createdAt"]
     };
   },
   components: {
