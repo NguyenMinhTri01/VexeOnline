@@ -116,6 +116,20 @@ const actions = {
   putTrip({ commit }, trip) {
       api.put(`/trips/${trip.id}`, trip)
         .then(result => {
+          api.get("/routes/")
+          .then(res=>{
+            commit("storeSetRoute",res.data)
+          })
+
+          api.get("/garages/")
+          .then(res=>{
+            commit("storeSetGarage",res.data)
+          })
+
+          api.get("/vehicles/")
+          .then(res=>{
+            commit("storeSetVehicle",res.data)
+          })
           commit("storeSetTrip", result.data);
         })
         .catch(err => {
