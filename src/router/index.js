@@ -25,11 +25,32 @@ Vue.use(VueRouter)
           path : "/stations",
           component : () => import ('../views/homeTemplate/StationsPage')
         },
-
         {
           path : "/stations/:id",
           component : () => import ('../views/homeTemplate/detailStationPage')
-        }
+        },
+
+        //trip page
+        {
+          path : "/trips",
+          component : () => import ('../views/homeTemplate/tripPage')
+        },
+
+        //blog page
+        {
+          path : "/blogs",
+          component : () => import ('../views/homeTemplate/blogPage')
+        },
+        {
+          path : "/blogs/detail",
+          component : () => import ('../views/homeTemplate/detailBlogPage')
+        },
+
+        //contact
+        {
+          path : "/contact",
+          component : () => import ('../views/homeTemplate/contactPage')
+        },
       ]
     },
 
