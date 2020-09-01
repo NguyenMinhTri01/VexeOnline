@@ -195,6 +195,10 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/tripPage/add.vue')
         },
         {
+          path : "/admin/trips/add-again/:id",
+          component : () => import ('../views/adminTemplate/tripPage/addAgain.vue')
+        },
+        {
           path : "/admin/trips/edit/:id",
           component : () => import ('../views/adminTemplate/tripPage/edit.vue')
         },

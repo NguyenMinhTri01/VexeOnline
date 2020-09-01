@@ -2,35 +2,34 @@
   <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Quản Lý Người Dùng</h1>
-    <DataTable
-      :arrayData="users"
-      :columns="columns"
-      :keys="keys"
-      :name="'users'"
-      :name2="'User'"
-      :addandedit="'noaddandedit'"
-      :loading="loading"
-    />
+      <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
+      <DataTable 
+        @eventRemoveItem="handleEventRemoveItem" 
+        :config="configTable"  
+      />
   </div>
 </template>
 
 <script>
 import DataTable from "../../../components/admin/table";
+import DeleteComfirm from "../../../components/admin/deleteConfirm"
 export default {
   data() {
     return {
-      columns: [
-        "Tên Thành Viên",
-        "Email",
-        "Số Điện Thoại",
-        "Thời Gian Tạo"
-      ],
-      keys: ["fullName", "email", "phone", "createdAt"]
+      idOfItem : '',
+      configTable : {
+        nameStore : 'user',
+        columns: ["Tên Thành Viên","Email","Số Điện Thoại","Thời Gian Tạo"],
+        keys: ["fullName", "email", "phone", "createdAt"],
+        buttonAdd : false,
+        basePath : "/admin/users"
+      },
+      flag : false,        
     };
   },
   components: {
-    DataTable
-    //Loader
+    DataTable,
+    DeleteComfirm
   },
   created() {
     this.$store.dispatch("fetchListUsers");
@@ -38,11 +37,28 @@ export default {
   computed: {
     users() {
       return this.$store.state.user.data;
+    }
+  },
+
+  watch : {
+    users (value) {
+      if (value && this.flag) return this.$toast.success('Thành công', {
+        position : 'bottom-right',
+        duration : 1000
+      })
+    }
+  },
+
+  methods : {
+    handleEventRemoveItem (id) {
+      this.flag = true
+      this.idOfItem = id
     },
-    loading() {
-      return this.$store.state.user.loading;
+    handleEventConfirmDelete () {
+      this.$store.dispatch("fetchDeleteUser", this.idOfItem)
     }
   }
+
 };
 </script>
 

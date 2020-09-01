@@ -81,20 +81,6 @@ const actions = {
     commit("storeTripRequest");
     api.get(`/trips/${id}`)
       .then(result => {
-        api.get("/routes/")
-        .then(res=>{
-          commit("storeSetRoute",res.data)
-        })
-
-        api.get("/garages/")
-        .then(res=>{
-          commit("storeSetGarage",res.data)
-        })
-
-        api.get("/vehicles/")
-        .then(res=>{
-          commit("storeSetVehicle",res.data)
-        })
         commit("storeSetTrip", result.data);
         
       })
@@ -112,24 +98,9 @@ const actions = {
           commit("storeTripFailed", err);
         })
     },
-
-  putTrip({ commit }, trip) {
-      api.put(`/trips/${trip.id}`, trip)
+  postTripAgain({ commit }, trip) {
+      api.post('/trips', trip)
         .then(result => {
-          api.get("/routes/")
-          .then(res=>{
-            commit("storeSetRoute",res.data)
-          })
-
-          api.get("/garages/")
-          .then(res=>{
-            commit("storeSetGarage",res.data)
-          })
-
-          api.get("/vehicles/")
-          .then(res=>{
-            commit("storeSetVehicle",res.data)
-          })
           commit("storeSetTrip", result.data);
         })
         .catch(err => {
@@ -137,7 +108,17 @@ const actions = {
         })
     },
 
-    fetchStatusNuberTrip({ commit }, id) {
+  putTrip({ commit }, trip) {
+      api.put(`/trips/${trip.id}`, trip)
+        .then(result => {
+          commit("storeSetTrip", result.data);
+        })
+        .catch(err => {
+          commit("storeTripFailed", err);
+        })
+    },
+
+    fetchStatusNumberTrip({ commit }, id) {
       api.get(`/trips/status-number/${id}`)
         .then(result => {
           commit("storeUpdateTrip", result.data);

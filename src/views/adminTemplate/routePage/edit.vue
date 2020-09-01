@@ -37,9 +37,9 @@
                                 <p v-if="$v.policy.$dirty && !$v.policy.required" class="alert-danger mt-2">Chính sách không được để trống !</p>
                             </div>     
                             <div class="form-group ">
-                                <label for="exampleInputEmail1">Thời Gian</label>
+                                <label for="exampleInputEmail1">Thời lượng của tuyến đường (Giờ)</label>
                                 <input v-model="time" type="number" class="form-control" name="time" autocomplete="off" @blur="$v.time.$touch()">
-                                <p v-if="$v.time.$dirty && !$v.time.required" class="alert-danger mt-2">Thời gian không được để trống !</p>
+                                <p v-if="$v.time.$dirty && !$v.time.required" class="alert-danger mt-2">Thời lượng của tuyến đường không được để trống !</p>
                             </div>       
                         </div>
                     </div>

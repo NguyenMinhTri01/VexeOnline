@@ -2,40 +2,30 @@
   <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Quản Lý Xe</h1>
-    <DataTable
-      @eventChangeStatus="eventChangeStatus($event)"
-      :arrayData="vehicles"
-      :columns="columns"
-      :keys="keys"
-      :name="'vehicles'"
-      :name2="'Vehicle'"
-      :addandedit="'addandedit'"
-      :loading="loading"
-    />
+      <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
+      <DataTable 
+        @eventChangeStatus="handleEventChangeStatus"
+        @eventRemoveItem="handleEventRemoveItem" 
+        :config="configTable"  
+      />
   </div>
 </template>
 
 <script>
 import DataTable from "../../../components/admin/table";
+import DeleteComfirm from "../../../components/admin/deleteConfirm"
 export default {
   data() {
     return {
-      columns: [
-        "Tên",
-        "Ảnh",
-        "Số Lượng Ghế",
-        "Trạng Thái",
-        "Các tiện ích",
-        "Thời Gian Tạo",
-      ],
-      keys: [
-        "name",
-        "avatar",
-        "numberOfSeats",
-        "status",
-        "utilities",
-        "createdAt",
-      ],
+      idOfItem : '',
+      configTable : {
+        nameStore : 'vehicle',
+        columns: [ "Tên", "Ảnh", "Số Lượng Ghế", "Trạng Thái", "Các tiện ích", "Thời Gian Tạo"],
+        keys: ["name", "avatar", "numberOfSeats", "status","utilities", "createdAt"],
+        buttonAdd : true,
+        basePath : "/admin/vehicles"
+      },
+      flag : false,
     };
   },
   created() {
@@ -43,20 +33,38 @@ export default {
   },
   components: {
     DataTable,
+    DeleteComfirm
   },
 
   computed: {
     vehicles() {
       return this.$store.state.vehicle.data;
-    },
-    loading() {
-      return this.$store.state.vehicle.loading;
-    },
+    }
   },
+
+  watch : {
+    vehicles (value ) {
+      if (value && this.flag) this.$toast.success('Thành công', {
+        position : 'bottom-right',
+        duration : 1000
+      })
+      
+    }
+  },
+
+
   methods : {
-    eventChangeStatus (data) {
-      this.$store.dispatch("fetchStatusVehicle", data.id)
+    handleEventChangeStatus (id) {
+      this.flag = true
+      this.$store.dispatch("fetchStatusVehicle", id)
     },
+    handleEventRemoveItem (id) {
+      this.flag = true
+      this.idOfItem = id
+    },
+    handleEventConfirmDelete () {
+      this.$store.dispatch("fetchDeleteVehicle", this.idOfItem)
+    }
   }  
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
-        <h1 class="h4 mb-2 text-gray-800">Sửa Chuyến Đi</h1>
-        <form v-if="!loading" @submit.prevent="handleSubmit" role="form" method="POST" enctype="multipart/form-data">
+        <h1 class="h4 mb-2 text-gray-800">Thêm Mới Chuyến Đi</h1>
+        <form v-if="trip" @submit.prevent="handleSubmit" role="form" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-8">
                     <div class="card shadow mb-4">
@@ -98,7 +98,7 @@
                                 <i v-if="loadingEdit" class="fa fa-spinner fa-spin"></i>
                                 <i v-else class="fa fa-save"></i>
                               </span>
-                              <span class="text">Lưu</span>
+                              <span class="text">Thêm mới</span>
                             </button>
                         </div>
                     </div>
@@ -186,15 +186,9 @@ import 'vue2-datepicker/locale/vi';
               this.vehicle = value.vehicleId
               this.note = value.note
               this.price = value.price
-              const startTime = new Date(value.startTime)
-              const month = ((startTime.getMonth() + 1) > 9) ? (startTime.getMonth() + 1) : `0${startTime.getMonth() + 1}`
-              const date = (startTime.getDate() > 9) ? startTime.getDate() : `0${startTime.getDate()}`
-              this.date = `${startTime.getFullYear()}-${month}-${date}`
-              this.hours = startTime.getHours()
-              this.minute = startTime.getMinutes()
               if (this.count === 1) {
-                this.loadingEdit = false,
-                this.$toast.success('Sửa chuyến xe thành công', {
+                this.loadingEdit = false
+                this.$toast.success('Thêm chuyến xe thành công', {
                 position : 'bottom-right'
                 })
               }
@@ -226,7 +220,6 @@ import 'vue2-datepicker/locale/vi';
                 const arrDate = this.date.split("-");
                 const startTime = new Date(arrDate[0] , arrDate[1] - 1, arrDate[2], this.hours, this.minute)
                 const formData = {
-                  id : this.$route.params.id,
                   garageId: this.garage,
                   routeId: this.route,
                   vehicleId: this.vehicle,
@@ -236,7 +229,7 @@ import 'vue2-datepicker/locale/vi';
                 };
                 this.count = 1,
                 this.loadingEdit = true,
-                this.$store.dispatch("putTrip", formData);
+                this.$store.dispatch("postTripAgain", formData);
                 event.target.reset()
               }
             }

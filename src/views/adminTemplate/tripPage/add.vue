@@ -13,23 +13,41 @@
                                     <option v-for="(value, key) in routes" :key="key" v-bind:value="value._id">{{value.name}}</option>
                                 </select>
                                 <p v-if="$v.route.$dirty && !$v.route.isValid" class="alert-danger mt-2">Bạn chưa chọn tuyến đường!</p>
-                            </div>
+                            </div>   
                             <div class="form-group ">
-                                <label for="exampleInputEmail1">Nhà xe</label>
-                                <select v-model="garage" class="form-control" @blur="$v.garage.$touch()">
-                                    <option disabled value="0" >Chọn Nhà Xe</option>
-                                    <option v-for="(value, key) in garages" :key="key" v-bind:value="value._id">{{value.name}}</option>
-                                </select>
-                                <p v-if="$v.garage.$dirty && !$v.garage.isValid" class="alert-danger mt-2">Bạn chưa chọn nhà xe!</p>
-                            </div>    
-                            <div class="form-group ">
-                                <label for="exampleInputEmail1">Loại xe</label>
-                                <select v-model="vehicle" class="form-control" @blur="$v.vehicle.$touch()">
-                                    <option disabled value="0" >Chọn Loại Xe</option>
-                                    <option v-for="(value, key) in vehicles" :key="key" v-bind:value="value._id">{{value.name}}</option>
-                                </select>
-                                <p v-if="$v.vehicle.$dirty && !$v.vehicle.isValid" class="alert-danger mt-2">Bạn chưa chọn loại xe!</p>
-                            </div>                        
+                                <label for="exampleInputEmail1">Thời gian xuất phát</label>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <select v-model="hours" class="form-control" @blur="$v.hours.$touch()">
+                                      <option value="-1" disabled>Giờ</option>
+                                      <option v-for="n in 24" :key="n" :value="n">{{n - 1}} Giờ</option>
+                                    </select>
+                                    <p v-if="$v.hours.$dirty && !$v.hours.isValid" class="alert-danger mt-2">Bạn chưa chọn giờ!</p>
+
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <select v-model="minute" class="form-control" @blur="$v.minute.$touch()">
+                                      <option value="-1" disabled>Phút</option>
+                                      <option v-for="n in 60" :key="n" :value="n">{{n - 1}} Phút</option>
+                                    </select>
+                                    <p v-if="$v.minute.$dirty && !$v.minute.isValid" class="alert-danger mt-2">Bạn chưa chọn Phút!</p>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <date-picker 
+                                      :input-class="`form-control`"  
+                                      :lang="lang"
+                                      :placeholder="`Chọn Ngày`"
+                                      :editable="false"
+                                      v-model="date" 
+                                      valueType="format"
+                                      @blur="$v.date.$touch()"
+                                      >
+                                    </date-picker>
+                                    <p v-if="$v.date.$dirty && !$v.date.required" class="alert-danger mt-2">Bạn chưa chọn ngày!</p>                                    
+                                  </div>
+                                </div>
+
+                            </div> 
                             <div class="form-group ">
                                 <label for="exampleInputEmail1">Ghi chú</label>
                                 <ckeditor name="note" :editor="editor" v-model="note" :config="editorConfig" @blur="$v.note.$touch()"></ckeditor>
@@ -43,13 +61,25 @@
                    <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="form-group ">
-                                <label for="exampleInputEmail1">Giá</label>
-                                <input v-model="price" type="text" class="form-control" name="price" autocomplete="off" @blur="$v.price.$touch()">
-                                <p v-if="$v.price.$dirty && !$v.price.required" class="alert-danger mt-2">Giá không được để trống !</p>
-                            </div>
+                                <label for="exampleInputEmail1">Nhà xe</label>
+                                <select v-model="garage" class="form-control" @blur="$v.garage.$touch()">
+                                    <option disabled value="0" >Chọn Nhà Xe</option>
+                                    <option v-for="(value, key) in garages" :key="key" v-bind:value="value._id">{{value.name}}</option>
+                                </select>
+                                <p v-if="$v.garage.$dirty && !$v.garage.isValid" class="alert-danger mt-2">Bạn chưa chọn nhà xe!</p>
+                            </div> 
                             <div class="form-group ">
-                                <label for="exampleInputEmail1">Giờ xuất phát</label>
-                                <input v-model="startTime" type="text" class="form-control" name="startTime" autocomplete="off">
+                                <label for="exampleInputEmail1">Loại xe</label>
+                                <select v-model="vehicle" class="form-control" @blur="$v.vehicle.$touch()">
+                                    <option disabled value="0" >Chọn Loại Xe</option>
+                                    <option v-for="(value, key) in vehicles" :key="key" v-bind:value="value._id">{{value.name}}</option>
+                                </select>
+                                <p v-if="$v.vehicle.$dirty && !$v.vehicle.isValid" class="alert-danger mt-2">Bạn chưa chọn loại xe!</p>
+                            </div>                                                            
+                            <div class="form-group ">
+                                <label for="exampleInputEmail1">Giá</label>
+                                <input v-model="price" type="number" class="form-control" name="price" autocomplete="off" @blur="$v.price.$touch()">
+                                <p v-if="$v.price.$dirty && !$v.price.required" class="alert-danger mt-2">Giá không được để trống !</p>
                             </div>
                         </div>
                    </div>
@@ -81,6 +111,9 @@
 <script>
 import { required ,minLength, maxLength, not } from 'vuelidate/lib/validators';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+import 'vue2-datepicker/locale/vi';
     export default {
         name: 'app',
         data() {
@@ -94,13 +127,25 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
               vehicle : '0',
               note : '',
               price:"",
-              startTime:""
+              date : "",
+              hours : "-1",
+              minute : "-1",
+              startTime:"",
+              lang: {
+                formatLocale: {
+                  firstDayOfWeek: 1,
+                },
+                monthBeforeYear: false,
+              },
             };
         },
         created(){
             this.$store.dispatch("fetchListRoutes");
             this.$store.dispatch("fetchListGarages");
             this.$store.dispatch("fetchListVehicles");
+        },
+        components : {
+          DatePicker
         },
         validations : {
           note : {
@@ -117,6 +162,15 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
           vehicle : {
             isValid : not(value =>  value === '0')
           },
+          hours : {
+            isValid : not(value =>  value === '-1')
+          },
+          minute : {
+            isValid : not(value =>  value === '-1')
+          },
+          date : {
+            required
+          },
           price : {
             required,
           }
@@ -128,7 +182,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 position : 'bottom-right'
                 })
               }
-          }
+          },
         },
         computed : {
           loading() {
@@ -150,11 +204,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
         methods: {
             handleSubmit(event) {
               if (this.$v.$anyDirty && !this.$v.$anyError){
+                const arrDate = this.date.split("-");
+                const startTime = new Date(arrDate[0] , arrDate[1] - 1, arrDate[2], this.hours, this.minute)
                 const formData = {
                   garageId: this.garage,
                   routeId: this.route,
                   vehicleId: this.vehicle,
-                  startTime: this.startTime,
+                  startTime,
                   price: this.price,
                   note: this.note
                 };
@@ -179,6 +235,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
  img.image-preview:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.mx-datepicker {
+    position: relative;
+    display: block;
+    width: 100%;
 }
 
 </style>

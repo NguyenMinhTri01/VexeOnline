@@ -2,47 +2,68 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Chuyến Đi</h1>
-      <DataTable  
-        @eventChangeNumberStatus="eventChangeNumberStatus($event)"
-        :arrayData="trips"  
-        :columns="columns" 
-        :keys="keys" 
-        :name="'trips'" 
-        :name2="'Trip'"
-        :addandedit="'addandedit'"
-        :loading="loading" />
+      <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
+      <DataTable 
+        @eventChangeStatusNumber="handleEventChangeStatusNumber"
+        @eventRemoveItem="handleEventRemoveItem" 
+        :config="configTable"
+      />
       
   </div>
 </template>
 
 <script>
 import DataTable from "../../../components/admin/table";
-
+import DeleteComfirm from "../../../components/admin/deleteConfirm"
 export default {
   data () {
     return {
-      columns : ["Tuyến Đường","Nhà Xe", "Loại Xe", "Xuất Phát", "Kết Thúc","Giá","Trạng Thái", "Thời Gian Tạo"],
-      keys : ["routeName", "garageName", "vehicleName", "startTime", "endTime", "price","statusNumber","createdAt"]
+      idOfItem : '',
+      flag : false,
+      configTable : {
+        nameStore : 'trip',
+        columns : ["Tuyến Đường","Nhà Xe", "Loại Xe", "Thời gian xuất Phát", "Thời gian kết Thúc","Giá","Trạng Thái", "Thời Gian Tạo"],
+        keys : ["routeName", "garageName", "vehicleName", "startTime", "endTime", "price","statusNumber","createdAt"],
+        buttonAdd : true,
+        basePath : "/admin/trips"
+      }
     }
   },
   components: {
     DataTable,
+    DeleteComfirm
   },
   created() {
       this.$store.dispatch("fetchListTrips");
   },
   computed: {
-      trips() { 
+    trips() { 
       return this.$store.state.trip.data;
-    },
-    loading() {
-      return this.$store.state.trip.loading;
+    }
+  },
+
+  
+  watch : {
+    trips (value) {
+      if (value && this.flag) this.$toast.success('Thành công', {
+        position : 'bottom-right',
+        duration : 1000
+      })
+      
     }
   },
 
   methods : {
-    eventChangeNumberStatus (data) {
-      this.$store.dispatch("fetchStatusNuberTrip", data.id)
+    handleEventRemoveItem (id) {
+      this.flag = true
+      this.idOfItem = id
+    },
+    handleEventConfirmDelete () {
+      this.$store.dispatch("fetchDeleteTrip", this.idOfItem)
+    },
+    handleEventChangeStatusNumber (id) {
+      this.flag = true
+      this.$store.dispatch("fetchStatusNumberTrip", id)
     }
   }
 };
