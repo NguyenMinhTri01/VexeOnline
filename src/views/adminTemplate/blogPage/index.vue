@@ -2,52 +2,69 @@
   <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Quản Lý Bài Viết</h1>
-    <DataTable
-      @eventChangeStatus="eventChangeStatus($event)"
-      @eventChangeHot="eventChangeHot($event)"
-      :arrayData="blogs"
-      :columns="columns"
-      :keys="keys"
-      :name="'blogs'"
-      :name2="'Blog'"
-      :addandedit="'addandedit'"
-      :loading="loading"
-    />
+      <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
+      <DataTable 
+        @eventChangeStatus="handleEventChangeStatus" 
+        @eventChangeHot="handleEventChangeHot" 
+        @eventRemoveItem="handleEventRemoveItem" 
+        :config="configTable"  
+      />
   </div>
 </template>
 
+
 <script>
 import DataTable from "../../../components/admin/table";
+import DeleteComfirm from "../../../components/admin/deleteConfirm"
 export default {
   data() {
     return {
-      columns: ["Tên Bài Viết", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
-      keys: ["name", "hot", "status", "createdAt"]
+      idOfItem : '',
+      configTable : {
+        nameStore : 'blog',
+        columns: ["Tên Bài Viết", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
+        keys: ["name", "hot", "status", "createdAt"],
+        buttonAdd : true,
+        basePath : "/admin/blogs"
+      },
+      flag : false,      
     };
   },
   components: {
-    DataTable
-    //Loader
+    DataTable,
+    DeleteComfirm
   },
   created() {
     this.$store.dispatch("fetchListBlogs");
   },
   computed: {
     blogs() {
-      // let data = this.$store.state.stations.data;
-      // data.createdAt =
       return this.$store.state.blog.data;
-    },
-    loading() {
-      return this.$store.state.blog.loading;
+    }
+  },
+  watch : {
+    blogs (value) {
+      if (value && this.flag) this.$toast.success('Thành công', {
+        position : 'bottom-right',
+        duration : 1000
+      })
     }
   },
   methods: {
-    eventChangeStatus(data) {
-      this.$store.dispatch("fetchStatusBlog", data.id);
+    handleEventChangeStatus(id) {
+      this.flag = true;
+      this.$store.dispatch("fetchStatusBlog", id);
     },
-    eventChangeHot(data) {
-      this.$store.dispatch("fetchHotBlog", data.id);
+    handleEventChangeHot(id) {
+      this.flag = true;
+      this.$store.dispatch("fetchHotBlog", id);
+    },
+    handleEventRemoveItem(id) {
+      this.flag = true;
+      this.idOfItem = id
+    },
+    handleEventConfirmDelete() {
+      this.$store.dispatch("fetchDeleteBlog", this.idOfItem)
     }
   }
 };

@@ -5,10 +5,9 @@
     <div v-else class="card shadow mb-4">
       <div class="card-header py-3">
         <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
-        <router-link class="btn btn-sm btn-success" :to="`/admin/${name}/add`" v-if="addandedit === 'addandedit'">
+        <router-link class="btn btn-sm btn-success" :to="`${basePath}/add`" v-if="buttonAdd">
           <i class="fas fa-plus"> Thêm mới</i>
         </router-link>
-        
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -48,22 +47,16 @@
                   <template v-else>{{item[key]}}</template>
                 </td>
                 <td class="text-center">
-                  <router-link class="btn btn-sm btn-warning m-1" :to="`/admin/${name}/edit/${item._id}`" v-if="addandedit === 'addandedit'">
-                    <i class="fas fa-edit"> Sửa</i>
-                  </router-link>
-                  <button class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#logoutModal" @click="id=item._id">
-                    <i class="fas fa-trash-alt"> Xóa</i>
-                  </button>
-                  <template v-if="item.statusNumber===2">
-                    <div class="dropdown no-arrow">
-                      <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Action
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button v-on:click="changeNumberStatus(item._id)" class="dropdown-item" href="#">Đã hoàn thành</button>
-                      </div>
-                    </div>
-                  </template>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-custom dropdown-toggle" type="button" data-toggle="dropdown">Tùy Chọn
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li v-if="!item.denyDelete && true" v-on:click="removeItem(item._id)" data-toggle="modal" data-target="#deleteModal" ><span class="m-2 _delete"><i class="fas fa-trash-alt"></i> Xóa</span></li>
+                      <li v-if="!item.denyEdit && true"><router-link class="m-2 _edit" :to="`${basePath}/edit/${item._id}`"><i class="fas fa-edit"></i> Sửa</router-link></li>
+                      <li v-if="nameStore === 'trip'"><router-link class="m-2 addAgain" :to="`${basePath}/add-again/${item._id}`"><i class="fas fa-plus"></i> Thêm Lại</router-link></li>
+                      <li v-if="item.statusNumber === 2" v-on:click="changeStatusNumber(item._id)" ><span class="m-2 updateStatusNumber"><i class="far fa-check-square"></i> Đã hoàn thành</span></li>
+                    </ul>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -71,28 +64,29 @@
         </div>
       </div>
     </div>  
-    <DeleteConfirm :id="id" :deleteFetch="deleteFetch" />
   </div>
 
 </template>
 
 <script>
-import DeleteConfirm from "./deleteConfirm";
 import moment from "moment";
 import Loader from "../loader";
 export default {
   components: {
-    DeleteConfirm,
+    // DeleteConfirm,
     Loader
   },
   data() {
     return {
       data: null,
-      id: "",
-      deleteFetch:this.name2
+      columns : this.config.columns,
+      keys : this.config.keys,
+      nameStore : this.config.nameStore,
+      buttonAdd : this.config.buttonAdd,
+      basePath : this.config.basePath
     };
   },
-  props: ["columns", "arrayData", "keys","name","name2","addandedit","loading"],
+  props: ["config"],
   watch: {
     arrayData: function () {
       moment.locale("vi");
@@ -100,47 +94,92 @@ export default {
         let newOject = {...item}
         newOject.createdAt = moment(item.createdAt).format("LLLL");
         if (item.startTime) {
-          item.startTime = moment(item.startTime).format("LLLL");
+          newOject.startTime = moment(item.startTime).format("LLLL");
         }
         if (item.endTime) {
-          item.endTime = moment(item.endTime).format("LLLL");
+          newOject.endTime = moment(item.endTime).format("LLLL");
         }
         return newOject;
       });
-    },
+    }
   },
-
-  // mounted() {
-  //   $(document).ready(function () {
-  //     //console.log(thi)
-  //   });
-  // },
   methods:{
     changeStatus(id){
-      this.$emit("eventChangeStatus", {id})
+      this.$emit("eventChangeStatus", id)
     },
     changeHot(id){
-      this.$emit("eventChangeHot",{id})
+      this.$emit("eventChangeHot",id)
     },
     changeNumberStatus(id){
-      this.$emit("eventChangeNumberStatus", {id})
+      this.$emit("eventChangeNumberStatus", id)
     },
+    removeItem(id){
+      this.$emit("eventRemoveItem", id)
+    },
+    changeStatusNumber (id) {
+      this.$emit("eventChangeStatusNumber", id)
+    }
   },
-  // components: {
-  //   Loader
-  // },
+
+  computed : {
+    loading () {
+      return this.$store.state[`${this.nameStore}`].loading;
+    },
+    arrayData () {
+      return this.$store.state[`${this.nameStore}`].data;
+    }
+  }
 };
 </script>
 
 <style scoped>
-.imageTable {
-  width: 120px;
-  max-width: 120px;
-  height: 78px;
-  max-height: 78px;
-}
-.table-responsive > table > tbody > tr > td {
-  vertical-align: middle;
-}
+    .imageTable {
+      width: 120px;
+      max-width: 120px;
+      height: 78px;
+      max-height: 78px;
+    }
+    .table-responsive > table > tbody > tr > td {
+      vertical-align: middle;
+    }
 
+    ul li:hover {
+      background: #f8f9fc;
+    }
+
+    ul li {
+      cursor: pointer !important;
+      margin: 5px;
+    }
+
+    ._delete {
+      color: #e74a3b;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    ._edit {
+      color : #f6c23e !important;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .addAgain {
+      color: #169b6b;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .updateStatusNumber {
+      color: #69f0a1;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .btn-custom {
+      background: #4e73df;
+      color: white;
+      font-weight: bold
+    }
 </style>

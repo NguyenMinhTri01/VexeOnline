@@ -2,36 +2,34 @@
   <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Quản Lý Liên Hệ</h1>
-    <DataTable
-      :arrayData="contacts"
-      :columns="columns"
-      :keys="keys"
-      :name="'contacts'"
-      :name2="'Contact'"
-      :addandedit="'noaddandedit'"
-      :loading="loading"
-    />
+      <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
+      <DataTable 
+        @eventRemoveItem="handleEventRemoveItem" 
+        :config="configTable"  
+      />
   </div>
 </template>
 
 <script>
 import DataTable from "../../../components/admin/table";
+import DeleteComfirm from "../../../components/admin/deleteConfirm"
 export default {
   data() {
     return {
-      columns: [
-        "Tên Khách Hàng",
-        "Email",
-        "Số Điện Thoại",
-        "Nội Dung",
-        "Thời Gian Tạo"
-      ],
-      keys: ["name", "email", "phone", "content", "createdAt"]
+      idOfItem : '',
+      configTable : {
+        nameStore : 'contact',
+        columns: [ "Tên Khách Hàng","Email","Số Điện Thoại","Nội Dung","Thời Gian Tạo"],
+        keys: ["name", "email", "phone", "content", "createdAt"],
+        buttonAdd : false,
+        basePath : "/admin/contacts"
+      },
+      flag : false,        
     };
   },
   components: {
-    DataTable
-    //Loader
+    DataTable,
+    DeleteComfirm
   },
   created() {
     this.$store.dispatch("fetchListContacts");
@@ -39,9 +37,23 @@ export default {
   computed: {
     contacts() {
       return this.$store.state.contact.data;
+    }
+  },
+  watch : {
+    contacts(value) {
+      if (value && this.flag) return this.$toast.success('Thành công', {
+        position : 'bottom-right',
+        duration : 1000
+      })
+    }
+  },
+  methods : {
+    handleEventRemoveItem(id) {
+      this.flag = true;
+      this.idOfItem = id;
     },
-    loading() {
-      return this.$store.state.contact.loading;
+    handleEventConfirmDelete() {
+      this.$store.dispatch("fetchDeleteContact", this.idOfItem)
     }
   }
 };
