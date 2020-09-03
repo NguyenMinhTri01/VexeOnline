@@ -20,7 +20,7 @@
           <h2>Đặt Vé Trực Tuyến Với Phí Đặt Chổ Bằng 0</h2>
           <div class="ban-top">
             <div class="bnr-left">
-              <select v-model="formStation" class="selectInput " name="" id="">
+              <select v-model="formStation" class="selectInput selectbox-scrollable" name="" id="">
                 <option value="0" disabled >Chọn Điểm Đi</option>
                 <option v-for="(value, key) in provinces" :key="key" v-bind:value="value.name">{{value.name_with_type}}</option>
               </select>
@@ -35,7 +35,7 @@
               /> -->
             </div>
             <div class="bnr-left">
-              <select v-model="toStation" class="selectInput" name="" id="">
+              <select v-model="toStation" class="selectInput selectbox-scrollable" name="" id="">
                 <option value="0" disabled>Chọn điểm đến</option>
                 <option v-for="(value, key) in provinces" :key="key" v-bind:value="value.name">{{value.name_with_type}}</option>
               </select>
@@ -299,6 +299,19 @@ export default {
   -webkit-appearance: none !important;
   margin-top: 10px;
 }
+
+select::-webkit-scrollbar-thumb{
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255,0,0,0.8); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+
 
 @media (max-width: 600px){
   .selectInput {
