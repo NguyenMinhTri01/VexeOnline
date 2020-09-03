@@ -169,17 +169,20 @@ i.fa.fa-lock {
     color: #9E9E9E;
     outline: none;
     font-size: 14px;
-    padding: 10px 10px;
+    padding: 10px 10px ;
     border: 1px solid #9E9E9E;
     -webkit-appearance: none;
     margin-top: 10px;
 }
+
+
+
 .date {
     background: url(../images/date-icon.png) no-repeat 95.5% 45% #fff;
     cursor: pointer;
 }
 .bnr-left input[type="text"] {
-    width: 95%;
+    width: 100%;
     color: #9E9E9E;
     outline: none;
     font-size: 14px;
@@ -205,13 +208,13 @@ i.fa.fa-lock {
 }
 .bnr-left {
     float: left;
-	width:50%;
+	width:33%;
 }
 .ban-bottom{
     margin-top: 30px;
 }
 button.seabtn {
-    padding: 6px 25px!important;
+    padding: 6px 10px!important;
     font-size: 16px;
 	 text-indent: 0;
     padding: 6px 20px;
