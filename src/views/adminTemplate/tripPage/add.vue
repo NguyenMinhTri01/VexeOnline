@@ -43,7 +43,7 @@
                                       @blur="$v.date.$touch()"
                                       >
                                     </date-picker>
-                                    <p v-if="$v.date.$dirty && !$v.date.required" class="alert-danger mt-2">Bạn chưa chọn ngày!</p>                                    
+                                    <p v-if="$v.date.$dirty && !$v.date.required" class="alert-danger mt-2">Bạn chưa chọn ngày!</p>                          
                                   </div>
                                 </div>
 

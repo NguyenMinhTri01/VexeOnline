@@ -70,6 +70,16 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
+  fetchDetailBlogBySlug({ commit }, slug) {
+    commit("storeBlogRequest");
+    api.get(`/blogs/detail/${slug}`)
+      .then(result => {
+        commit("storeSetBlog", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      })
+  },
 
   fetchStatusBlog({ commit }, id) {
     api.get(`/blogs/status/${id}`)
@@ -89,29 +99,62 @@ const actions = {
         commit("storeBlogFailed", err);
       })
   },
-  fetchCreateBlog({ commit }, blog) {
+  fetchCreateBlog({ commit,dispatch }, objectData) {
     commit("storeBlogRequest");
-    api
-      .post("/blogs", blog)
-      .then(result => {
-        commit("storeSetBlog", result.data);
-      })
-      .catch(err => {
-        commit("storeBlogFailed", err);
-      })
+    if (objectData.fileAvatar) {
+      api.post('/blogs', objectData.formData)
+        .then(result => {
+          dispatch("uploadAvatarBlog", {id : result.data._id, fileAvatar : objectData.fileAvatar});
+        })
+        .catch(err => {
+          commit("storeBlogFailed", err);
+        })
+    } else {
+      api
+        .post("/blogs", objectData.formData)
+        .then(result => {
+          commit("storeSetBlog", result.data);
+        })
+        .catch(err => {
+          commit("storeBlogFailed", err);
+        })
+      }
   },
-  fetchEditBlog({commit},data){
-    //commit("storeBlogRequest");
-    api
-      .put(`/blogs/${data._id}`,data.blog)
-      .then((result) => {
-        commit("storeSetBlog", result.data);
-        //router.replace("/admin/blogs");
-      })
-      .catch(err => {
-        commit("storeBlogFailed", err);
-      })
+  fetchEditBlog({commit,dispatch},objectData){
+    if (objectData.fileAvatar) {
+      api.put(`/blogs/${objectData.formData.id}`, objectData.formData)
+        .then(result => {
+          dispatch("uploadAvatarBlog", {id : result.data._id, fileAvatar : objectData.fileAvatar});
+        })
+        .catch(err => {
+          commit("storeBlogFailed", err);
+        })
+    } else {
+      api
+        .put(`/blogs/${objectData.formData.id}`,objectData.formData)
+        .then((result) => {
+          commit("storeSetBlog", result.data);
+        })
+        .catch(err => {
+          commit("storeBlogFailed", err);
+        })
+      }
   },
+
+  uploadAvatarBlog ({commit}, fileDataOfBlog){
+    api.patch(`/blogs/upload-avatar/${fileDataOfBlog.id}`, fileDataOfBlog.fileAvatar, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    .then(result => {
+      commit("storeSetBlog", result.data);
+    })
+    .catch(err => {
+      commit("storeBlogFailed", err);
+    })
+  },
+        
   fetchDeleteBlog({ commit }, id) {
     api
       .delete(`/blogs/${id}`)
