@@ -153,7 +153,6 @@
 import TopHeader from '../../components/frontend/topHeader';
 import Header from '../../components/frontend/header';
 import FooterBtm from '../../components/frontend/footerBtm';
-
 import FooterTop from '../../components/frontend/footerTop';
 import CopyRight from '../../components/frontend/copyRight';
 export default {

@@ -1,21 +1,13 @@
 <template>
   <div>
     <!--- banner-1 ---->
-    <div class="banner-1">
-      <div class="container">
-        <h1
-          class="wow zoomIn animated animated"
-          data-wow-delay=".5s"
-          style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"
-        >Green Wheels - Best in Class for Travel & Hotels</h1>
-      </div>
-    </div>
+    <Banner1 />
     <!--- /banner-1 ---->
     <!--- bus-tp ---->
-    <div class="bus-tp">
+    <div class="bus-tp" id="myHeader">
       <div class="container">
-        <p>Fare starts from : USD. 600</p>
-        <h2>Buses from California to Alabama</h2>
+        <p>Kết Quả: 20 Chuyến</p>
+        <h2>Vé xe từ Sài Gòn đi Hà Nội</h2>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -25,19 +17,19 @@
       <div class="container">
         <ul>
           <li class="trav">
-            <a href="#">Travels</a>
+            <a href="#">Tên Chuyến Xe</a>
           </li>
           <li class="dept">
-            <a href="#">Depart</a>
+            <a href="#">Giờ Khởi Hành</a>
           </li>
           <li class="arriv">
-            <a href="#">Arrive</a>
+            <a href="#">Ngày Khởi Hành</a>
           </li>
           <li class="seat">
-            <a href="#">Seats</a>
+            <a href="#">Ghế Ngồi</a>
           </li>
           <li class="fare">
-            <a href="#">Fare</a>
+            <a href="#">Giá Vé</a>
           </li>
           <div class="clearfix"></div>
         </ul>
@@ -59,8 +51,7 @@
               <img src="../../../assets/frontend/images/bus.png" class="img-responsive" alt />
             </div>
             <div class="bus-txt">
-              <h4>New York Charter</h4>
-              <p>A/C Sleeper (1+1)</p>
+              <h4>Bến Xe Miền Đông Đi Bến Xe Mỹ Đình </h4>
             </div>
             <div class="clearfix"></div>
           </li>
@@ -69,19 +60,13 @@
               <i class="fa fa-clock-o"></i>
             </div>
             <div class="bus-txt1">
-              <h4>
-                <a href="#">08:10 PM</a>
-              </h4>
-              <p>Duration</p>
+              <h4>08:10 PM</h4>
             </div>
             <div class="clearfix"></div>
           </li>
           <li class="arriv">
             <div class="bus-txt2">
-              <h4>
-                <a href="#">6:10 AM</a>
-              </h4>
-              <p>10:00 Hrs</p>
+              <h4>6:10 AM</h4>
             </div>
           </li>
           <li class="seat">
@@ -89,8 +74,8 @@
               <img src="../../../assets/frontend/images/seat.png" class="img-responsive" alt />
             </div>
             <div class="bus-txt3">
-              <h4>4 seats</h4>
-              <p>Window 4</p>
+              <h4>19 Chỗ</h4>
+              <p>Còn trống 10 chỗ</p>
             </div>
             <div class="clearfix"></div>
           </li>
@@ -100,384 +85,9 @@
               <a href="#img1" class="view">View Seats</a>
               <div class="lightbox" id="img1">
                 <div class="box">
-                  <a class="close" href="#">X</a>
-                  <div class="set-left">
-                    <ul class="set">
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-4.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-4.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-5.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-5.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-2.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-2.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                    <ul class="set-1">
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                    <ul class="set">
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-3.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-3.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-4.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-4.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-5.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-3.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-3.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-3.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            src="../../../assets/frontend/images/seat-1.png"
-                            class="img-responsive"
-                            alt
-                          />
-                        </a>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                  </div>
-                  <div class="set-right">
-                    <ul class="ste1">
-                      <li>
-                        <img
-                          src="../../../assets/frontend/images/seat-2.png"
-                          class="img-responsive"
-                          alt
-                        />
-                      </li>
-                      <li>
-                        <p class="aval">Available Seat</p>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                    <ul class="ste1">
-                      <li>
-                        <img
-                          src="../../../assets/frontend/images/seat-3.png"
-                          class="img-responsive"
-                          alt
-                        />
-                      </li>
-                      <li>
-                        <p class="aval">Reserved for Ladies</p>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                    <ul class="ste1">
-                      <li>
-                        <img
-                          src="../../../assets/frontend/images/seat-4.png"
-                          class="img-responsive"
-                          alt
-                        />
-                      </li>
-                      <li>
-                        <p class="aval">Selected Seat</p>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                    <ul class="ste1">
-                      <li>
-                        <img
-                          src="../../../assets/frontend/images/seat-5.png"
-                          class="img-responsive"
-                          alt
-                        />
-                      </li>
-                      <li>
-                        <p class="aval">Booked by Gents</p>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                    <ul class="ste1">
-                      <li>
-                        <img
-                          src="../../../assets/frontend/images/seat-3.png"
-                          class="img-responsive"
-                          alt
-                        />
-                      </li>
-                      <li>
-                        <p class="aval">Booked by Ladies</p>
-                      </li>
-                      <div class="clearfix"></div>
-                    </ul>
-                  </div>
-                  <div class="clearfix"></div>
+                  
                 </div>
+
               </div>
             </div>
           </li>
@@ -491,8 +101,32 @@
 </template>
 
 <script>
-export default {};
+import Banner1 from "../../../components/frontend/banner1"
+export default {
+  components : {
+    Banner1
+  },
+
+  mounted () {
+    window.onscroll = function() {addHeaderfix()};
+    let header = document.getElementById("myHeader");
+    let sticky = header.offsetTop;
+    function addHeaderfix() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("headerFix");
+      } else {
+        header.classList.remove("headerFix");
+      }
+    }
+  }
+};
 </script>
 
-<style>
+<style scoped>
+
+.headerFix {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
 </style>
