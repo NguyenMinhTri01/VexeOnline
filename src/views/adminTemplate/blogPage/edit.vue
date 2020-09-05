@@ -59,10 +59,6 @@
                   v-if="$v.content.$dirty && !$v.content.required"
                   class="alert-danger mt-2"
                 >Nội dung không được để trống !</p>
-                <p
-                  v-if="$v.content.$dirty && (!$v.content.minLength || !$v.content.maxLength)"
-                  class="alert-danger mt-2"
-                >Độ dài nội dung phải từ 3 đến 255 ký tự !</p>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Tiêu đề SEO</label>
@@ -213,9 +209,7 @@ export default {
       maxLength: maxLength(255)
     },
     content: {
-      required,
-      minLength: minLength(3),
-      maxLength: maxLength(255)
+      required
     },
     titleSeo: {
       required,

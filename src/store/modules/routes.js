@@ -66,7 +66,16 @@ const actions = {
         commit("storeRouteFailed", err);
       });
   },
-
+  fetchListRoutesHot({ commit }) {
+    commit("storeRouteRequest");
+    api.get("/routes/hotRoute")
+      .then((result) => {
+        commit("storeRouteSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeRouteFailed", err);
+      });
+  },
   fetchDetailRoute({ commit }, id) {
     commit("storeRouteRequest");
     api.get(`/routes/${id}`)

@@ -32,193 +32,10 @@
                   />
                 </figure>
               </div>
-              <p>{{blog.content}}</p>
+              <p v-html="content_blog"></p>
             </div>
           </div>
-          <div class="col-md-4 blog-right">
-            <div
-              class="popular animated wow fadeInUp"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-            >
-              <h3>Most Popular</h3>
-              <div class="popular-grid">
-                <div class="popular-left">
-                  <h4>01.</h4>
-                </div>
-                <div class="popular-right">
-                  <h5>
-                    <a href="single1.html">deleniti atque</a>
-                  </h5>
-                  <p>
-                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                    reiciendis.
-                    <span>1 Month Ago...</span>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="popular-grid">
-                <div class="popular-left">
-                  <h4>02.</h4>
-                </div>
-                <div class="popular-right">
-                  <h5>
-                    <a href="single1.html">sapiente delectus</a>
-                  </h5>
-                  <p>
-                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                    reiciendis.
-                    <span>15 Days Ago...</span>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="popular-grid">
-                <div class="popular-left">
-                  <h4>03.</h4>
-                </div>
-                <div class="popular-right">
-                  <h5>
-                    <a href="single1.html">rerum hic tenetur</a>
-                  </h5>
-                  <p>
-                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                    reiciendis.
-                    <span>5 Days Ago...</span>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div
-              class="subscribe animated wow fadeInUp"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-            >
-              <h3>Subscribe</h3>
-              <p>Subscribe for daily Travels.</p>
-              <form>
-                <input
-                  type="email"
-                  value="Email"
-                  onfocus="this.value = '';"
-                  onblur="if (this.value == '') {this.value = 'Email';}"
-                  required
-                />
-                <input type="submit" value="Submit" />
-              </form>
-            </div>
-            <div
-              class="categories animated wow fadeInUp"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-            >
-              <h3>Categories</h3>
-              <ul>
-                <li>
-                  <a href="single1.html">tenetur a sapiente delectus</a>
-                </li>
-                <li>
-                  <a href="single1.html">Itaque earum rerum hic tenetur</a>
-                </li>
-                <li>
-                  <a href="single1.html">qui dolorem eum fugiat quo</a>
-                </li>
-                <li>
-                  <a href="single1.html">voluptas a asperiores delectus</a>
-                </li>
-                <li>
-                  <a href="single1.html">perferendis doloribus repellat</a>
-                </li>
-                <li>
-                  <a href="single1.html">eligendi optio cumque nihil</a>
-                </li>
-              </ul>
-            </div>
-            <div
-              class="instagram animated wow fadeInUp"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-            >
-              <h2>Instagram Posts</h2>
-              <div class="instagram-grids">
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/h2.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/h3.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/h4.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/c3.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/c4.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/c5.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div
-              class="tags animated wow fadeInUp"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-            >
-              <h3>Recent Tags</h3>
-              <ul>
-                <li>
-                  <a href="single1.html">Hotels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Travels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Reservations</a>
-                </li>
-                <li>
-                  <a href="single1.html">Booking</a>
-                </li>
-                <li>
-                  <a href="single1.html">Cottage</a>
-                </li>
-                <li>
-                  <a href="single1.html">Services</a>
-                </li>
-                <li>
-                  <a href="single1.html">Hotels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Travels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Reservations</a>
-                </li>
-                <li>
-                  <a href="single1.html">Booking</a>
-                </li>
-                <li>
-                  <a href="single1.html">Services</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <BlogRight/>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -227,10 +44,23 @@
 </template>
 
 <script>
-
+// global.jQuery = require('jquery');
+// var $ = global.jQuery;
+// window.$=$;
+import BlogRight from "../../../components/frontend/blogRight"
 export default {
-
+  data(){
+    return {
+      content_blog :""
+    }
+  },
+  components:{
+    BlogRight
+  },
   created() {
+    this.$store.dispatch("fetchDetailBlogBySlug", this.$route.params.slug);
+  },
+  updated() {
     this.$store.dispatch("fetchDetailBlogBySlug", this.$route.params.slug);
   },
   computed: {
@@ -239,6 +69,19 @@ export default {
     },
     loading() {
       return this.$store.state.blog.loading;
+    }
+  },
+  mounted(){
+    window.onload=function(){
+      var x = document.getElementsByTagName("img");
+      x.classList.add("img-fluid");
+    }
+  },
+  watch:{
+    blog(value){
+      if(value){
+        this.content_blog = value.content
+      }
     }
   }
 };

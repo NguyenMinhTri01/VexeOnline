@@ -4,7 +4,8 @@ const state = {
   loading: false,
   data: null,
   err: null,
-  blog:null
+  blog:null,
+  blogsHot: null
 };
 
 const mutations = {
@@ -13,6 +14,7 @@ const mutations = {
     state.data = null,
     state.err = null
     state.blog =  null
+    state.blogsHot = null
   },
 
   storeBlogSuccess(state, payload) {
@@ -43,6 +45,11 @@ const mutations = {
     state.loading = false;
     state.err = null
   },
+  storeSetBlogsHot(state, blogsHot) {
+    state.blogsHot = blogsHot,
+    state.loading = false;
+    state.err = null
+  },
   storeDeleteBlogInData (state, id) {
     state.data = state.data.filter(blog => blog._id != id)
   }
@@ -60,8 +67,19 @@ const actions = {
       });
   },
 
+  fetchListBlogsHot({ commit }) {
+    //commit("storeBlogRequest");
+    api.get("/blogs/hotBlog")
+      .then((result) => {
+        commit("storeSetBlogsHot", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      });
+  },
+
   fetchDetailBlog({ commit }, id) {
-    commit("storeBlogRequest");
+    //commit("storeBlogRequest");
     api.get(`/blogs/${id}`)
       .then(result => {
         commit("storeSetBlog", result.data);
@@ -71,7 +89,7 @@ const actions = {
       })
   },
   fetchDetailBlogBySlug({ commit }, slug) {
-    commit("storeBlogRequest");
+    //commit("storeBlogRequest");
     api.get(`/blogs/detail/${slug}`)
       .then(result => {
         commit("storeSetBlog", result.data);

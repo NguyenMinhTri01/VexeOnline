@@ -23,7 +23,6 @@
                                 <label for="exampleInputEmail1">Nội dung</label>
                                 <ckeditor name="content" :editor="editor" v-model="content" :config="editorConfig" @blur="$v.content.$touch()"></ckeditor>
                                 <p v-if="$v.content.$dirty && !$v.content.required" class="alert-danger mt-2">Nội dung không được để trống !</p>
-                                <p v-if="$v.content.$dirty && (!$v.content.minLength || !$v.content.maxLength)" class="alert-danger mt-2">Độ dài nội dung phải từ 3 đến 255 ký tự !</p>
                             </div>
                             <div class="form-group ">
                                 <label for="exampleInputEmail1">Tiêu đề SEO</label>
@@ -123,8 +122,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             },
             content : {
                 required,
-                minLength : minLength(3),
-                maxLength : maxLength(255),
             },
             titleSeo : {
                 required,
