@@ -22,8 +22,8 @@ export default {
       idOfItem : '',
       configTable : {
         nameStore : 'blog',
-        columns: ["Tên Bài Viết", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
-        keys: ["name", "hot", "status", "createdAt"],
+        columns: ["Tên Bài Viết","Ảnh", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
+        keys: ["name","avatar", "hot", "status", "createdAt"],
         buttonAdd : true,
         basePath : "/admin/blogs"
       },

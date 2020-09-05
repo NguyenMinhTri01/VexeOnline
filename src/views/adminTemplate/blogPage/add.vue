@@ -23,16 +23,7 @@
                                 <label for="exampleInputEmail1">Nội dung</label>
                                 <ckeditor name="content" :editor="editor" v-model="content" :config="editorConfig" @blur="$v.content.$touch()"></ckeditor>
                                 <p v-if="$v.content.$dirty && !$v.content.required" class="alert-danger mt-2">Nội dung không được để trống !</p>
-                                <p v-if="$v.content.$dirty && (!$v.content.minLength || !$v.content.maxLength)" class="alert-danger mt-2">Độ dài nội dung phải từ 3 đến 255 ký tự !</p>
                             </div>
-                            
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-sm-4">
-                <div class="card shadow mb-4">
-                        <div class="card-body">
                             <div class="form-group ">
                                 <label for="exampleInputEmail1">Tiêu đề SEO</label>
                                 <input v-model="titleSeo" type="text" class="form-control" autocomplete="off" @blur="$v.titleSeo.$touch()">
@@ -51,6 +42,22 @@
                                 <p v-if="$v.keywordSeo.$dirty && !$v.keywordSeo.required" class="alert-danger mt-2">Từ khóa SEO không được để trống !</p>
                                 <p v-if="$v.keywordSeo.$dirty && (!$v.keywordSeo.minLength || !$v.keywordSeo.maxLength)" class="alert-danger mt-2">Độ dài phải từ 3 đến 255 ký tự !</p>                                
                             </div>   
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <img class="image-preview" v-if="urlImage" :src="urlImage" alt="avatar"/>
+                            <img class="image-preview" v-else src="https://res.cloudinary.com/vexeonline/VexeOnlineMedia/imageDefault/no-image_ljozla" alt="avatar">
+                            <div class="form-group mt-2">
+                            <div class="custom-file">
+                                <input @change="previewFile" type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">{{fileName}}</label>
+                                <p v-if="errImage" class="alert-danger mt-2">{{errImage}}</p>
+                            </div>
+                            </div>                      
                         </div>
                     </div>
                 </div>
@@ -95,7 +102,11 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
                 content:"",
                 titleSeo:"",
                 descriptionSeo:"",
-                keywordSeo:""
+                keywordSeo:"",
+                fileName : "Chọn File Ảnh" ,
+                urlImage : null,
+                errImage : null,
+                file : null
             };
         },
         validations:{
@@ -111,8 +122,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             },
             content : {
                 required,
-                minLength : minLength(3),
-                maxLength : maxLength(255),
             },
             titleSeo : {
                 required,
@@ -131,16 +140,49 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
             }
         },
         methods: {
-            handleSubmit() {
-            const fromData = {
-                name: this.name,
-                description: this.description,
-                content: this.content,
-                titleSeo: this.titleSeo,
-                descriptionSeo: this.descriptionSeo,
-                keywordSeo: this.keywordSeo
-            };
-                this.$store.dispatch("fetchCreateBlog", fromData);
+            handleSubmit(event) {
+                if (this.$v.$anyDirty && !this.$v.$anyError && !this.errImage){
+                    const formData = {
+                        name: this.name,
+                        description: this.description,
+                        content: this.content,
+                        titleSeo: this.titleSeo,
+                        descriptionSeo: this.descriptionSeo,
+                        keywordSeo: this.keywordSeo
+                    };
+                    if(this.file) {
+                        let fileAvatar = new FormData ();
+                        fileAvatar.append('avatar', this.file)
+                        this.$store.dispatch("fetchCreateBlog", {formData, fileAvatar});
+                    } else {
+                        this.$store.dispatch("fetchCreateBlog", {formData, fileAvatar : null});
+                    }  
+                    event.target.reset()
+                }
+            },
+            previewFile (event) {
+              const accessTypeFile = ["image/jpeg", "image/png", "image/gif"]
+              const file = event.target.files[0]
+              if (accessTypeFile.find(type => type === file.type)){
+                if (file.size > 2*1024*1024) {
+                  this.errImage = "kích thước file ảnh tối đa 2MB!"
+                  this.fileName = "Chọn File Ảnh"
+                  this.urlImage = null;
+                } else {
+                  this.file = file
+                  this.fileName = file.name;
+                  this.errImage = null;
+                  this.urlImage = URL.createObjectURL(file);
+                }
+
+              } else {
+                this.errImage = "File ảnh không hợp lệ"
+                this.fileName = "Chọn File Ảnh"
+                this.urlImage = null;
+              }
+
+              //console.log(this.urlImage);
+
             }
         },
         watch:{
@@ -167,5 +209,17 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 </script>
 
 <style>
+.image-preview {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  height: 200px;
+}
 
+ img.image-preview:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
 </style>

@@ -16,155 +16,36 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 blog-left">
+            <template v-for="(item,index) in blogs">
             <div
+              :key="`s-${index}`"
               class="comments-list hover14 column animated wow fadeInUp animated"
               data-wow-duration="1200ms"
               data-wow-delay="500ms"
               style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
             >
               <h3>
-                <a href="single1.html">Sed ut perspiciatis unde omnis iste natus</a>
+                <router-link :to="`/blogs/${item.slug}`">{{item.name}}</router-link>
               </h3>
-              <ul>
-                <li>
-                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>31 March 2016
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>3 Comments
-                  </a>
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200 Likes
-                  </a>
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>James Kale
-                  </a>
-                </li>
-              </ul>
               <div>
                 <figure>
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/7.jpg" alt=" " class="img-thumbnail" />
-                  </a>
+                  <router-link :to="`/blogs/${item.slug}`">
+                    <img
+                      class="img-fluid"
+                      v-lazy="`https://res.cloudinary.com/vexeonline/${item.avatar}`"
+                      alt="avatar"
+                    />
+                  </router-link>
                 </figure>
               </div>
               <p>
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur.
+                {{item.description}}
               </p>
               <div class="more">
-                <a href="single1.html">More Info...</a>
+                <router-link :to="`/blogs/${item.slug}`">More Info...</router-link>
               </div>
             </div>
-            <div
-              class="comments-list hover14 column animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>
-                <a href="single1.html">Quis autem vel eum iure reprehe ea voluptate</a>
-              </h3>
-              <ul>
-                <li>
-                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>31 March 2016
-                  <i>|</i>
-                </li>
-                <li>
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                  <a href="single1.html">3 Comments</a>
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="single1.html">
-                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200 Likes
-                  </a>
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="single1.html">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>James Kale
-                  </a>
-                </li>
-              </ul>
-              <div>
-                <figure>
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/3.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </figure>
-              </div>
-              <p>
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur.
-              </p>
-              <div class="more">
-                <a href="single1.html">More Info...</a>
-              </div>
-            </div>
-            <div
-              class="comments-list hover14 column animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>
-                <a href="single1.html">At vero eos et accusamus et iusto odio</a>
-              </h3>
-              <ul>
-                <li>
-                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>31 March 2016
-                  <i>|</i>
-                  
-                </li>
-                <li>
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                  <a href="single1.html">3 Comments</a>
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="single1.html">
-                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200 Likes
-                  </a>
-                  <i>|</i>
-                </li>
-                <li>
-                  <a href="single1.html">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>James Kale
-                  </a>
-                </li>
-              </ul>
-              <div>
-                <figure>
-                  <a href="single1.html">
-                    <img src="../../../assets/frontend/images/1.jpg" alt=" " class="img-thumbnail" />
-                  </a>
-                </figure>
-              </div>
-              <p>
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur.
-              </p>
-              <div class="more">
-                <a href="single1.html">More Info...</a>
-              </div>
-            </div>
+            </template>
             <nav>
               <ul
                 class="pagination paging animated wow fadeInUp animated"
@@ -200,219 +81,7 @@
               </ul>
             </nav>
           </div>
-          <div class="col-md-4 blog-right">
-            <div
-              class="popular animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>Most Popular</h3>
-              <div class="popular-grid">
-                <div class="popular-left">
-                  <h4>01.</h4>
-                </div>
-                <div class="popular-right">
-                  <h5>
-                    <a href="single1.html">deleniti atque</a>
-                  </h5>
-                  <p>
-                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                    reiciendis.
-                    <span>1 Month Ago...</span>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="popular-grid">
-                <div class="popular-left">
-                  <h4>02.</h4>
-                </div>
-                <div class="popular-right">
-                  <h5>
-                    <a href="single1.html">sapiente delectus</a>
-                  </h5>
-                  <p>
-                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                    reiciendis.
-                    <span>15 Days Ago...</span>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-              <div class="popular-grid">
-                <div class="popular-left">
-                  <h4>03.</h4>
-                </div>
-                <div class="popular-right">
-                  <h5>
-                    <a href="single1.html">rerum hic tenetur</a>
-                  </h5>
-                  <p>
-                    Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                    reiciendis.
-                    <span>5 Days Ago...</span>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div
-              class="subscribe animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>Subscribe</h3>
-              <p>Subscribe for daily Travels.</p>
-              <form>
-                <input
-                  type="email"
-                  value="Email"
-                  onfocus="this.value = '';"
-                  onblur="if (this.value == '') {this.value = 'Email';}"
-                  required
-                />
-                <input type="submit" value="Submit" />
-              </form>
-            </div>
-            <div
-              class="categories animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>Categories</h3>
-              <ul>
-                <li>
-                  <a href="single1.html">tenetur a sapiente delectus</a>
-                </li>
-                <li>
-                  <a href="single1.html">Itaque earum rerum hic tenetur</a>
-                </li>
-                <li>
-                  <a href="single1.html">qui dolorem eum fugiat quo</a>
-                </li>
-                <li>
-                  <a href="single1.html">voluptas a asperiores delectus</a>
-                </li>
-                <li>
-                  <a href="single1.html">perferendis doloribus repellat</a>
-                </li>
-                <li>
-                  <a href="single1.html">eligendi optio cumque nihil</a>
-                </li>
-              </ul>
-            </div>
-            <div
-              class="instagram animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h2>Instagram Posts</h2>
-              <div class="instagram-grids">
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img
-                      src="../../../assets/frontend/images/h2.jpg"
-                      alt=" "
-                      class="img-thumbnail"
-                    />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img
-                      src="../../../assets/frontend/images/h3.jpg"
-                      alt=" "
-                      class="img-thumbnail"
-                    />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img
-                      src="../../../assets/frontend/images/h4.jpg"
-                      alt=" "
-                      class="img-thumbnail"
-                    />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img
-                      src="../../../assets/frontend/images/c3.jpg"
-                      alt=" "
-                      class="img-thumbnail"
-                    />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img
-                      src="../../../assets/frontend/images/c4.jpg"
-                      alt=" "
-                      class="img-thumbnail"
-                    />
-                  </a>
-                </div>
-                <div class="instagram-grid">
-                  <a href="single1.html">
-                    <img
-                      src="../../../assets/frontend/images/c5.jpg"
-                      alt=" "
-                      class="img-thumbnail"
-                    />
-                  </a>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div
-              class="tags animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>Recent Tags</h3>
-              <ul>
-                <li>
-                  <a href="single1.html">Hotels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Travels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Reservations</a>
-                </li>
-                <li>
-                  <a href="single1.html">Booking</a>
-                </li>
-                <li>
-                  <a href="single1.html">Cottage</a>
-                </li>
-                <li>
-                  <a href="single1.html">Services</a>
-                </li>
-                <li>
-                  <a href="single1.html">Hotels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Travels</a>
-                </li>
-                <li>
-                  <a href="single1.html">Reservations</a>
-                </li>
-                <li>
-                  <a href="single1.html">Booking</a>
-                </li>
-                <li>
-                  <a href="single1.html">Services</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <BlogRight/>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -422,7 +91,20 @@
 </template>
 
 <script>
-export default {};
+import BlogRight from "../../../components/frontend/blogRight"
+export default {
+  components:{
+    BlogRight
+  },
+  created() {
+    this.$store.dispatch("fetchListBlogs");
+  },
+  computed:{
+    blogs(){
+      return this.$store.state.blog.data;
+    }
+  },
+};
 </script>
 
 <style>

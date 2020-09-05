@@ -118,6 +118,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
         beforeCreate() {
             //this.$store.dispatch("fetchListStations");
             this.$store.dispatch("fetchDetailRoute", this.$route.params.id);
+            
         },
         validations : {
           name : {

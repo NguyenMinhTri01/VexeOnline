@@ -42,7 +42,7 @@ Vue.use(VueRouter)
           component : () => import ('../views/homeTemplate/blogPage')
         },
         {
-          path : "/blogs/detail",
+          path : "/blogs/:slug",
           component : () => import ('../views/homeTemplate/detailBlogPage')
         },
 
