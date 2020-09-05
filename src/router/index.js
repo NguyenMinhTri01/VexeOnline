@@ -51,6 +51,8 @@ Vue.use(VueRouter)
           path : "/contact",
           component : () => import ('../views/homeTemplate/contactPage')
         },
+
+        
       ]
     },
 

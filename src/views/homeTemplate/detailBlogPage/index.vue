@@ -32,7 +32,7 @@
                   />
                 </figure>
               </div>
-              <p v-html="content_blog"></p>
+              <p :class="{'img-fluid':true}" v-html="content_blog"></p>
             </div>
           </div>
           <BlogRight/>
@@ -44,9 +44,9 @@
 </template>
 
 <script>
-// global.jQuery = require('jquery');
-// var $ = global.jQuery;
-// window.$=$;
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$=$;
 import BlogRight from "../../../components/frontend/blogRight"
 export default {
   data(){
@@ -61,7 +61,7 @@ export default {
     this.$store.dispatch("fetchDetailBlogBySlug", this.$route.params.slug);
   },
   updated() {
-    this.$store.dispatch("fetchDetailBlogBySlug", this.$route.params.slug);
+    this.$store.dispatch("fetchDetailBlogBySlugAgain", this.$route.params.slug);
   },
   computed: {
     blog() {
@@ -72,10 +72,15 @@ export default {
     }
   },
   mounted(){
-    window.onload=function(){
-      var x = document.getElementsByTagName("img");
-      x.classList.add("img-fluid");
-    }
+    // window.onload=function(){
+    //   var x = document.getElementsByTagName("img");
+    //   x.classList.add("img-fluid");
+    // }
+
+    
+    $(function(){
+      $('img').addClass("img-fluid")
+    });
   },
   watch:{
     blog(value){
