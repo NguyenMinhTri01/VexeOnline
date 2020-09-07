@@ -76,11 +76,20 @@ export default {
     //   var x = document.getElementsByTagName("img");
     //   x.classList.add("img-fluid");
     // }
-
+window.onscroll = function() {addClassImage ()}
+    function addClassImage () {
+    let tagImages = document.getElementsByTagName("img");
+    for (let i = 0 ; i < tagImages['length'] ; i++) {
+      let classListValue = tagImages[`${i}`].classList.value
+      if (classListValue.indexOf('img-fluid') === -1){
+        tagImages[`${i}`].classList.add('img-fluid')
+        }
+      }
+    }
     
-    $(function(){
-      $('img').addClass("img-fluid")
-    });
+    // $(function(){
+    //   $('img').addClass("img-fluid")
+    // });
   },
   watch:{
     blog(value){

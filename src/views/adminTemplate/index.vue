@@ -53,11 +53,11 @@ export default {
   },
   methods: {
     handleLogout() {
-      this.$store.dispatch("logout");
+      this.$store.dispatch("logoutAdmin");
     }
   },
   created() {
-    this.$store.dispatch("tryAutoLogin");
+    this.$store.dispatch("tryAutoLoginAdmin");
   }
 }
 

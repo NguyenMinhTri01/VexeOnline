@@ -69,6 +69,8 @@ Vue.use(VueRouter)
             const decode = jwtDecode(localStorage.getItem("token"));
             if (decode.userType === "admin") {
               next();
+            }else{
+              next("/");
             }
           } catch {
             localStorage.removeItem("token");
@@ -204,7 +206,6 @@ Vue.use(VueRouter)
           path : "/admin/trips/edit/:id",
           component : () => import ('../views/adminTemplate/tripPage/edit.vue')
         },
-         
         {
           path : "*",
           component: () => import ('../views/adminTemplate/pageNotFound')

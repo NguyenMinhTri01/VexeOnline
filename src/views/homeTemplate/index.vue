@@ -6,8 +6,8 @@
   <router-view/>
   <FooterTop/>
   <CopyRight/>
-  <Register/>
   <Login/>
+  <Register/>
 
 <!-- write us -->
 			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -87,7 +87,9 @@ export default {
   components:{
     TopHeader,Header,FooterBtm,FooterTop,CopyRight,Register,Login
   },
-  
+  created() {
+    this.$store.dispatch("setLogoutTimer");
+  },
 };
 </script>
 <style scoped>

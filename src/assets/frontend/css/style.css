@@ -1526,7 +1526,7 @@ button.subbtn:focus, button.subbtn:hover {
     float: left;
     width: 42%;
 }
-.login-right input[type="text"] ,.login-right input[type="password"] {
+.login-right input[type="email"] ,.login-right input[type="password"],.login-right input[type="number"],.login-right input[type="text"] {
     width: 100%;
     padding: 10px;
     font-weight: normal;
