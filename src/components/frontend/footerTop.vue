@@ -165,13 +165,13 @@
           <h3>Về chúng tôi</h3>
           <ul>
             <li>
-              <a href="travels.html">Giới thiệu</a>
+              <router-link to="/gioi-thieu">Giới thiệu</router-link>
             </li>
             <li>
-              <a href="travels.html">Tin tức</a>
+              <router-link to="/blogs">Tin tức</router-link>
             </li>
             <li>
-              <a href="travels.html">Liên hệ</a>
+              <router-link to="/contact">Liên hệ</router-link>
             </li>
             <div class="clearfix"></div>
           </ul>
@@ -180,124 +180,19 @@
           <h3>Hỗ trợ</h3>
           <ul>
             <li>
-              <a href="travels.html">Hướng dẫn thanh toán</a>
+              <router-link to="/huong-dan-thanh-toan">Hướng dẫn thanh toán</router-link>
             </li>
             <li>
-              <a href="travels.html">Hướng dẫn thanh toán</a>
-            </li>
-			<li>
-              <a href="travels.html">Hướng dẫn thanh toán</a>
-            </li>
-			<li>
-              <a href="travels.html">Hướng dẫn thanh toán</a>
-            </li>
-			<li>
-              <a href="travels.html">Hướng dẫn thanh toán</a>
-            </li>
-			<li>
-              <a href="travels.html">Hướng dẫn thanh toán</a>
-            </li>
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-		<div class="col-md-3 footer-left wow fadeInRight animated" data-wow-delay=".5s">
-          <h3>bla bla</h3>
-          <ul>
-            <li>
-              <a href="travels.html">Alabama-California</a>
+              <router-link to="/quy-che">Quy chế</router-link>
             </li>
             <li>
-              <a href="travels.html">Alaska-Colorado</a>
+              <router-link to="/chinh-sach-bao-mat">Chính sách bảo mật thông tin</router-link>
             </li>
             <li>
-              <a href="travels.html">Arizona-Delaware</a>
+              <router-link to="/chinh-sach-bao-mat-thanh-toan">Chính sách bảo mật thanh toán</router-link>
             </li>
             <li>
-              <a href="travels.html">Arkansas-Florida</a>
-            </li>
-            <li>
-              <a href="travels.html">Kansas-Georgia</a>
-            </li>
-            <li>
-              <a href="travels.html">Iowa-Hawaii</a>
-            </li>
-            <li>
-              <a href="travels.html">Indiana-Illinois</a>
-            </li>
-            <li>
-              <a href="travels.html">Illinois-Florida</a>
-            </li>
-            <li>
-              <a href="travels.html">Idaho-Indiana</a>
-            </li>
-            <li>
-              <a href="travels.html">Hawaii-Iowa</a>
-            </li>
-            <li>
-              <a href="travels.html">Georgia-Kansas</a>
-            </li>
-            <li>
-              <a href="travels.html">Florida-Arkansas</a>
-            </li>
-            <li>
-              <a href="travels.html">Delaware-Arizona</a>
-            </li>
-            <li>
-              <a href="travels.html">Colorado-Alaska</a>
-            </li>
-            <li>
-              <a href="travels.html">California-Alabama</a>
-            </li>
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-		<div class="col-md-3 footer-left wow fadeInRight animated" data-wow-delay=".5s">
-          <h3>Bla bla</h3>
-          <ul>
-            <li>
-              <a href="travels.html">Alabama-California</a>
-            </li>
-            <li>
-              <a href="travels.html">Alaska-Colorado</a>
-            </li>
-            <li>
-              <a href="travels.html">Arizona-Delaware</a>
-            </li>
-            <li>
-              <a href="travels.html">Arkansas-Florida</a>
-            </li>
-            <li>
-              <a href="travels.html">Kansas-Georgia</a>
-            </li>
-            <li>
-              <a href="travels.html">Iowa-Hawaii</a>
-            </li>
-            <li>
-              <a href="travels.html">Indiana-Illinois</a>
-            </li>
-            <li>
-              <a href="travels.html">Illinois-Florida</a>
-            </li>
-            <li>
-              <a href="travels.html">Idaho-Indiana</a>
-            </li>
-            <li>
-              <a href="travels.html">Hawaii-Iowa</a>
-            </li>
-            <li>
-              <a href="travels.html">Georgia-Kansas</a>
-            </li>
-            <li>
-              <a href="travels.html">Florida-Arkansas</a>
-            </li>
-            <li>
-              <a href="travels.html">Delaware-Arizona</a>
-            </li>
-            <li>
-              <a href="travels.html">Colorado-Alaska</a>
-            </li>
-            <li>
-              <a href="travels.html">California-Alabama</a>
+              <router-link to="/cau-hoi-thuong-gap">Câu hỏi thường gặp</router-link>
             </li>
             <div class="clearfix"></div>
           </ul>

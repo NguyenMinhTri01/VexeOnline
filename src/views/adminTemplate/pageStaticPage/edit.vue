@@ -38,10 +38,6 @@
                   v-if="$v.formPageStatic.content.$dirty && !$v.formPageStatic.content.required"
                   class="alert-danger mt-2"
                 >Nội dung không được để trống !</p>
-                <p
-                  v-if="$v.formPageStatic.content.$dirty && (!$v.formPageStatic.content.minLength || !$v.formPageStatic.content.maxLength)"
-                  class="alert-danger mt-2"
-                >Độ dài nội dung phải từ 3 đến 255 ký tự !</p>
               </div>
             </div>
           </div>
@@ -103,9 +99,7 @@ export default {
         maxLength: maxLength(255)
       },
       content: {
-        required,
-        minLength: minLength(3),
-        maxLength: maxLength(255)
+        required
       }
     }
   },

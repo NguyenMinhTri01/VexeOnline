@@ -68,7 +68,25 @@ const actions = {
         commit("storePageStaticFailed", err);
       })
   },
-
+  fetchDetailPageStaticBySlug({ commit }, slug) {
+    commit("storePageStaticRequest");
+    api.get(`/pagestatics/detail/${slug}`)
+      .then(result => {
+        commit("storeSetPageStatic", result.data);
+      })
+      .catch(err => {
+        commit("storePageStaticFailed", err);
+      })
+  },
+  fetchDetailPageStaticBySlugAgain({ commit }, slug) {
+    api.get(`/pagestatics/detail/${slug}`)
+      .then(result => {
+        commit("storeSetPageStatic", result.data);
+      })
+      .catch(err => {
+        commit("storePageStaticFailed", err);
+      })
+  },
   fetchCreatePageStatic({ commit }, pageStatic) {
     commit("storePageStaticRequest");
     api

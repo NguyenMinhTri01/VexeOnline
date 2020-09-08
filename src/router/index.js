@@ -52,7 +52,36 @@ Vue.use(VueRouter)
           component : () => import ('../views/homeTemplate/contactPage')
         },
 
-        
+        //giới thiệu
+        {
+            path : "/gioi-thieu",
+            component : () => import ('../views/homeTemplate/staticPage')
+        },
+        //Hướng dẫn thanh toán
+        {
+          path : "/huong-dan-thanh-toan",
+          component : () => import ('../views/homeTemplate/staticPage')
+        },
+        //Quy chế
+        {
+          path : "/quy-che",
+          component : () => import ('../views/homeTemplate/staticPage')
+        },
+        //Chính sách bảo mật thông tin
+        {
+          path : "/chinh-sach-bao-mat",
+          component : () => import ('../views/homeTemplate/staticPage')
+        },
+        //Chính sách bảo mật thanh toán
+        {
+          path : "/chinh-sach-bao-mat-thanh-toan",
+          component : () => import ('../views/homeTemplate/staticPage')
+        },
+        //Câu hỏi thường gặp
+        {
+          path : "/cau-hoi-thuong-gap",
+          component : () => import ('../views/homeTemplate/staticPage')
+        },
       ]
     },
 
