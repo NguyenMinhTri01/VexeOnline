@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import stations from "./modules/stations"
 import blog from "./modules/blog"
 import auth from "./modules/auth"
+//import authFE from "./modules/authFE"
 import contact from "./modules/contact"
 import pageStatic from "./modules/pageStatic"
 import vehicle from "./modules/vehicle"

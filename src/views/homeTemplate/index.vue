@@ -4,6 +4,7 @@
   <Header/>
   <FooterBtm/>
   <router-view/>
+<<<<<<< HEAD
   <Footer/>
   <!-- sign -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -82,6 +83,13 @@
 				</div>
 			</div>
 <!-- //signin -->
+=======
+  <FooterTop/>
+  <CopyRight/>
+  <Login/>
+  <Register/>
+
+>>>>>>> a2999b31c969f74b52b207a19d74f88262884d87
 <!-- write us -->
 			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
@@ -152,12 +160,17 @@
 import TopHeader from '../../components/frontend/topHeader';
 import Header from '../../components/frontend/header';
 import FooterBtm from '../../components/frontend/footerBtm';
-import Footer from '../../components/frontend/footer';
+import FooterTop from '../../components/frontend/footerTop';
+import CopyRight from '../../components/frontend/copyRight';
+import Register from '../../components/frontend/register';
+import Login from '../../components/frontend/login'
 export default {
   components:{
-    TopHeader,Header,FooterBtm,Footer
+    TopHeader,Header,FooterBtm,FooterTop,CopyRight,Register,Login
   },
-  
+  created() {
+    this.$store.dispatch("setLogoutTimer");
+  },
 };
 </script>
 <style scoped>

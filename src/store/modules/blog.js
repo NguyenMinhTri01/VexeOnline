@@ -5,7 +5,8 @@ const state = {
   data: null,
   err: null,
   blog:null,
-  blogsHot: null
+  blogsHot: null,
+  count: null
 };
 
 const mutations = {
@@ -14,9 +15,8 @@ const mutations = {
     state.data = null,
     state.err = null
     state.blog =  null
-    state.blogsHot = null
+    //state.blogsHot = null
   },
-
   storeBlogSuccess(state, payload) {
     state.loading = false
     state.data = payload;
@@ -56,9 +56,28 @@ const mutations = {
 };
 
 const actions = {
-  fetchListBlogs({ commit }) {
-    commit("storeBlogRequest");
-    api.get("/blogs/")
+  // fetchListBlogs({ commit }) {
+  //   commit("storeBlogRequest");
+  //   api.get("/blogs/")
+  //     .then((result) => {
+  //       commit("storeBlogSuccess", result.data);
+  //     })
+  //     .catch(err => {
+  //       commit("storeBlogFailed", err);
+  //     });
+  // },
+  fetchListCountBlogs({ commit }) {
+    api.get("/blogs/countBlog")
+      .then((result) => {
+        state.count = result.data
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      });
+  },
+  fetchListBlogs({ commit },page=1) {
+    //commit("storeBlogRequest");
+    api.get(`/blogs?page=${page}`)
       .then((result) => {
         commit("storeBlogSuccess", result.data);
       })
@@ -89,7 +108,19 @@ const actions = {
       })
   },
   fetchDetailBlogBySlug({ commit }, slug) {
-    //commit("storeBlogRequest");
+    commit("storeBlogRequest");
+    //state.loading=true
+    api.get(`/blogs/detail/${slug}`)
+      .then(result => {
+        commit("storeSetBlog", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      })
+  },
+  fetchDetailBlogBySlugAgain({ commit }, slug) {
+   // commit("storeBlogRequest");
+    //state.loading=true
     api.get(`/blogs/detail/${slug}`)
       .then(result => {
         commit("storeSetBlog", result.data);

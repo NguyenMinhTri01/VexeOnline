@@ -100,7 +100,7 @@ export default {
         email: this.email,
         password: this.password
       };
-      this.$store.dispatch("login", fromData);
+      this.$store.dispatch("loginAdmin", fromData);
     }
   },
 
