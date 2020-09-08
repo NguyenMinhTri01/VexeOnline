@@ -108,16 +108,16 @@ export default {
   },
 
   mounted () {
-    window.onscroll = function() {addHeaderfix()};
-    let header = document.getElementById("myHeader");
-    let sticky = header.offsetTop;
-    function addHeaderfix() {
-      if (window.pageYOffset > sticky) {
-        header.classList.add("headerFix");
-      } else {
-        header.classList.remove("headerFix");
-      }
-    }
+    // window.onscroll = function() {addHeaderfix()};
+    // let header = document.getElementById("myHeader");
+    // let sticky = header.offsetTop;
+    // function addHeaderfix() {
+    //   if (window.pageYOffset > sticky) {
+    //     header.classList.add("headerFix");
+    //   } else {
+    //     header.classList.remove("headerFix");
+    //   }
+    // }
   }
 };
 </script>

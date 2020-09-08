@@ -4,8 +4,7 @@
   <Header/>
   <FooterBtm/>
   <router-view/>
-  <FooterTop/>
-  <CopyRight/>
+  <Footer/>
   <!-- sign -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
@@ -153,11 +152,10 @@
 import TopHeader from '../../components/frontend/topHeader';
 import Header from '../../components/frontend/header';
 import FooterBtm from '../../components/frontend/footerBtm';
-import FooterTop from '../../components/frontend/footerTop';
-import CopyRight from '../../components/frontend/copyRight';
+import Footer from '../../components/frontend/footer';
 export default {
   components:{
-    TopHeader,Header,FooterBtm,FooterTop,CopyRight
+    TopHeader,Header,FooterBtm,Footer
   },
   
 };

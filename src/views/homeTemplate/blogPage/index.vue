@@ -98,12 +98,18 @@ export default {
   },
   created() {
     this.$store.dispatch("fetchListBlogs");
+    this.scrollToTop();
   },
   computed:{
     blogs(){
       return this.$store.state.blog.data;
     }
   },
+  methods : {
+    scrollToTop() { 
+      window.scrollTo(0, 0); 
+    } 
+  }
 };
 </script>
 
