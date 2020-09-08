@@ -3,13 +3,13 @@
     <h3>Về chúng tôi</h3>
     <ul>
       <li>
-        <a href="travels.html">Giới thiệu</a>
+        <router-link to="/gioi-thieu">Giới thiệu</router-link>
       </li>
       <li>
-        <a href="travels.html">Tin tức</a>
+        <router-link to="/blogs">Tin tức</router-link>
       </li>
       <li>
-        <a href="travels.html">Liên hệ</a>
+        <router-link to="/contact">Liên hệ</router-link>
       </li>
       <div class="clearfix"></div>
     </ul>
