@@ -15,11 +15,11 @@
       >
         
         <p>Gửi tin nhắn cho chúng tôi</p>
-        <form>
-          <input type="text" placeholder="Tên của bạn" />
-          <input type="text" placeholder="Email của bạn" />
-          <input type="text" placeholder="Số điện thoại của bạn" />
-          <textarea placeholder="Tin nhắn của bạn"></textarea>
+        <form @submit.prevent="handleContact">
+          <input type="text" v-model="name" placeholder="Tên của bạn" />
+          <input type="email" v-model="email" placeholder="Email của bạn" />
+          <input type="number" v-model="phone" placeholder="Số điện thoại của bạn" />
+          <textarea v-model="content" placeholder="Tin nhắn của bạn"></textarea>
           <div class="sub">
             <input type="submit" value="Gửi" />
           </div>
@@ -49,7 +49,39 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      name: "",
+      email: "",
+      phone:"",
+      content:""
+    };
+  },
+  methods: {
+    handleContact() {
+      const fromData = {
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        content: this.content,
+      };
+      this.$store.dispatch("fetchCreateContact", fromData);
+    }
+  },
+  computed: {
+    contact(){
+      return this.$store.state.contact.data;
+    }
+  },
+  watch:{
+    contact(value){
+      if(value){
+        this.$toast.success('Gửi liên hệ thành công');
+      }
+    }
+  }
+};
 </script>
 
 <style>

@@ -979,7 +979,7 @@ i.fa.fa-gift{
 }
 /*-- /terms --*/
 /*-- agent --*/
-.agent-left input[type="text"] {
+.agent-left input[type="text"],.agent-left input[type="email"],.agent-left input[type="number"]  {
     width: 80%;
     color: #9E9E9E;
     outline: none;
@@ -2578,7 +2578,7 @@ i.fa.fa-truck, i.fa.fa-user, i.fa.fa-ticket {
 .privacy p {
     font-size: 15px;
 }
-.agent-left input[type="text"] {
+.agent-left input[type="text"],.agent-left input[type="email"],.agent-left input[type="number"] {
     width: 100%;
 }
 select {
@@ -3509,7 +3509,7 @@ ul.tp-hd-lft a {
     width: 335px;
     height: 261px;
 }
-.agent-left input[type="text"] {
+.agent-left input[type="text"],.agent-left input[type="email"],.agent-left input[type="number"]  {
     font-size: 14px;
     padding: 6px 10px;
 }
