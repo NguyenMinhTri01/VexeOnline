@@ -25,11 +25,11 @@
               style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
             >
               <h3>
-                <router-link :to="`/blogs/${item.slug}`">{{item.name}}</router-link>
+                <router-link :to="`/tin-tuc/${item.slug}`">{{item.name}}</router-link>
               </h3>
               <div>
                 <figure>
-                  <router-link :to="`/blogs/${item.slug}`">
+                  <router-link :to="`/tin-tuc/${item.slug}`">
                     <img
                       class="img-fluid"
                       v-lazy="`https://res.cloudinary.com/vexeonline/${item.avatar}`"
@@ -42,7 +42,7 @@
                 {{item.description}}
               </p>
               <div class="more">
-                <router-link :to="`/blogs/${item.slug}`">More Info...</router-link>
+                <router-link :to="`/tin-tuc/${item.slug}`">More Info...</router-link>
               </div>
             </div>
             </template>

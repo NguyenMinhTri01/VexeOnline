@@ -13,7 +13,7 @@
                 </div>
                 <div class="popular-right">
                   <h4>
-                    <router-link :to="`/blogs/${item.slug}`">{{item.name}}</router-link>
+                    <router-link :to="`/tin-tuc/${item.slug}`">{{item.name}}</router-link>
                   </h4>
                   <p>
                     {{item.description}}

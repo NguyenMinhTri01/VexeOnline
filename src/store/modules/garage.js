@@ -68,7 +68,16 @@ const actions = {
         commit("storeGarageFailed", err);
       })
   },
-
+  fetchDetailGarageBySlug({ commit }, slug) {
+    commit("storeGarageRequest");
+    api.get(`/garages/detail/${slug}`)
+      .then(result => {
+        commit("storeSetGarage", result.data);
+      })
+      .catch(err => {
+        commit("storeGarageFailed", err);
+      })
+  },
   fetchStatusGarage({ commit }, id) {
     api.get(`/garages/status/${id}`)
       .then(result => {

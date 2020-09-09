@@ -11,10 +11,10 @@
         <router-link class="nav-link" to="/">Trang chủ <span class="sr-only">(current)</span></router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/blogs" class="nav-link">Tin tức</router-link>
+        <router-link to="/tin-tuc" class="nav-link">Tin tức</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/contact" class="nav-link">Liên hệ</router-link>
+        <router-link to="/lien-he" class="nav-link">Liên hệ</router-link>
       </li>
     </ul>
   </div>

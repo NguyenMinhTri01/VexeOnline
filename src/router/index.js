@@ -17,38 +17,44 @@ Vue.use(VueRouter)
         },
         // about page
         {
-          path : "/about",
+          path : "/ve-chung-toi",
           component : () => import ('../views/homeTemplate/aboutPage')
         },
         //station page
         {
-          path : "/stations",
+          path : "/ben-xe",
           component : () => import ('../views/homeTemplate/StationsPage')
         },
         {
-          path : "/stations/:id",
+          path : "/ben-xe/:id",
           component : () => import ('../views/homeTemplate/detailStationPage')
+        },
+
+        //garage page
+        {
+          path : "/nha-xe/:slug",
+          component : () => import ('../views/homeTemplate/garagePage')
         },
 
         //trip page
         {
-          path : "/trips",
+          path : "/chuyen-di",
           component : () => import ('../views/homeTemplate/tripPage')
         },
 
         //blog page
         {
-          path : "/blogs",
+          path : "/tin-tuc",
           component : () => import ('../views/homeTemplate/blogPage')
         },
         {
-          path : "/blogs/:slug",
+          path : "/tin-tuc/:slug",
           component : () => import ('../views/homeTemplate/detailBlogPage')
         },
 
         //contact
         {
-          path : "/contact",
+          path : "/lien-he",
           component : () => import ('../views/homeTemplate/contactPage')
         },
 
