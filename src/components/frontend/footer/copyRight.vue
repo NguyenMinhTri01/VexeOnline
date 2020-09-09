@@ -1,5 +1,5 @@
 <template>
-  <!---copy-right ---->
+    <!---copy-right ---->
 <div class="copy-right">
 	<div class="container">
 	
@@ -16,6 +16,7 @@
 	</div>
 </div>
 <!--- /copy-right ---->
+
 </template>
 
 <script>

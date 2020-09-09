@@ -4,10 +4,13 @@
   <Header/>
   <FooterBtm/>
   <router-view/>
-  <FooterTop/>
-  <CopyRight/>
+  <Footer/>
+
+
+
   <Login/>
   <Register/>
+
 
 <!-- write us -->
 			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -79,17 +82,14 @@
 import TopHeader from '../../components/frontend/topHeader';
 import Header from '../../components/frontend/header';
 import FooterBtm from '../../components/frontend/footerBtm';
-import FooterTop from '../../components/frontend/footerTop';
-import CopyRight from '../../components/frontend/copyRight';
+import Footer from '../../components/frontend/footer'
 import Register from '../../components/frontend/register';
 import Login from '../../components/frontend/login'
 export default {
   components:{
-    TopHeader,Header,FooterBtm,FooterTop,CopyRight,Register,Login
+    TopHeader,Header,FooterBtm,Register,Login,Footer
   },
-  created() {
-    this.$store.dispatch("setLogoutTimer");
-  },
+  
 };
 </script>
 <style scoped>

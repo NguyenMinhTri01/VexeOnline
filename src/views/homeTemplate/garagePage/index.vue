@@ -16,14 +16,14 @@
               data-wow-duration="1200ms"
               data-wow-delay="500ms"
             >
-              <h3>{{garage.name}}</h3>
+              <h3>{{garageDetail.name}}</h3>
               
               <div>
-                  <p>Trụ sở: {{garage.address}}</p>
+                  <p>Trụ sở: {{garageDetail.address}}</p>
                 <figure>
                   <img
                     class="img-fluid"
-                    v-lazy="`https://res.cloudinary.com/vexeonline/${garage.avatar}`"
+                    v-lazy="`https://res.cloudinary.com/vexeonline/${garageDetail.avatar}`"
                     alt="avatar"
                   />
                 </figure>
@@ -44,8 +44,8 @@
               data-wow-duration="1200ms"
               data-wow-delay="500ms"
             >
-              <h3>Thông tin {{garage.name}}</h3>
-              <p v-html="garage.content"></p>
+              <h3>Thông tin {{garageDetail.name}}</h3>
+              <p v-html="garageDetail.content"></p>
               </div>
           </div>
           <div class="clearfix"></div>
@@ -57,13 +57,16 @@
 
 <script>
 export default {
-    // data(){
-    //     return {
-    //         garageDetail:''
-    //     }
-    // },
+    data(){
+        return {
+            garageDetail:''
+        }
+    },
     created() {
         this.$store.dispatch("fetchDetailGarageBySlug", this.$route.params.slug);
+    },
+    updated() {
+        this.$store.dispatch("fetchDetailGarageBySlugAgain", this.$route.params.slug);
     },
     computed:{
         garage(){
@@ -73,13 +76,13 @@ export default {
             return this.$store.state.garage.loading;
         }
     },
-//     watch:{
-//         garage(value){
-//         if(value){
-//             this.garageDetail = value
-//         }
-//         }
-//   }
+    watch:{
+        garage(value){
+        if(value){
+            this.garageDetail = value
+        }
+        }
+  }
 }
 </script>
 

@@ -30,6 +30,7 @@
                 :format="customFormatter(date)"
               />
             </div>
+            <p>{{date}}</p>
             <div class="clearfix"></div>
           </div>
           <div class="ban-bottom">

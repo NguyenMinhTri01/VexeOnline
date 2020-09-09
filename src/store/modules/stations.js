@@ -3,7 +3,8 @@ const state = {
   loading: false,
   data: null,
   station: null,
-  err: null
+  err: null,
+  stationsHot : null
 };
 
 const mutations = {
@@ -12,6 +13,7 @@ const mutations = {
     state.data = null;
     state.station = null;
     state.err = null;
+    state.stationsHot = null;
   },
 
   storeStationSuccess(state, payload) {
@@ -43,7 +45,15 @@ const mutations = {
   },
   storeDeleteStationInData(state, id) {
     state.data = state.data.filter(station => station._id != id)
+  },
+
+  storeSetStationsHot(state, stationsHot) {
+    state.stationsHot = stationsHot,
+    state.loading = false;
+    state.err = null
   }
+
+  
 };
 
 const actions = {
@@ -55,6 +65,16 @@ const actions = {
       })
       .catch(err => {
         commit("storeStationFailed", err);
+      });
+  },
+
+  fetchListStationsHot({ commit }) {
+    api.get("/stations/hotStations")
+      .then((result) => {
+        commit("storeSetStationsHot", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
       });
   },
 

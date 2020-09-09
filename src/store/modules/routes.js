@@ -68,7 +68,7 @@ const actions = {
   },
   fetchListRoutesHot({ commit }) {
     commit("storeRouteRequest");
-    api.get("/routes/hotRoute")
+    api.get("/routes/hotRoutes")
       .then((result) => {
         commit("storeRouteSuccess", result.data);
       })
