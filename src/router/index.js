@@ -58,6 +58,12 @@ Vue.use(VueRouter)
           component : () => import ('../views/homeTemplate/contactPage')
         },
 
+        //booking
+        {
+          path : "/dat-ve",
+          component : () => import ('../views/homeTemplate/bookingBusTemplate')
+        },
+
         //giới thiệu
         {
             path : "/gioi-thieu",
