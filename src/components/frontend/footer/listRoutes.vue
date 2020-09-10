@@ -26,8 +26,11 @@ export default {
     }
   },
   watch : {
-    listData (value) {
-      this.listRoutesHot = value;
+    listData (value ) {
+      if (value && value.length > 0){
+        this.listRoutesHot = [...value];
+      }
+      
     }
   }
 };

@@ -20,7 +20,7 @@
                                   <div class="col-sm-3">
                                     <select v-model="hours" class="form-control" @blur="$v.hours.$touch()">
                                       <option value="-1" disabled>Giờ</option>
-                                      <option v-for="n in 24" :key="n" :value="n">{{n - 1}} Giờ</option>
+                                      <option v-for="n in 24" :key="n" :value="n - 1">{{n - 1}} Giờ</option>
                                     </select>
                                     <p v-if="$v.hours.$dirty && !$v.hours.isValid" class="alert-danger mt-2">Bạn chưa chọn giờ!</p>
 
@@ -28,7 +28,7 @@
                                   <div class="col-sm-3">
                                     <select v-model="minute" class="form-control" @blur="$v.minute.$touch()">
                                       <option value="-1" disabled>Phút</option>
-                                      <option v-for="n in 60" :key="n" :value="n">{{n - 1}} Phút</option>
+                                      <option v-for="n in 60" :key="n" :value="n - 1">{{n - 1}} Phút</option>
                                     </select>
                                     <p v-if="$v.minute.$dirty && !$v.minute.isValid" class="alert-danger mt-2">Bạn chưa chọn Phút!</p>
                                   </div>
