@@ -60,7 +60,7 @@ Vue.use(VueRouter)
 
         //booking
         {
-          path : "/dat-ve",
+          path : "/chuyen-di/dat-ve",
           component : () => import ('../views/homeTemplate/bookingBusTemplate')
         },
 

@@ -506,13 +506,13 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
     display: inline-block;
 }
 li.trav {
-    width: 34%;
+    width: 20%;
 }
 li.dept {
-    width: 13%;
+    width: 20%;
 }
 li.arriv {
-    width: 13%;
+    width: 20%;
 }
 li.seat {
     width: 20%;
@@ -535,11 +535,11 @@ li.fare {
 }
 .bus-ic {
     float: left;
-    width: 7%;
+    width: 80%;
     margin-top: 4px;
 }
 .bus-txt {
-    float: right;
+    float: left;
     width: 91%;
 }
 .bus-ic1 {
@@ -595,6 +595,11 @@ a.view {
     display: inline-block;
 }
 i.fa.fa-clock-o {
+    font-size: 1.5em;
+    color: #9A9A9A;
+    margin-top: 4px;
+}
+i.fa.fa-map-marker {
     font-size: 1.5em;
     color: #9A9A9A;
     margin-top: 4px;
@@ -3166,6 +3171,9 @@ a.view {
 i.fa.fa-clock-o {
     font-size: 1.2em;
 }
+i.fa.fa-map-marker {
+    font-size: 1.2em;
+}
 .bus-midd h4 {
     font-size: 15px;
 }
@@ -3788,6 +3796,9 @@ a.view {
     padding: 5px 7px;
 }
 i.fa.fa-clock-o {
+    margin-top: 10px;
+}
+i.fa.fa-map-marker {
     margin-top: 10px;
 }
 li.arriv h4 {

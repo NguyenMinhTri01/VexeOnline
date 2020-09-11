@@ -129,6 +129,11 @@ const actions = {
     .catch((err) => {
       commit("storeTripFailed", err);
     });    
+  },
+  getSearchTrip(){
+    if(state.data){
+      state.trip = state.data
+    }
   }
 
 }

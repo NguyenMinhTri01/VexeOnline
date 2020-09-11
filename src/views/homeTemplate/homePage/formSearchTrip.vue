@@ -90,7 +90,7 @@ export default {
         }
         //console.log(formData)
         this.$store.dispatch("searchTrip", formData);
-        //this.$router.push('/tin-tuc');
+        this.$router.push('/chuyen-di');
       }
     }
   },
