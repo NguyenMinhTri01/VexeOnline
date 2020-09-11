@@ -8,7 +8,7 @@
                 <option
                   v-for="(value, key) in provinces"
                   :key="key"
-                  v-bind:value="value.name"
+                  v-bind:value="value.name_with_type"
                 >{{value.name_with_type}}</option>
               </select>
             </div>
@@ -18,7 +18,7 @@
                 <option
                   v-for="(value, key) in provinces"
                   :key="key"
-                  v-bind:value="value.name"
+                  v-bind:value="value.name_with_type"
                 >{{value.name_with_type}}</option>
               </select>
             </div>
@@ -30,17 +30,16 @@
                 :format="customFormatter(date)"
               />
             </div>
-            <p>{{date}}</p>
             <div class="clearfix"></div>
           </div>
           <div class="ban-bottom">
             <div class="clearfix"></div>
             <div class="sear">
-              <form>
+              <form @submit.prevent="handleSubmit">
                 <button type="button" @click="handleConvertStation" class="seabtn mr-2">
                   <i class="fa fa-exchange"></i> CHUYỂN
                 </button>
-                <button class="seabtn">
+                <button type="submit" class="seabtn">
                   <i class="fa fa-search"></i> TÌM VÉ XE
                 </button>
               </form>
@@ -59,7 +58,7 @@ export default {
   },
     data() {
     return {
-      date: "",
+      date: "0",
       formStation: "0",
       toStation: "0",
       lang: {
@@ -81,6 +80,19 @@ export default {
       this.formStation = this.toStation;
       this.toStation = temp;
     },
+    handleSubmit () {
+      if (!this.date) this.date = new Date(Date.now());
+      if (this.formStation != '0' && this.toStation != '0'){
+        const formData = {
+          formStation : this.formStation ,
+          toStation : this.toStation,
+          date : new Date(this.date)
+        }
+        //console.log(formData)
+        this.$store.dispatch("searchTrip", formData);
+        //this.$router.push('/tin-tuc');
+      }
+    }
   },
   created() {
     this.date = new Date(Date.now());

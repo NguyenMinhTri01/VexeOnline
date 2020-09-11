@@ -27,8 +27,8 @@ export default {
   },
   watch: {
     listData(value) {
-      if (value) {
-        if (value.length > 0) this.listStations = value;
+      if (value && value.length > 0) {
+        this.listStations = [...value];
       }
     },
   },

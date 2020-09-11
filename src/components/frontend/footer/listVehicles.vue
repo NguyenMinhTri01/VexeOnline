@@ -27,7 +27,9 @@ export default {
   },
   watch : {
     listData (value) {
-      if(value) this.listVehicles = [...value]
+      if (value && value.length > 0) {
+        this.listVehicles = [...value];
+      }
     }
   }
 };
