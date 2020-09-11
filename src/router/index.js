@@ -247,6 +247,12 @@ Vue.use(VueRouter)
           path : "/admin/trips/edit/:id",
           component : () => import ('../views/adminTemplate/tripPage/edit.vue')
         },
+
+        //admin-profile
+        {
+          path : "/admin/profile-admin/edit",
+          component : () => import ('../views/adminTemplate/profileAdminPage')
+        },
         {
           path : "*",
           component: () => import ('../views/adminTemplate/pageNotFound')
