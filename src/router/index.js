@@ -61,7 +61,12 @@ Vue.use(VueRouter)
         //booking
         {
           path : "/chuyen-di/dat-ve",
-          component : () => import ('../views/homeTemplate/bookingBusTemplate')
+          component : () => import ('../views/homeTemplate/bookingBusPage')
+        },
+        //checkout
+        {
+          path : "/chuyen-di/dat-ve/thanh-toan",
+          component : () => import ('../views/homeTemplate/checkoutPage')
         },
 
         //giới thiệu

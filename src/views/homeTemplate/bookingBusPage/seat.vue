@@ -1,6 +1,6 @@
 <template>
-    <button class="seat btn" :class="{'active':statusClass,'seatBook':seat.TrangThai}" @click="handleSeatSelect" :disabled="seat.TrangThai">
-        {{seat.SoGhe}}
+    <button class="seatBooking btn" :class="{'active':statusClass,'seatBook':seat.isBooked}" @click="handleSeatSelect" :disabled="seat.isBooked">
+        {{seat.code}}
     </button>
 </template>
 
@@ -39,7 +39,7 @@ export default {
 
 <style>
 
-.seat {
+.seatBooking {
   margin: 3px;
   width: 40px;
   height: 40px;

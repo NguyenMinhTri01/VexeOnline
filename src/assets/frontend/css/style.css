@@ -594,6 +594,20 @@ a.view {
     margin-top: 20px;
     display: inline-block;
 }
+button.view {
+    padding: 6px 18px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #34ad00;
+    border: 0;
+    font-size: 13px;
+    border-radius: 2px;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+    margin-top: 20px;
+    display: inline-block;
+}
 i.fa.fa-clock-o {
     font-size: 1.5em;
     color: #9A9A9A;

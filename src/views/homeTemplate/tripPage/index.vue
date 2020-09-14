@@ -100,7 +100,7 @@
             <div class="bus-txt4">
               <h5>{{item.price}} đ</h5>
               <a style="cursor:pointer" data-toggle="modal" data-target="#detailContent" @click="handleViewContent(item.note)" class="view">Xem Chi Tiết</a>
-              <router-link to="/chuyen-di/dat-ve" style="margin:10px" class="view">Đặt Vé</router-link>
+              <a style="margin:10px;cursor:pointer" @click="handelBooking(item._id)" class="view">Đặt Vé</a>
             </div>
           </li>
           
@@ -146,12 +146,20 @@ export default {
       content:"",
     }
   },
-  created(){
-    this.$store.dispatch("getSearchTrip");
+  beforeCreate(){
+    const formData = {
+     formStation : localStorage.getItem("fromStation"),
+     toStation : localStorage.getItem("toStation"),
+     date : new Date(localStorage.getItem("date")) > new Date(Date.now()) ? new Date(localStorage.getItem("date")) : new Date(Date.now())
+    }
+    this.$store.dispatch("searchTrip", formData)
   },
-  updated(){
-    this.$store.dispatch("getSearchTrip");
-  },
+  // created(){
+  //   this.$store.dispatch("getSearchTrip");
+  // },
+  // updated(){
+  //   this.$store.dispatch("getSearchTrip");
+  // },
   watch:{
       trips: function(){
         moment.locale("vi");
@@ -175,12 +183,11 @@ export default {
   methods:{
     handleViewContent(note){
       this.content = note;
-      //console.log(note)
-      //this.$emit("eventViewContent",note);
     },
-    // handleView(note){
-    //   this.content = note;
-    // }
+    handelBooking(id){
+      localStorage.setItem("tripId", id);
+      this.$router.push('/chuyen-di/dat-ve');
+    }
   },
   mounted () {
     // window.onscroll = function() {addHeaderfix()};

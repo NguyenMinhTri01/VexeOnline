@@ -130,11 +130,6 @@ const actions = {
       commit("storeTripFailed", err);
     });    
   },
-  getSearchTrip(){
-    if(state.data){
-      state.trip = state.data
-    }
-  }
 
 }
 

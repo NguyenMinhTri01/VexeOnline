@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div v-if="!loading">
         <Banner1/>
         <div class="terms">
         <div class="container">
         <div class="row">
         <div class="col-sm-4">
             <h3>Chú thích</h3>
-            <p><button class="seat btn"></button> Còn trống</p>
-            <p><button class="seat btn seatBook"></button> Đã đặt</p>
-            <p><button class="seat btn active"></button> Đã chọn</p>
+            <p><button class="seatBooking btn"></button> Còn trống</p>
+            <p><button class="seatBooking btn seatBook"></button> Đã đặt</p>
+            <p><button class="seatBooking btn active"></button> Đã chọn</p>
         </div>
         <div class="col-sm-4">
             <!-- gọi component seat -->
@@ -20,12 +20,14 @@
         <div class="col-sm-4">
             <h3>Danh sách đặt ghế</h3>
             <p v-for="(seat,index) in listSeatOrder" :key="index">
-            Ghế: {{seat.SoGhe}} / Giá: {{seat.Gia}}đ
+            Ghế: {{seat.code}} / Giá: {{trip.price}}đ
             <!-- <span style="color:red;cursor:pointer" @click="handleCancle(index,seat)">[Hủy]</span> -->
             <button @click="handleCancle(index,seat)" type="button" class="btn btn-sm btn-danger">X</button>
             </p>
             <hr>
-            <p>Tổng : 0đ</p>
+            <p>Tổng : {{total}}đ</p>
+            <button style="cursor:pointer;margin-right: 10px;" @click="handleBackTrip" class="view">Quay Lại</button>
+            <button style="cursor:pointer" @click="handleCheckOut" class="view" :disabled="flag">Tiếp Tục</button>
         </div>
         </div>
     </div>
@@ -35,7 +37,6 @@
 
 <script>
 import Seat from "./seat";
-const datas = require("./data.json");
 import Banner1 from "../../../components/frontend/banner1"
 export default {
     components:{
@@ -44,29 +45,46 @@ export default {
     },
     data() {
         return {
-            listSeat: datas,
+            listSeat: '',
             unSeatSelect: null,
-            listSeatOrder: []
+            listSeatOrder: [],
+            flag: true
         };
     },
-    computed:{
-    total(){
-      return this.listSeatOrder.reduce((a,b)=>{
-        return a+=b.Gia
-      },0)
+    
+  beforeCreate(){
+    this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+  },
+  computed:{
+      total(){
+        return this.listSeatOrder.length * this.trip.price
+      },
+      trip(){
+        return this.$store.state.trip.trip;
+      },
+      loading(){
+        return this.$store.state.trip.loading;
+      }
+  },
+  watch:{
+    trip(value){
+      if(value){
+        this.listSeat = value.seats
+      }
     }
   },
   methods: {
     handleOrderSeat(obj) {
       if (obj.status) {
         this.listSeatOrder.push(obj.seat);
+        this.flag = !this.flag
       } else {
         if (this.listSeatOrder.length > 0) {
           this.listSeatOrder.forEach(seat => {
-            if (seat.SoGhe === obj.seat.SoGhe) {
-              //let stt = this.listSeatOrder.indexOf(seat.SoGhe);
+            if (seat.code === obj.seat.code) {
+              //let stt = this.listSeatOrder.indexOf(seat.code);
               let stt = this.listSeatOrder.findIndex(item => {
-                return (item.SoGhe === obj.seat.SoGhe);
+                return (item.code === obj.seat.code);
               });
               if (stt !== -1) {
                 this.listSeatOrder.splice(stt, 1);
@@ -89,6 +107,12 @@ export default {
 
       //C2 - Watch
       this.unSeatSelect = seat;
+    },
+    handleBackTrip(){
+      this.$router.push('/chuyen-di');
+    },
+    handleCheckOut(){
+      this.$router.push('/chuyen-di/dat-ve/thanh-toan');
     }
   }
 }

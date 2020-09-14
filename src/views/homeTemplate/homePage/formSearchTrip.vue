@@ -88,8 +88,12 @@ export default {
           toStation : this.toStation,
           date : new Date(this.date)
         }
+        localStorage.setItem("fromStation", formData.formStation);
+        localStorage.setItem("toStation", formData.toStation);
+        localStorage.setItem("date", formData.date);
+
         //console.log(formData)
-        this.$store.dispatch("searchTrip", formData);
+        //this.$store.dispatch("searchTrip", formData);
         this.$router.push('/chuyen-di');
       }
     }

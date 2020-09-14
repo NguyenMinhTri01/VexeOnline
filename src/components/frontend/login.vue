@@ -131,12 +131,12 @@ export default {
     err() {
       return this.$store.state.auth.err;
     },
-    user(){
-      return this.$store.state.auth.infoUser;
-    }
+    token(){
+      return this.$store.state.auth.token;
+    },
   },
   watch:{
-    user(value){
+    token(value){
       if(value){
         this.$toast.success('Đăng nhập thành công');
       }

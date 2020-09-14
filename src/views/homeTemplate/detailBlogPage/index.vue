@@ -72,10 +72,6 @@ export default {
     }
   },
   mounted(){
-    // window.onload=function(){
-    //   var x = document.getElementsByTagName("img");
-    //   x.classList.add("img-fluid");
-    // }
 window.onscroll = function() {addClassImage ()}
     function addClassImage () {
     let tagImages = document.getElementsByTagName("img");
@@ -86,10 +82,6 @@ window.onscroll = function() {addClassImage ()}
         }
       }
     }
-    
-    // $(function(){
-    //   $('img').addClass("img-fluid")
-    // });
   },
   watch:{
     blog(value){
