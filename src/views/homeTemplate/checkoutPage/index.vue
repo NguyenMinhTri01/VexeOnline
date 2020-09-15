@@ -5,9 +5,12 @@
             <h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"> Green Wheels - Best in Class for Travel & Hotels</h1>
         </div>
       </div>
-      <div class="blog">
+      <div v-if="!loading" class="blog">
         <div class="container">
             <div class="row">
+                <div class="col-md-12" v-if="err">
+                    <p class="alert alert-danger">{{err.response.data.message}}</p>
+                </div>
                 <div class="col-md-7 blog-left">
                     <div
                     class="comments-list hover14 column animated wow fadeInUp"
@@ -15,20 +18,24 @@
                     data-wow-delay="500ms"
                     >
                     <h3>Địa Chỉ Thanh Toán</h3>
-                    <form>
+                    <form @submit.prevent="handleSubmit">
                         <div class="form-group">
                             <label>Họ Tên</label>
-                            <input v-model="name" type="name" class="form-control"  aria-describedby="emailHelp" placeholder="Họ tên hành khách">
+                            <input v-model="name" type="name" @blur="$v.name.$touch()" class="form-control"  aria-describedby="emailHelp" placeholder="Họ tên hành khách">
+                            <p class="alert alert-danger" v-if="$v.name.$dirty && !$v.name.required">Họ tên không được rỗng</p>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Email address</label>
-                                    <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Địa chỉ email">
+                                    <input v-model="email" type="email" @blur="$v.email.$touch()" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Địa chỉ email">
+                                    <p class="alert alert-danger" v-if="$v.email.$dirty && !$v.email.required">Email không được rỗng</p>
+                                    <p class="alert alert-danger" v-if="$v.email.$dirty && !$v.email.email">Email không đúng định dạng</p>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputPassword1">Số Điện Thoại</label>
-                                    <input v-model="phone" type="number" class="form-control" id="exampleInputPassword1" placeholder="Số điện thọai">
+                                    <input v-model="phone" type="number" @blur="$v.phone.$touch()" class="form-control" id="exampleInputPassword1" placeholder="Số điện thọai">
+                                    <p class="alert alert-danger" v-if="$v.phone.$dirty && !$v.phone.required">Số điện thoại không được rỗng</p>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +43,7 @@
                             <label for="exampleFormControlTextarea1">Ghi Chú</label>
                             <textarea v-model="note" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="view">Thanh Toán</button>
+                        <button :disabled="$v.$invalid" type="submit" class="view">Hoàn Thành</button>
                     </form>
                     </div>
                 </div>
@@ -66,6 +73,14 @@
                             <p class="styleOrderDetail">{{data.endTime}}</p>
                             <p class="styleOrderDetail">{{data.routeId.toStationId.name}}</p>
                         </div>
+                        <div class="col-md-12 styleOrder">
+                            <span>Số ghế : 
+                                <span v-for="(seat,index) in seats" :key="index">{{seat}} </span>
+                            </span>
+                        </div>
+                        <div class="col-md-12 styleOrder">
+                            <span>Tổng cộng : {{total}}đ</span>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -77,6 +92,7 @@
 
 <script>
 import moment from "moment";
+import { required, email } from "vuelidate/lib/validators";
 export default {
     data(){
         return {
@@ -84,12 +100,35 @@ export default {
             email:"",
             phone:"",
             note:"",
-            data: null
+            data: null,
+            listSeatOrder : '',
+            total: localStorage.getItem("total"),
+        }
+    },
+    validations:{
+        name:{
+            required
+        },
+        email: {
+            required,
+            email
+        },
+        phone:{
+            required
         }
     },
     beforeCreate(){
         this.$store.dispatch("getInfoUser");
         this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+        if(this.seats===null){
+            this.$router.push('/chuyen-di/dat-ve');
+        }
+    },
+    created(){
+        this.$store.dispatch("getInfoUser");
+        if(this.seats===null){
+            this.$router.push('/chuyen-di/dat-ve');
+        }
     },
     computed:{
         user() {
@@ -100,6 +139,28 @@ export default {
         },
         loading(){
             return this.$store.state.trip.loading;
+        },
+        seats(){
+            return this.$store.state.ticket.seats;
+        },
+        ticket() {
+            return this.$store.state.ticket.data;
+        },
+        err() {
+            return this.$store.state.ticket.err;
+        },
+    },
+    methods:{
+        handleSubmit(){
+            const formData = {
+                customerName: this.name,
+                email: this.email,
+                phone: this.phone,
+                note: this.note,
+                tripId: localStorage.getItem("tripId"),
+                seatCodes: this.seats
+            }
+            this.$store.dispatch("postTicket", formData);
         }
     },
     watch:{
@@ -115,18 +176,20 @@ export default {
             this.data = {...this.trip};
             this.data.startTime = moment(this.trip.startTime).format("LLLL");
             this.data.endTime = moment(this.trip.endTime).format("LLLL");
-            return this.data
-            // this.data = this.trips.map((item)=>{
-            // let newOject = {...item}
-            // if (item.startTime) {
-            //     newOject.startTime = moment(item.startTime).format("LT");
-            // }
-            // if (item.endTime) {
-            //     newOject.endTime = moment(item.endTime).format("LT");
-            // }
-            // return newOject;
-            // })
+            return this.data;
+            
+        },
+        ticket(value){
+            if(value){
+                this.$toast.success("Đặt vé thành công", {
+                    position: "bottom-right",
+                    duration: 1000
+                });
+                this.$router.push('/chuyen-di/dat-ve/hoan-thanh');
+                
+            }
         }
+
     }
 }
 </script>

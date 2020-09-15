@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <!--- banner-1 ---->
     <Banner1 />
     <!--- /banner-1 ---->
@@ -178,7 +178,10 @@ export default {
   computed:{
     trips() {
       return this.$store.state.trip.data;
-    }
+    },
+    loading(){
+        return this.$store.state.trip.loading;
+      }
   },
   methods:{
     handleViewContent(note){

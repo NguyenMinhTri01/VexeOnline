@@ -68,6 +68,11 @@ Vue.use(VueRouter)
           path : "/chuyen-di/dat-ve/thanh-toan",
           component : () => import ('../views/homeTemplate/checkoutPage')
         },
+        //checkout complete
+        {
+          path : "/chuyen-di/dat-ve/hoan-thanh",
+          component : () => import ('../views/homeTemplate/checkoutPage/complete.vue')
+        },
 
         //giới thiệu
         {

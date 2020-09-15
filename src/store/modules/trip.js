@@ -122,6 +122,7 @@ const actions = {
   },
 
   searchTrip({ commit }, formData) {
+    commit("storeTripRequest");
     api.post('/trips/search-trips', formData)
     .then((result) => {
       commit("storeTripSuccess", result.data);
