@@ -2770,6 +2770,9 @@ li.seat {
 .banner {
     min-height: 250px;
 }
+.input-date {
+    font-size: 0.8rem !important;
+}
 }
 @media (max-width:736px){
 .footer-btm li {

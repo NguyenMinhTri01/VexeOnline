@@ -121,6 +121,17 @@ const actions = {
       });
   },
 
+  fetchListTripsByFromStation ({ commit }, fromStation) {
+    commit("storeTripRequest");
+    api.get(`/trips/from-station/${fromStation}`)
+    .then(result => {
+      commit("storeTripSuccess", result.data);
+    })
+    .catch(err => {
+      commit("storeTripFailed", err);
+    })
+  },
+
   searchTrip({ commit }, formData) {
     api.post('/trips/search-trips', formData)
     .then((result) => {

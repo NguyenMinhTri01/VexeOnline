@@ -3,7 +3,7 @@
     <h3>Bến xe</h3>
     <ul v-if="listStations.length > 0">
       <li v-for="station in listStations" :key="station._id">
-        <router-link to="#">{{station.name}}</router-link>
+        <router-link :to="`/ben-xe/${station.slug}`">{{station.name}}</router-link>
       </li>
       <div class="clearfix"></div>
     </ul>

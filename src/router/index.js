@@ -21,12 +21,12 @@ Vue.use(VueRouter)
           component : () => import ('../views/homeTemplate/aboutPage')
         },
         //station page
+        // {
+        //   path : "/ben-xe",
+        //   component : () => import ('../views/homeTemplate/StationsPage')
+        // },
         {
-          path : "/ben-xe",
-          component : () => import ('../views/homeTemplate/StationsPage')
-        },
-        {
-          path : "/ben-xe/:id",
+          path : "/ben-xe/:slug",
           component : () => import ('../views/homeTemplate/detailStationPage')
         },
 

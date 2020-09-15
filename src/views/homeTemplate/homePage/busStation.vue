@@ -3,7 +3,7 @@
     <h2 class="mb-3" style="color : #34ad00; font-weight: 700">Bến Xe Khách</h2>
     <div class="row containerStation mb-3">
       <div v-for="station in stationsHot" :key="station._id" class="col-sm-3 mb-2">
-        <a href="#">
+        <router-link :to="`/ben-xe/${station.slug}`">
           <img
             class="img-thumbnail"
             v-lazy="`https://res.cloudinary.com/vexeonline/${station.avatar}`"
@@ -11,7 +11,7 @@
             style="width:100%; height : 100%"
           />
           <div class="centered">{{station.name}}</div>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>

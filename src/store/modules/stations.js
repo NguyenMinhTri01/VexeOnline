@@ -89,6 +89,16 @@ const actions = {
       })
   },
 
+  fetchDetailStationBySlug({ commit }, slug) {
+    api.get(`/stations/detail/${slug}`)
+    .then(result => {
+      commit("storeSetStation", result.data);
+    })
+    .catch(err => {
+      commit("storeStationFailed", err);
+    })
+  },
+
   fetchStatusStation({ commit }, id) {
     api.get(`/stations/status/${id}`)
       .then(result => {
