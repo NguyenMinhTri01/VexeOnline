@@ -131,6 +131,9 @@ export default {
     err() {
       return this.$store.state.auth.err;
     },
+    user(){
+      return this.$store.state.auth.infoUser;
+    },
     token(){
       return this.$store.state.auth.token;
     },

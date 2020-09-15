@@ -89,7 +89,6 @@ export default {
   computed:{
     user() {
       return this.$store.state.auth.infoUser;
-      
     },
   },
   // updated(){

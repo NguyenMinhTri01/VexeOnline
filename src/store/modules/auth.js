@@ -59,7 +59,7 @@ const actions = {
     commit("clearAuthData");
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
-    router.replace("/");
+    //router.replace("/");
   },
   loginAdmin({ commit }, authUser) {
     commit("storeLoginRequest");
@@ -132,11 +132,6 @@ const actions = {
       .post("/users/login", authUser)
       .then(result => {
         const decode = jwtDecode(result.data.token);
-        // if (decode.userType === "client") {
-        //   return Promise.reject({
-        //     response: { data: { message: "Ban k co quyen truy cap" } }
-        //   });
-        // }
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("exp", decode.exp);
         setHeader(result.data.token);
@@ -145,7 +140,6 @@ const actions = {
           token : result.data.token,
           infoUser : decode
         });
-        router.replace("/");
       })
       .catch(err => {
         commit("storeLoginFaild", err);

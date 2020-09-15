@@ -48,7 +48,8 @@ export default {
             listSeat: '',
             unSeatSelect: null,
             listSeatOrder: [],
-            flag: true
+            flag: true,
+            listNameSeatOrder:[]
         };
     },
     
@@ -71,13 +72,20 @@ export default {
       if(value){
         this.listSeat = value.seats
       }
+    },
+    listSeatOrder(value){
+      
+      if(value){
+        this.flag = false
+      }
     }
   },
   methods: {
     handleOrderSeat(obj) {
       if (obj.status) {
         this.listSeatOrder.push(obj.seat);
-        this.flag = !this.flag
+        this.listNameSeatOrder.push(obj.seat.code)
+        //console.log(this.listNameSeatOrder)
       } else {
         if (this.listSeatOrder.length > 0) {
           this.listSeatOrder.forEach(seat => {
@@ -88,11 +96,15 @@ export default {
               });
               if (stt !== -1) {
                 this.listSeatOrder.splice(stt, 1);
+                this.listNameSeatOrder.splice(stt,1)
               }
             }
           });
         }
       }
+      
+      //console.log(this.listNameSeatOrder) // đó làm sao để truyền cái đó qua cái page checkoutPgae
+      
     },
     handleCancle(value,seat){
       this.listSeatOrder.splice(value,1);
@@ -112,8 +124,10 @@ export default {
       this.$router.push('/chuyen-di');
     },
     handleCheckOut(){
+      this.$store.dispatch("setSeats", this.listNameSeatOrder); // r ddos
+      localStorage.setItem("total", this.total);
       this.$router.push('/chuyen-di/dat-ve/thanh-toan');
-    }
+    },
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <!--- banner-1 ---->
     <Banner1 />
     <!--- /banner-1 ---->
@@ -73,15 +73,27 @@
             </li>
             <li class="dept">
               <div class="bus-txt1">
-                <h6> <i class="fa fa-clock-o"></i> {{item.startTime}}</h6>
-                <h6><i class="fa fa-map-marker"></i> {{item.routeId.fromStationId.name}}</h6>
+                <h6>
+                  <i class="fa fa-clock-o"></i>
+                  {{item.startTime}}
+                </h6>
+                <h6>
+                  <i class="fa fa-map-marker"></i>
+                  {{item.routeId.fromStationId.name}}
+                </h6>
               </div>
               <div class="clearfix"></div>
             </li>
             <li class="arriv">
               <div class="bus-txt1">
-                <h6> <i class="fa fa-clock-o"></i> {{item.endTime}}</h6>
-                <h6> <i class="fa fa-map-marker"></i> {{item.routeId.toStationId.name}}</h6>
+                <h6>
+                  <i class="fa fa-clock-o"></i>
+                  {{item.endTime}}
+                </h6>
+                <h6>
+                  <i class="fa fa-map-marker"></i>
+                  {{item.routeId.toStationId.name}}
+                </h6>
               </div>
             </li>
             <li class="seat">
@@ -90,7 +102,7 @@
               </div>
               <div class="bus-txt3">
                 <h6>{{item.vehicleId.numberOfSeats}} Chỗ</h6>
-                <i style="font-size: 13px">{{item.availableSeatNumber}} chỗ trống </i>
+                <i style="font-size: 13px">{{item.availableSeatNumber}} chỗ trống</i>
               </div>
               <div class="clearfix"></div>
             </li>
@@ -193,6 +205,9 @@ export default {
   computed: {
     trips() {
       return this.$store.state.trip.data;
+    },
+    loading() {
+      return this.$store.state.trip.loading;
     },
   },
   methods: {
