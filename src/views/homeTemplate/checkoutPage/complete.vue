@@ -44,7 +44,7 @@
                     <h5 style="margin-bottom:15px" class="titleInfo">Thông tin vé</h5>
                     <div>
                       <p class="infoTicket">MÃ VÉ</p>
-                      <p>dsdsdsd</p>
+                      <p>{{ticket.code}}</p>
                     </div>
                     <hr>
                     <div>
@@ -145,6 +145,7 @@ export default {
   },
   beforeCreate(){
     this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+    localStorage.removeItem("tripId");
   },
   computed:{
     ticket(){
