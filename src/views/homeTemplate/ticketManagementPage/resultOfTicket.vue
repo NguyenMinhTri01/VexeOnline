@@ -90,7 +90,7 @@
               </div>
               <div :class="statusClass" class="col-6 text-right mb-2">{{statusText}}</div>
               <div class="col-12 mt-4 mb-3 text-right">
-                <button data-toggle="modal" data-target="#cancelModal" class="btn-cancel">Hủy Vé</button>
+                <button v-if="ticket.statusTicket != 2" data-toggle="modal" data-target="#cancelModal" class="btn-cancel">Hủy Vé</button>
               </div>
             </div>
           </div>

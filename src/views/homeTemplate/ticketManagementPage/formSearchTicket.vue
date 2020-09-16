@@ -22,8 +22,8 @@
 export default {
   data () {
     return {
-      code : 'VmCwMT',
-      phone : '0387282390'
+      code : '',
+      phone : ''
     }
   },
 
