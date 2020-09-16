@@ -5,7 +5,7 @@
             <h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"> Green Wheels - Best in Class for Travel & Hotels</h1>
         </div>
       </div>
-      <div v-if="!loading" class="blog">
+      <div v-if="!loading && data" class="blog">
         <div class="container">
             <div class="row">
                 <div class="col-md-12" v-if="err">
@@ -118,16 +118,25 @@ export default {
         }
     },
     beforeCreate(){
+        if(localStorage.getItem("tripId")===null){
+            this.$router.replace('/');
+        }else{
+            this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+        }
         this.$store.dispatch("getInfoUser");
-        this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
         if(this.seats===null){
-            this.$router.push('/chuyen-di/dat-ve');
+            this.$router.replace('/');
         }
     },
     created(){
+        if(localStorage.getItem("tripId")===null){
+            this.$router.replace('/');
+        }else{
+            this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+        }
         this.$store.dispatch("getInfoUser");
         if(this.seats===null){
-            this.$router.push('/chuyen-di/dat-ve');
+            this.$router.replace('/');
         }
     },
     computed:{
