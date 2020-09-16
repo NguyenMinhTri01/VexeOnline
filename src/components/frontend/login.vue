@@ -1,6 +1,7 @@
 <template>
   <!-- signin -->
     <div
+      v-bind:style="{ display : statusModal }"
       class="modal fade"
       id="myModal4"
       tabindex="-1"
@@ -97,7 +98,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      statusModal : 'none'
     };
   },
 //   created() {
@@ -141,6 +143,7 @@ export default {
   watch:{
     token(value){
       if(value){
+        this.statusModal = 'none'
         this.$toast.success('Đăng nhập thành công');
       }
     }

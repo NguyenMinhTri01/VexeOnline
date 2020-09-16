@@ -146,6 +146,7 @@ import 'vue2-datepicker/locale/vi';
             this.$store.dispatch("fetchListRoutes");
             this.$store.dispatch("fetchListGarages");
             this.$store.dispatch("fetchListVehicles");
+            
         },
         components : {
           DatePicker
@@ -181,9 +182,9 @@ import 'vue2-datepicker/locale/vi';
         watch : {
           trip(value) {
             if (value ){
-              this.route = value.routeId
-              this.garage = value.garageId
-              this.vehicle = value.vehicleId
+              this.route = value.routeId._id
+              this.garage = value.garageId._id
+              this.vehicle = value.vehicleId._id
               this.note = value.note
               this.price = value.price
               if (this.count === 1) {
