@@ -25,7 +25,7 @@
             <button @click="handleCancle(index,seat)" type="button" class="btn btn-sm btn-danger">X</button>
             </p>
             <hr>
-            <p>Tổng : {{total}}đ</p>
+            <p>Tổng : {{total}}</p>
             <button style="cursor:pointer;margin-right: 10px;" @click="handleBackTrip" class="view">Quay Lại</button>
             <button style="cursor:pointer" @click="handleCheckOut" class="view" :disabled="flag">Tiếp Tục</button>
         </div>
@@ -58,7 +58,7 @@ export default {
   },
   computed:{
       total(){
-        return this.listSeatOrder.length * this.trip.price
+        return this.formatNumber(this.listSeatOrder.length * this.trip.price) 
       },
       trip(){
         return this.$store.state.trip.trip;
@@ -102,10 +102,13 @@ export default {
           });
         }
       }
-      
-      //console.log(this.listNameSeatOrder) // đó làm sao để truyền cái đó qua cái page checkoutPgae
-      
     },
+    formatNumber(number) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    },    
     handleCancle(value,seat){
       this.listSeatOrder.splice(value,1);
       

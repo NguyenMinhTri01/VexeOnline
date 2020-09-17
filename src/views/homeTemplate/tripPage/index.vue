@@ -110,7 +110,7 @@
               </li>
               <li class="fare">
                 <div class="bus-txt4">
-                  <h5>{{item.price}} đ</h5>
+                  <h5>{{item.price}}</h5>
                   <a
                     style="cursor:pointer"
                     data-toggle="modal"
@@ -184,7 +184,9 @@ export default {
     };
     moment.locale("vi");
     this.time = moment(formData.date).format("LL");
-    formData.date = new Date(`${formData.date.getFullYear()}-${formData.date.getMonth() + 1}-${formData.date.getDate() + 1}`).toISOString();
+    const month = (formData.date.getMonth()+1 > 9) ? (formData.date.getMonth()+1) : '0' + (formData.date.getMonth()+1);
+    const day = (formData.date.getDate() > 9) ? formData.date.getDate() : '0' + formData.date.getDate();
+    formData.date =`${formData.date.getFullYear()}-${month}-${day}T00:00:00.000Z`;
     this.$store.dispatch("searchTrip", formData);
   },
   // created(){
@@ -199,6 +201,7 @@ export default {
           moment.locale("vi");
           this.data = this.trips.map((item) => {
             let newOject = { ...item };
+            newOject.price = this.formatNumber(newOject.price);
             if (item.startTime) {
               newOject.startTime = moment(item.startTime).format("LT");
             }
@@ -226,6 +229,13 @@ export default {
       localStorage.setItem("tripId", id);
       this.$router.push("/chuyen-di/dat-ve");
     },
+    formatNumber(number) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    },    
+
   },
   mounted() {
     // window.onscroll = function() {addHeaderfix()};
