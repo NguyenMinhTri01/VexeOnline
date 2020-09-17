@@ -1,5 +1,6 @@
 <template>
 <body>
+	<VueHeadful title="VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến" description="VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến" />
   <TopHeader/>
   <Header/>
   <FooterBtm/>
@@ -84,10 +85,11 @@ import Header from '../../components/frontend/header';
 import FooterBtm from '../../components/frontend/footerBtm';
 import Footer from '../../components/frontend/footer'
 import Register from '../../components/frontend/register';
-import Login from '../../components/frontend/login'
+import Login from '../../components/frontend/login';
+import VueHeadful from 'vue-headful';
 export default {
   components:{
-    TopHeader,Header,FooterBtm,Register,Login,Footer
+    TopHeader,Header,FooterBtm,Register,Login,Footer,VueHeadful
   },
   
 };
