@@ -73,10 +73,7 @@
 </template>
 
 <script>
-import "../../../assets/admin/vendor/jquery/jquery.min.js";
-import "../../../assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js";
-import "../../../assets/admin/vendor/jquery-easing/jquery.easing.min.js";
-//import ".../../../assets/admin/js/sb-admin-2.min.js";
+
 
 import Loader from "../../../components/loader";
 export default {
