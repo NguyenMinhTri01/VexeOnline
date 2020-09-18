@@ -83,7 +83,7 @@ export default {
       keys : this.config.keys,
       nameStore : this.config.nameStore,
       buttonAdd : this.config.buttonAdd,
-      basePath : this.config.basePath
+      basePath : this.config.basePath,
     };
   },
   props: ["config"],

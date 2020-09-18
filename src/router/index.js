@@ -264,6 +264,11 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/tripPage/edit.vue')
         },
 
+        //ticket
+        {
+          path : "/admin/tickets",
+          component : () => import ('../views/adminTemplate/ticketPage')
+        },
         //admin-profile
         {
           path : "/admin/profile-admin/edit",

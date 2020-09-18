@@ -26,7 +26,16 @@ const mutations = {
     state.data = null;
     state.err = payload
   },
-
+  storeUpdateTicket(state, ticket) {
+    if (ticket) {
+      state.data = state.data.map(item => {
+        if (item._id === ticket._id) {
+          item = ticket
+        }
+        return item
+      })
+    }
+  },
   storeSetTicket(state, ticket) {
     state.ticket = ticket
     state.loading = false;
@@ -42,29 +51,16 @@ const mutations = {
 };
 
 const actions = {
-  //   fetchListTrips({ commit }) {
-  //     commit("storeTripRequest");
-  //     api.get("/trips/")
-  //       .then((result) => {
-  //         commit("storeTripSuccess", result.data);
-  //       })
-  //       .catch(err => {
-  //         commit("storeTripFailed", err);
-  //       });
-  //   },
-
-  //   fetchDetailTrip({ commit }, id) {
-  //     commit("storeTripRequest");
-  //     api.get(`/trips/${id}`)
-  //       .then(result => {
-  //         commit("storeSetTrip", result.data);
-
-  //       })
-  //       .catch(err => {
-  //         commit("storeTripFailed", err);
-  //       })
-  //   },
-
+  fetchListTickets({ commit }) {
+    commit("storeTicketRequest");
+    api.get("/tickets/")
+      .then((result) => {
+        commit("storeTicketSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      });
+  },
   fetchDetailTicketByCode({ commit }, input) {
     commit("storeTicketRequest");
     api.get(`/tickets/code/${input.code}/phone/${input.phone}`)
@@ -95,65 +91,28 @@ const actions = {
         commit("storeTicketFailed", err);
       })
   },
-  //   getSeas(seat){
-  //       state.seat = seat.map(item=>{
-  //           return item;
-  //       }
-  //   },
-  setSeats({ commit }, seats) {
-    commit("storeSetSeats", seats)
-  }
-
-  //   postTripAgain({ commit }, trip) {
-  //     api.post('/trips', trip)
-  //       .then(result => {
-  //         commit("storeSetTrip", result.data);
-  //       })
-  //       .catch(err => {
-  //         commit("storeTripFailed", err);
-  //       })
-  //   },
-
-  //   putTrip({ commit }, trip) {
-  //     api.put(`/trips/${trip.id}`, trip)
-  //       .then(result => {
-  //         commit("storeSetTrip", result.data);
-  //       })
-  //       .catch(err => {
-  //         commit("storeTripFailed", err);
-  //       })
-  //   },
-
-  //   fetchStatusNumberTrip({ commit }, id) {
-  //     api.get(`/trips/status-number/${id}`)
-  //       .then(result => {
-  //         commit("storeUpdateTrip", result.data);
-  //       })
-  //       .catch(err => {
-  //         commit("storeTripFailed", err);
-  //       })
-  //   },
-  //   fetchDeleteTrip({ commit }, id) {
-  //     api
-  //       .delete(`/trips/${id}`)
-  //       .then(() => {
-  //         commit("storeDeleteTripInData", id)
-  //       })
-  //       .catch((err) => {
-  //         commit("storeTripFailed", err);
-  //       });
-  //   },
-
-  //   searchTrip({ commit }, formData) {
-  //     api.post('/trips/search-trips', formData)
-  //     .then((result) => {
-  //       commit("storeTripSuccess", result.data);
-  //     })
-  //     .catch((err) => {
-  //       commit("storeTripFailed", err);
-  //     });    
-  //   },
-
+    setSeats ({ commit }, seats) {
+        commit("storeSetSeats", seats)
+    },
+  fetchStatusTicket({ commit }, id) {
+    api.get(`/tickets/statusTicket/${id}`)
+      .then(result => {
+        commit("storeUpdateTicket", result.data);
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      })
+  },
+  fetchDeleteTicket({ commit }, id) {
+    api
+      .delete(`/tickets/${id}`)
+      .then(() => {
+        commit("storeDeleteTicketInData", id)
+      })
+      .catch((err) => {
+        commit("storeTicketFailed", err);
+      });
+  },
 }
 
 export default { state, mutations, actions };
