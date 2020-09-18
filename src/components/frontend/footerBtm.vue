@@ -27,7 +27,7 @@
             <router-link to="/lien-he" class="nav-link">Liên hệ</router-link>
           </li>
           <li class="nav-item">
-            <router-link v-if="user" to="/lich-sư-dat-ve" class="nav-link">Lịch Sử Đặt Vé</router-link>
+            <router-link v-if="user" to="/lich-su-dat-ve" class="nav-link">Lịch Sử Đặt Vé</router-link>
             <router-link v-else to="/quan-ly-ve" class="nav-link">Quản Lý Vé</router-link>
           </li>
         </ul>

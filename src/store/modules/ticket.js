@@ -61,11 +61,31 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
+  fetchListHistoryTickets({ commit }) {
+    commit("storeTicketRequest");
+    api.get("/tickets/history")
+      .then((result) => {
+        commit("storeTicketSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      });
+  },
   fetchDetailTicketByCode({ commit }, input) {
     commit("storeTicketRequest");
     api.get(`/tickets/code/${input.code}/phone/${input.phone}`)
       .then(result => {
         commit("storeSetTicket", result.data)
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      })
+  },
+  fetchDetailTicket({ commit }, id) {
+    commit("storeTicketRequest");
+    api.get(`/tickets/${id}`)
+      .then(result => {
+        commit("storeSetTicket", result.data);
       })
       .catch(err => {
         commit("storeTicketFailed", err);

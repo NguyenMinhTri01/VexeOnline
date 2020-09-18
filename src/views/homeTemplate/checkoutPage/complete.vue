@@ -87,7 +87,7 @@
                         <p>Hình thức</p>
                         <p>Trạng thái</p>
                       </div>
-                      <div class="col-md-7">
+                      <div class="col-md-7 text-right">
                         <p>Tại nhà xe</p>
                         <p>Đặt chỗ thành công</p>
                       </div>
@@ -97,7 +97,7 @@
                       <div class="col-md-5">
                         <p>Giá vé</p>
                       </div>
-                      <div class="col-md-7">
+                      <div class="col-md-7 text-right">
                         <p>{{seats.length}} x {{data.price}}</p>
                         <p>Ghế
                           <span v-for="(seat,index) in seats" :key="index">{{seat}} </span>
@@ -109,7 +109,7 @@
                       <div class="col-md-5">
                         <p><b>Tổng tiền</b></p>
                       </div>
-                      <div class="col-md-7">
+                      <div class="col-md-7 text-right">
                         <p>{{total}}</p>
                       </div>
                     </div>
@@ -172,8 +172,8 @@ export default {
     trip: function(){
       moment.locale("vi");
       this.data = {...this.trip};
-      this.data.startTime = moment(this.trip.startTime).format("LLLL");
-      this.data.endTime = moment(this.trip.endTime).format("LLLL");
+      this.data.startTime = `${moment(this.trip.startTime).format("LT")} ${moment(this.trip.startTime).format("L")}`;
+      this.data.endTime = `${moment(this.trip.endTime).format("LT")} ${moment(this.trip.endTime).format("L")}`
       this.data.price = this.formatNumber(this.data.price);
       return this.data;        
     },

@@ -85,6 +85,16 @@ Vue.use(VueRouter)
           component : () => import ('../views/homeTemplate/ticketManagementPage')
           
         },
+        // history ticket
+        {
+          path : "/lich-su-dat-ve",
+          component : () => import ('../views/homeTemplate/bookingTicketHistoryPage'),
+        },
+        {
+          path : "/lich-su-dat-ve/chi-tiet",
+          component: () => import ('../views/homeTemplate/bookingTicketHistoryPage/detail.vue')
+        },
+        
         //Hướng dẫn thanh toán
         {
           path : "/huong-dan-thanh-toan",

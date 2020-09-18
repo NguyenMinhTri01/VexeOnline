@@ -103,6 +103,23 @@ const actions = {
       infoUser : decode
     });
   },
+  tryAutoLogin({ commit, dispatch }) {
+    const token = localStorage.getItem("token");
+    const decode = jwtDecode(token);
+    if (!token) {
+      return;
+    }
+    const exp = localStorage.getItem("exp");
+    const date = new Date().getTime() / 1000;
+    if (date > exp) {
+      dispatch("login");
+    }
+    setHeader(token);
+    commit("storeLoginSuccess", {
+      token : token,
+      infoUser : decode
+    });
+  },
   // tryAutoLogin({ commit }) {
   //   const token = localStorage.getItem("token");
   //   if (!token) {

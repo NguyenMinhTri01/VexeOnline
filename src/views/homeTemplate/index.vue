@@ -91,7 +91,9 @@ export default {
   components:{
     TopHeader,Header,FooterBtm,Register,Login,Footer,VueHeadful
   },
-  
+  created() {
+    this.$store.dispatch("tryAutoLogin");
+  }
 };
 </script>
 <style scoped>
