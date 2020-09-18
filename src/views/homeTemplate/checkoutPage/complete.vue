@@ -144,7 +144,11 @@ export default {
     }
   },
   beforeCreate(){
-    this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+    if(localStorage.getItem("tripId")===null){
+            this.$router.replace('/');
+        }else{
+            this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+        }
     localStorage.removeItem("tripId");
   },
   computed:{
