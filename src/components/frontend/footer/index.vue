@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row">
         <ListBlogs />
-        <ListRoutes />
+      
         <ListVehicles />
         <div class="clearfix"></div>
         <ListStations />  
@@ -25,7 +25,7 @@
 
 <script>
 import ListBlogs from "./listBlogs";
-import ListRoutes from "./listRoutes";
+// import ListRoutes from "./listRoutes";
 import ListVehicles from "./listVehicles";
 import ListStations from "./listStations";
 import ListGarages from "./listGarages";
@@ -35,7 +35,7 @@ import CopyRight from "./copyRight"
 export default {
   components : {
     ListBlogs,
-    ListRoutes,
+    // ListRoutes,
     ListVehicles,
     ListStations,
     ListGarages,

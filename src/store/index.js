@@ -12,10 +12,11 @@ import user from "./modules/user"
 import routes from "./modules/routes"
 import trip from "./modules/trip"
 import ticket from "./modules/ticket"
+import header from "./modules/header"
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { stations, auth, blog, contact, pageStatic, vehicle, garage, user, routes,trip,ticket}
+  modules: { stations, auth, blog, contact, pageStatic, vehicle, garage, user, routes,trip,ticket,header}
 })
