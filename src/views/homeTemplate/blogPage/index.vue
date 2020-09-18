@@ -17,39 +17,41 @@
         <div class="row">
           <div class="col-md-8 blog-left">
             <template v-for="(item,index) in blogs">
-            <div
-              :key="`s-${index}`"
-              class="comments-list hover14 column animated wow fadeInUp animated"
-              data-wow-duration="1200ms"
-              data-wow-delay="500ms"
-              style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
-            >
-              <h3>
-                <router-link :to="`/tin-tuc/${item.slug}`">{{item.name}}</router-link>
-              </h3>
-              <div>
-                <figure>
-                  <router-link :to="`/tin-tuc/${item.slug}`">
-                    <img
-                      class="img-fluid"
-                      v-lazy="`https://res.cloudinary.com/vexeonline/${item.avatar}`"
-                      alt="avatar"
-                    />
-                  </router-link>
-                </figure>
+              <div
+                :key="`s-${index}`"
+                class="comments-list hover14 column animated wow fadeInUp animated"
+                data-wow-duration="1200ms"
+                data-wow-delay="500ms"
+                style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
+              >
+                <h3>
+                  <router-link :to="`/tin-tuc/${item.slug}`">{{item.name}}</router-link>
+                </h3>
+                <div>
+                  <figure>
+                    <router-link :to="`/tin-tuc/${item.slug}`">
+                      <img
+                        class="img-fluid"
+                        v-lazy="`https://res.cloudinary.com/vexeonline/${item.avatar}`"
+                        alt="avatar"
+                      />
+                    </router-link>
+                  </figure>
+                </div>
+                <p>{{item.description}}</p>
+                <div class="more">
+                  <router-link :to="`/tin-tuc/${item.slug}`">More Info...</router-link>
+                </div>
               </div>
-              <p>
-                {{item.description}}
-              </p>
-              <div class="more">
-                <router-link :to="`/tin-tuc/${item.slug}`">More Info...</router-link>
-              </div>
-            </div>
             </template>
-            <br/>
+            <br />
             <nav aria-label="Page navigation example">
-              <ul class="pagination animated wow fadeInUp animated" data-wow-duration="1200ms"
-                data-wow-delay="500ms" style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;">
+              <ul
+                class="pagination animated wow fadeInUp animated"
+                data-wow-duration="1200ms"
+                data-wow-delay="500ms"
+                style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
+              >
                 <li class="page-item">
                   <a v-on:click="previousPage" class="page-link" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
@@ -57,12 +59,13 @@
                   </a>
                 </li>
                 <template v-for="(item,index) in new Array(Math.ceil(this.counts/3))">
-                    <li :key="`s-${index}`" class="page-item"><a v-on:click="fetchPage(index+1)"  class="page-link">{{index+1}}</a></li>
+                  <li :key="`s-${index}`" class="page-item">
+                    <a v-on:click="fetchPage(index+1)" class="page-link">{{index+1}}</a>
+                  </li>
                 </template>
-                  
-                
+
                 <li class="page-item">
-                  <a v-on:click="nextPage" class="page-link"  aria-label="Next">
+                  <a v-on:click="nextPage" class="page-link" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                   </a>
@@ -70,7 +73,7 @@
               </ul>
             </nav>
           </div>
-          <BlogRight/>
+          <BlogRight />
           <div class="clearfix"></div>
         </div>
       </div>
@@ -80,45 +83,44 @@
 </template>
 
 <script>
-import BlogRight from "../../../components/frontend/blogRight"
+import BlogRight from "../../../components/frontend/blogRight";
 export default {
-  components:{
-    BlogRight
+  components: {
+    BlogRight,
   },
   created() {
-    this.$store.dispatch("fetchListBlogs",this.page);
-    this.$store.dispatch("fetchListCountBlogs")
+    this.$store.dispatch("fetchListBlogs", this.page);
+    this.$store.dispatch("fetchListCountBlogs");
   },
-  computed:{
-    blogs(){
+  computed: {
+    blogs() {
       return this.$store.state.blog.data;
     },
-    counts(){
+    counts() {
       return this.$store.state.blog.count;
-    }
+    },
   },
 
-data() {
-  return{
-        page: 1,
-  }
-    },
+  data() {
+    return {
+      page: 1,
+    };
+  },
   methods: {
-        nextPage() {
-          if(this.page<Math.ceil(this.counts/3))
-            this.page += 1;
-            this.fetchPage(this.page);
-        },
-        previousPage() {
-            if(this.page > 1) {
-                this.page -= 1;
-                this.fetchPage(this.page);
-            }
-        },
-        fetchPage(index) {
-            this.$store.dispatch("fetchListBlogs",index);
-        }
-    }
+    nextPage() {
+      if (this.page < Math.ceil(this.counts / 3)) this.page += 1;
+      this.fetchPage(this.page);
+    },
+    previousPage() {
+      if (this.page > 1) {
+        this.page -= 1;
+        this.fetchPage(this.page);
+      }
+    },
+    fetchPage(index) {
+      this.$store.dispatch("fetchListBlogs", index);
+    },
+  },
 };
 </script>
 

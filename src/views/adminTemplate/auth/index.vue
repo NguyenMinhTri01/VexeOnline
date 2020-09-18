@@ -81,6 +81,7 @@ export default {
     Loader
   },
   created() {
+    this.$store.dispatch("setHeader", this.header);
     if (this.$store.state.auth.token) {
       this.$router.replace("/admin/dashboard");
     }
@@ -88,7 +89,10 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      header: {
+        title: "Đăng Nhập Trang Quản Lý VeXe Online"
+      },
     };
   },
   methods: {

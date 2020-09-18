@@ -164,6 +164,24 @@ const actions = {
         commit("storeLoginFaild", err);
       });
   },
+  loginGoogle ({ commit }, authUser) {
+    commit("storeLoginRequest");
+    api
+      .post ("/users/login-google", authUser)
+      .then (result => {
+        const decode = jwtDecode(result.data.token);
+        localStorage.setItem("token", result.data.token);
+        localStorage.setItem("exp", decode.exp);
+        setHeader(result.data.token);
+        commit("storeLoginSuccess", {
+          token : result.data.token,
+          infoUser : decode
+        });
+      })
+      .catch(err => {
+        commit("storeLoginFaild", err);
+      });
+  },
 
   register({ commit }, authUser) {
     commit("storeLoginRequest");

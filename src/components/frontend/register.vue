@@ -4,7 +4,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            ref="btnClose"
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -34,7 +40,7 @@
                 <div class="login-right">
                   <form @submit.prevent="handleRegister">
                     <h3>Tạo tài khoản của bạn</h3>
-					<p class="alert alert-danger" v-if="err">{{err.response.data.message}}</p>
+                    <p class="alert alert-danger" v-if="err">{{err.response.data.message}}</p>
                     <input
                       type="text"
                       v-model="fullName"
@@ -126,7 +132,7 @@ import {
   email,
   minLength,
   maxLength,
-  sameAs
+  sameAs,
 } from "vuelidate/lib/validators";
 export default {
   data() {
@@ -135,58 +141,60 @@ export default {
       password: "",
       passwordConfirm: "",
       fullName: "",
-      phone: ""
+      phone: "",
     };
   },
   validations: {
     fullName: {
       required,
       minLength: minLength(3),
-      maxLength: maxLength(255)
+      maxLength: maxLength(255),
     },
     email: {
       required,
-      email
+      email,
     },
     password: {
       required,
-      minLength: minLength(6)
+      minLength: minLength(6),
     },
     passwordConfirm: {
       required,
-      sameAsPassword: sameAs("password")
+      sameAsPassword: sameAs("password"),
     },
     phone: {
-      required
-    }
+      required,
+    },
   },
   methods: {
     handleRegister() {
       const fromData = {
         email: this.email,
-		password: this.password,
-		passwordConfirm: this.passwordConfirm,
-		fullName: this.fullName,
-		phone: this.phone
+        password: this.password,
+        passwordConfirm: this.passwordConfirm,
+        fullName: this.fullName,
+        phone: this.phone,
       };
       this.$store.dispatch("register", fromData);
-    }
+    },
   },
   computed: {
     err() {
       return this.$store.state.auth.err;
-	},
-	user(){
+    },
+    user() {
       return this.$store.state.auth.flag;
-    }
+    },
   },
-  watch:{
-    user(value){
-      if(value){
-        this.$toast.success('Đăng kí thành công');
+  watch: {
+    user(value) {
+      if (value) {
+        const btnCloseModal = this.$refs.btnClose;
+        btnCloseModal.click();
+        this.$toast.success("Đăng kí thành công");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

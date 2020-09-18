@@ -158,6 +158,13 @@ export default {
       localStorage.setItem("tripId", id);
       this.$router.push("/chuyen-di/dat-ve");
     },
+
+    formatNumber(number) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    },    
   },
 
   created() {
@@ -193,6 +200,7 @@ export default {
           let newOject = { ...item };
           if (item.startTime) {
             newOject.startTime = moment(item.startTime).format("LT");
+            newOject.price = this.formatNumber(newOject.price);
           }
           return newOject;
         });

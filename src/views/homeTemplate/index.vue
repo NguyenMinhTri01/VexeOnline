@@ -1,6 +1,5 @@
 <template>
 <body>
-	<VueHeadful title="VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến" description="VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến" />
   <TopHeader/>
   <Header/>
   <FooterBtm/>
@@ -9,12 +8,12 @@
 
 
 
-  <Login/>
-  <Register/>
+  <Login />
+  <Register />
 
 
 <!-- write us -->
-			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<!-- <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -67,7 +66,7 @@
 							</section>
 					</div>
 				</div>
-			</div>
+			</div> -->
 <!-- //write us -->
 </body>
 </template>
@@ -86,11 +85,23 @@ import FooterBtm from '../../components/frontend/footerBtm';
 import Footer from '../../components/frontend/footer'
 import Register from '../../components/frontend/register';
 import Login from '../../components/frontend/login';
-import VueHeadful from 'vue-headful';
+
 export default {
   components:{
-    TopHeader,Header,FooterBtm,Register,Login,Footer,VueHeadful
-  },
+    TopHeader,Header,FooterBtm,Register,Login,Footer
+	},
+	data () {
+		return {
+      header : {
+        title : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến",
+        description : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến"
+      }
+    }
+	},
+	created () {
+    this.$store.dispatch("setHeader", this.header);
+	},
+
   
 };
 </script>
