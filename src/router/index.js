@@ -79,6 +79,12 @@ Vue.use(VueRouter)
             path : "/gioi-thieu",
             component : () => import ('../views/homeTemplate/staticPage')
         },
+        // quan ly ve
+        {
+          path : "/quan-ly-ve",
+          component : () => import ('../views/homeTemplate/ticketManagementPage')
+          
+        },
         //Hướng dẫn thanh toán
         {
           path : "/huong-dan-thanh-toan",

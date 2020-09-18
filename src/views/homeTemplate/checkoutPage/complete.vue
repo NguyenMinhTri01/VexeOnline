@@ -98,7 +98,7 @@
                         <p>Giá vé</p>
                       </div>
                       <div class="col-md-7">
-                        <p>{{seats.length}} x {{data.price}} đ</p>
+                        <p>{{seats.length}} x {{data.price}}</p>
                         <p>Ghế
                           <span v-for="(seat,index) in seats" :key="index">{{seat}} </span>
                         </p>
@@ -110,7 +110,7 @@
                         <p><b>Tổng tiền</b></p>
                       </div>
                       <div class="col-md-7">
-                        <p>{{total}} đ</p>
+                        <p>{{total}}</p>
                       </div>
                     </div>
                   </div>
@@ -174,8 +174,18 @@ export default {
       this.data = {...this.trip};
       this.data.startTime = moment(this.trip.startTime).format("LLLL");
       this.data.endTime = moment(this.trip.endTime).format("LLLL");
+      this.data.price = this.formatNumber(this.data.price);
       return this.data;        
     },
+  },
+  methods : {
+    formatNumber(number) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    }, 
+
   }
 };
 </script>

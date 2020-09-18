@@ -79,7 +79,7 @@
                             </span>
                         </div>
                         <div class="col-md-12 styleOrder">
-                            <span>Tổng cộng : {{total}}đ</span>
+                            <span>Tổng cộng : {{total}}</span>
                         </div>
                     </div>
                     </div>

@@ -120,7 +120,7 @@ export default {
 
 
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .selectInput {
     font-size: 13px;
     margin-top: 0px;

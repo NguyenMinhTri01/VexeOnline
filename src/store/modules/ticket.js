@@ -4,7 +4,7 @@ const state = {
   data: null,
   ticket: null,
   err: null,
-  seats:null// sea o day de lam gi á// để gán 
+  seats: null
 };
 
 const mutations = {
@@ -44,7 +44,7 @@ const mutations = {
   storeDeleteTicketInData(state, id) {
     state.data = state.data.filter(ticket => ticket._id != id)
   },
-  storeSetSeats (state, seats) {
+  storeSetSeats(state, seats) {
     state.seats = seats
   },
 
@@ -61,18 +61,26 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
+  fetchDetailTicketByCode({ commit }, input) {
+    commit("storeTicketRequest");
+    api.get(`/tickets/code/${input.code}/phone/${input.phone}`)
+      .then(result => {
+        commit("storeSetTicket", result.data)
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      })
+  },
+  cancelTicket ({ commit }, id) {
+    api.get(`/tickets/cancel/${id}`)
+    .then(result => {
+      commit("storeSetTicket", result.data)
+    })
+    .catch(err => {
+      commit("storeTicketFailed", err);
+    })
+  },
 
-//   fetchDetailTrip({ commit }, id) {
-//     commit("storeTripRequest");
-//     api.get(`/trips/${id}`)
-//       .then(result => {
-//         commit("storeSetTrip", result.data);
-
-//       })
-//       .catch(err => {
-//         commit("storeTripFailed", err);
-//       })
-//   },
   postTicket({ commit }, ticket) {
     commit("storeTicketRequest");
     api.post('/tickets', ticket)
@@ -83,35 +91,9 @@ const actions = {
         commit("storeTicketFailed", err);
       })
   },
-//   getSeas(seat){
-//       state.seat = seat.map(item=>{
-//           return item;
-//       }
-//   },
     setSeats ({ commit }, seats) {
         commit("storeSetSeats", seats)
     },
-
-//   postTripAgain({ commit }, trip) {
-//     api.post('/trips', trip)
-//       .then(result => {
-//         commit("storeSetTrip", result.data);
-//       })
-//       .catch(err => {
-//         commit("storeTripFailed", err);
-//       })
-//   },
-
-//   putTrip({ commit }, trip) {
-//     api.put(`/trips/${trip.id}`, trip)
-//       .then(result => {
-//         commit("storeSetTrip", result.data);
-//       })
-//       .catch(err => {
-//         commit("storeTripFailed", err);
-//       })
-//   },
-
   fetchStatusTicket({ commit }, id) {
     api.get(`/tickets/statusTicket/${id}`)
       .then(result => {
@@ -131,17 +113,6 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
-
-//   searchTrip({ commit }, formData) {
-//     api.post('/trips/search-trips', formData)
-//     .then((result) => {
-//       commit("storeTripSuccess", result.data);
-//     })
-//     .catch((err) => {
-//       commit("storeTripFailed", err);
-//     });    
-//   },
-
 }
 
 export default { state, mutations, actions };
