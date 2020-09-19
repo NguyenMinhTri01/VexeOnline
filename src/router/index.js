@@ -136,7 +136,8 @@ Vue.use(VueRouter)
             const decode = jwtDecode(localStorage.getItem("token"));
             if (decode.userType === "admin") {
               next();
-            }else{
+            }
+            else{
               next("/");
             }
           } catch {

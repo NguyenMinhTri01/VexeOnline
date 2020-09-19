@@ -14,7 +14,6 @@
       </ul>
       <ul class="tp-hd-rgt wow fadeInRight animated" data-wow-delay=".5s">
         <li class="tol">Liên Lạc : 0123 456 789</li>
-
         <template v-if="user">
           <li class="sigi">
             <a style="cursor:pointer">Xin chào : {{user.fullName}}</a>

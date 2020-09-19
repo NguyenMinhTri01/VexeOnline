@@ -37,7 +37,10 @@ import Banner from "../../../components/frontend/banner"
 export default {
   data() {
     return {
-     
+     header: {
+        title: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online",
+        description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+      }
     };
   },
   components: {
@@ -50,7 +53,7 @@ export default {
   methods: {
   },
   created() {
-    
+    this.$store.dispatch("setHeader", this.header);
   },
 };
 </script>

@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div class="banner-1">
-        <div class="container">
-            <h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"> Green Wheels - Best in Class for Travel & Hotels</h1>
-        </div>
-      </div>
+      <Banner1/>
+      <Loader v-if="loading" />
       <div v-if="!loading && ticket" class="blog">
         <div class="container">
             <div class="row">
@@ -136,7 +133,13 @@
 
 <script>
 import moment from "moment";
+import Banner1 from "../../../components/frontend/banner1"
+import Loader from "../../../components/loaderV2";
 export default {
+  components:{
+        Banner1,
+        Loader
+    },
   data(){
     return {
       data:null,
@@ -150,6 +153,7 @@ export default {
             this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
         }
     localStorage.removeItem("tripId");
+    
   },
   computed:{
     ticket(){

@@ -1,18 +1,11 @@
 <template>
   <div>
     <!--- banner-1 ---->
-    <div class="banner-1">
-      <div class="container">
-        <h1
-          class="wow zoomIn animated animated"
-          data-wow-delay=".5s"
-          style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"
-        >Green Wheels - Best in Class for Travel & Hotels</h1>
-      </div>
-    </div>
+    <Banner1/>
     <!--- /banner-1 ---->
     <!--- blog ---->
-    <div class="blog">
+    <Loader v-if="loadingPage" />
+    <div v-else class="blog">
       <div class="container">
         <div class="row">
           <div class="col-md-8 blog-left">
@@ -84,13 +77,18 @@
 
 <script>
 import BlogRight from "../../../components/frontend/blogRight";
+import Banner1 from "../../../components/frontend/banner1";
+import Loader from "../../../components/loaderV2";
 export default {
   components: {
     BlogRight,
+    Banner1,
+    Loader
   },
   created() {
     this.$store.dispatch("fetchListBlogs", this.page);
     this.$store.dispatch("fetchListCountBlogs");
+    this.$store.dispatch("setHeader", this.header);
   },
   computed: {
     blogs() {
@@ -100,10 +98,21 @@ export default {
       return this.$store.state.blog.count;
     },
   },
-
+  watch:{
+    blogs(value){
+      if(value){
+        this.loadingPage = false;
+      }
+    }
+  },
   data() {
     return {
       page: 1,
+      loadingPage:true,
+      header: {
+        title: "Tin tức - VeXe Online",
+        description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+      }
     };
   },
   methods: {

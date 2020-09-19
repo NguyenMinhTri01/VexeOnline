@@ -1,5 +1,7 @@
 <template>
-    <div v-if="!loading">
+    <div>
+      <Loader v-if="loading" />
+      <div v-else>
         <Banner1/>
         <div class="terms">
         <div class="container">
@@ -33,15 +35,19 @@
     </div>
     </div>
     </div>
+    </div>
+    
 </template>
 
 <script>
 import Seat from "./seat";
 import Banner1 from "../../../components/frontend/banner1"
+import Loader from "../../../components/loaderV2";
 export default {
     components:{
         Banner1,
-        Seat
+        Seat,
+        Loader
     },
     data() {
         return {
@@ -49,12 +55,20 @@ export default {
             unSeatSelect: null,
             listSeatOrder: [],
             flag: true,
-            listNameSeatOrder:[]
+            listNameSeatOrder:[],
+            header: {
+              title: "Đặt vé xe từ "+localStorage.getItem("fromStation") +" đi "+ localStorage.getItem("toStation") + " - VeXe Online",
+              description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+            }
         };
     },
     
   beforeCreate(){
     this.$store.dispatch("fetchDetailTrip", localStorage.getItem("tripId"));
+    
+  },
+  created(){
+    this.$store.dispatch("setHeader", this.header);
   },
   computed:{
       total(){

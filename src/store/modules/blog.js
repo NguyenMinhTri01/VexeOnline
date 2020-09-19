@@ -108,7 +108,7 @@ const actions = {
       })
   },
   fetchDetailBlogBySlug({ commit }, slug) {
-    commit("storeBlogRequest");
+   //commit("storeBlogRequest");
     //state.loading=true
     api.get(`/blogs/detail/${slug}`)
       .then(result => {

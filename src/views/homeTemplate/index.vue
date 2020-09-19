@@ -1,19 +1,16 @@
 <template>
 <body>
-  <TopHeader/>
-  <Header/>
-  <FooterBtm/>
-  <router-view/>
-  <Footer/>
-
-
+  <TopHeader />
+  <Header />
+  <FooterBtm />
+  <router-view />
+  <Footer />
 
   <Login />
   <Register />
 
-
-<!-- write us -->
-			<!-- <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!-- write us -->
+  <!-- <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -66,8 +63,8 @@
 							</section>
 					</div>
 				</div>
-			</div> -->
-<!-- //write us -->
+  </div>-->
+  <!-- //write us -->
 </body>
 </template>
 
@@ -77,33 +74,34 @@
 // import "../../assets/frontend/js/wow.min.js";
 // import "https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js";
 
-
-
-import TopHeader from '../../components/frontend/topHeader';
-import Header from '../../components/frontend/header';
-import FooterBtm from '../../components/frontend/footerBtm';
-import Footer from '../../components/frontend/footer'
-import Register from '../../components/frontend/register';
-import Login from '../../components/frontend/login';
+import TopHeader from "../../components/frontend/topHeader";
+import Header from "../../components/frontend/header";
+import FooterBtm from "../../components/frontend/footerBtm";
+import Footer from "../../components/frontend/footer";
+import Register from "../../components/frontend/register";
+import Login from "../../components/frontend/login";
 
 export default {
-  components:{
-    TopHeader,Header,FooterBtm,Register,Login,Footer
-	},
-	data () {
-		return {
-      header : {
-        title : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến",
-        description : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến"
+  components: {
+    TopHeader,
+    Header,
+    FooterBtm,
+    Register,
+    Login,
+    Footer
+  },
+  data() {
+    return {
+      header: {
+        title: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online",
+        description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến  - VeXe Online"
       }
-    }
-	},
-	created () {
-		this.$store.dispatch("setHeader", this.header);
-		this.$store.dispatch("tryAutoLogin");
-	},
-
-  
+    };
+  },
+  created() {
+    this.$store.dispatch("setHeader", this.header);
+    this.$store.dispatch("tryAutoLogin");
+  }
 };
 </script>
 <style scoped>
@@ -115,5 +113,4 @@ export default {
 @import url("../../assets/frontend/css/font-awesome.min.css");
 /* @import url("../../assets/frontend/css/animate.css"); */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css");
-
 </style>

@@ -171,9 +171,14 @@ export default {
       data: null,
       content: "",
       time: null,
+      header: {
+        title: "Vé xe từ "+localStorage.getItem("fromStation") +" đi "+ localStorage.getItem("toStation") + " - VeXe Online",
+        description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+      }
     };
   },
   created() {
+    this.$store.dispatch("setHeader", this.header);
     const formData = {
       formStation: localStorage.getItem("fromStation"),
       toStation: localStorage.getItem("toStation"),

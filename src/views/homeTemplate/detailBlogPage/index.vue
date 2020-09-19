@@ -1,19 +1,12 @@
 <template>
   <div>
     <!--- banner-1 ---->
-    <div class="banner-1">
-      <div class="container">
-        <h1
-          class="wow zoomIn animated animated"
-          data-wow-delay=".5s"
-          style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"
-        >Green Wheels - Best in Class for Travel & Hotels</h1>
-      </div>
-    </div>
+    <Banner1/>
     <!--- /banner-1 ---->
     <!--- single1 ---->
     <!-- blog -->
-    <div v-if="!loading" class="blog">
+    <Loader v-if="loadingPage" />
+    <div v-else class="blog">
       <div class="container">
         <div class="row">
           <div class="col-md-8 blog-left">
@@ -44,6 +37,8 @@
 </template>
 
 <script>
+import Loader from "../../../components/loaderV2";
+import Banner1 from "../../../components/frontend/banner1";
 global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$=$;
@@ -51,25 +46,30 @@ import BlogRight from "../../../components/frontend/blogRight"
 export default {
   data(){
     return {
-      content_blog :""
+      content_blog :"",
+      loadingPage:true,
     }
   },
   components:{
-    BlogRight
+    BlogRight,
+    Loader,
+    Banner1
   },
   created() {
     this.$store.dispatch("fetchDetailBlogBySlug", this.$route.params.slug);
+    //this.$store.dispatch("setHeader", this.header);
+    
   },
-  updated() {
-    this.$store.dispatch("fetchDetailBlogBySlugAgain", this.$route.params.slug);
-  },
+  // updated() {
+  //   this.$store.dispatch("fetchDetailBlogBySlugAgain", this.$route.params.slug);
+  // },
   computed: {
     blog() {
       return this.$store.state.blog.blog;
     },
-    loading() {
-      return this.$store.state.blog.loading;
-    }
+    slugBlog() {
+      return this.$route.params.slug;
+    },
   },
   mounted(){
 window.onscroll = function() {addClassImage ()}
@@ -86,8 +86,18 @@ window.onscroll = function() {addClassImage ()}
   watch:{
     blog(value){
       if(value){
-        this.content_blog = value.content
+        this.content_blog = value.content,
+        this.loadingPage = false;
+        this.header={
+          title:  value.name + " - VeXe Online",
+          description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+        }
+        this.$store.dispatch("setHeader", this.header);
       }
+    },
+    slugBlog(){
+      this.loadingPage = true,
+      this.$store.dispatch("fetchDetailBlogBySlug", this.$route.params.slug);
     }
   }
 };

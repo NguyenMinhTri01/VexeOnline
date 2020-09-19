@@ -60,10 +60,15 @@ export default {
             data:null,
             statusClass : 'text-warning',
             statusText : "Chưa Thanh Toán",
+            header: {
+              title: "Lịch sử đặt vé - VeXe Online",
+              description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+            }
         }
     },
     created(){
         this.$store.dispatch("fetchListHistoryTickets"); 
+        this.$store.dispatch("setHeader", this.header);
     },
     computed: {
         loading () {

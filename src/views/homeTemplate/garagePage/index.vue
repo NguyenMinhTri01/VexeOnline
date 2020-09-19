@@ -1,17 +1,13 @@
 <template>
   <div>
-    <!--- banner-1 ---->
-    <div class="banner-1">
-      <div class="container">
-        <h1
-          class="wow zoomIn animated animated"
-          data-wow-delay=".5s"
-          style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"
-        >Green Wheels - Best in Class for Travel & Hotels</h1>
-      </div>
+    <div v-if=(loadingPage)>
+      <Loader  />
     </div>
+    <div v-else>
+      <!--- banner-1 ---->
+    <Banner1/>
     <!--- /banner-1 ---->
-    <div v-if="!loading" class="blog">
+    <div class="blog">
       <div class="container">
         <div class="row">
           <div class="col-md-3 blog-left">
@@ -56,39 +52,61 @@
         </div>
       </div>
     </div>
+    </div>
+    
   </div>
 </template>
 
 <script>
+import Loader from "../../../components/loaderV2";
+import Banner1 from "../../../components/frontend/banner1";
 export default {
+  components:{
+    Loader,
+    Banner1
+  },
   data() {
     return {
       garageDetail: "",
+      loadingPage:true,
+      header:null
     };
   },
   created() {
     this.$store.dispatch("fetchDetailGarageBySlug", this.$route.params.slug);
+    //this.$store.dispatch("setHeader", this.header);
   },
-  updated() {
-    this.$store.dispatch(
-      "fetchDetailGarageBySlugAgain",
-      this.$route.params.slug
-    );
-  },
+  // updated() {
+  //   this.$store.dispatch(
+  //     "fetchDetailGarageBySlugAgain",
+  //     this.$route.params.slug
+  //   );
+  // },
   computed: {
     garage() {
       return this.$store.state.garage.garage;
     },
-    loading() {
-      return this.$store.state.garage.loading;
-    },
+    slugGarage(){
+      return this.$route.params.slug;
+    }
   },
   watch: {
     garage(value) {
       if (value) {
         this.garageDetail = value;
+        this.loadingPage = false;
+        this.header={
+          title:  this.garageDetail.name + " - VeXe Online",
+          description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+        }
+        this.$store.dispatch("setHeader", this.header);
       }
     },
+    slugGarage(){
+      this.loadingPage = true,
+      this.$store.dispatch("fetchDetailGarageBySlug", this.$route.params.slug);
+      
+    }
   },
 };
 </script >

@@ -191,6 +191,11 @@ export default {
     station(value) {
       if (value) {
         this.loadingPage = false;
+        this.header={
+          title:  value.name + " - VeXe Online",
+          description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+        }
+        this.$store.dispatch("setHeader", this.header);
       }
     },
     dataTrip(value) {

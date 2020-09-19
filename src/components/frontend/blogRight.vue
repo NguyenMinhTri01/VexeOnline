@@ -34,7 +34,7 @@
               <ul>
                 <template v-for="(item,index) in routesHot">
                   <li :key="`s-${index}`">
-                    <a href="single1.html">{{item.name}}</a>
+                    <a >{{item.name}}</a>
                   </li>
                 </template>
                 

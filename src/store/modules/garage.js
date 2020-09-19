@@ -69,7 +69,7 @@ const actions = {
       })
   },
   fetchDetailGarageBySlug({ commit }, slug) {
-    commit("storeGarageRequest");
+    //commit("storeGarageRequest");
     api.get(`/garages/detail/${slug}`)
       .then(result => {
         commit("storeSetGarage", result.data);

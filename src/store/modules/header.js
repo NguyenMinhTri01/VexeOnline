@@ -1,7 +1,7 @@
 const state = {
-  title : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến",
-  description : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến",
-  keywords : "VeXe Online - Tốt Nhất Cho Đặt Vé Xe Trực Tuyến",
+  title : "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online",
+  description : "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online",
+  keywords : "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online",
 };
 
 const mutations = {

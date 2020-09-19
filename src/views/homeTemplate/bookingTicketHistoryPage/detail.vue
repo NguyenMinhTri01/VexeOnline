@@ -14,19 +14,19 @@
               <div class="row">
                 <div class="col-sm-3">
                     <div class="row">
-                    <div class="col-6 mb-2">
-                      <strong>Tên khách hàng:</strong>
+                        <div class="col-6 mb-2">
+                            <strong>Tên khách hàng:</strong>
+                        </div>
+                        <div class="col-6 text-right mb-2">{{ticket.customerName}}</div>
+                        <div class="col-2 mb-2">
+                            <strong>Email:</strong>
+                        </div>
+                        <div class="col-10 text-right mb-2">{{ticket.email}}</div>
+                        <div class="col-6 mb-2">
+                            <strong>Số điện thoại:</strong>
+                        </div>
+                        <div class="col-6 text-right mb-2">{{ticket.phone}}</div>
                     </div>
-                    <div class="col-6 text-right mb-2">{{ticket.customerName}}</div>
-                    <div class="col-4 mb-2">
-                      <strong>Email:</strong>
-                    </div>
-                    <div class="col-8 text-right mb-2">{{ticket.email}}</div>
-                    <div class="col-6 mb-2">
-                      <strong>Số điện thoại:</strong>
-                    </div>
-                    <div class="col-6 text-right mb-2">{{ticket.phone}}</div>
-                  </div>
                 </div>
                 <div class="col-sm-5">
                   <div class="row">
@@ -115,11 +115,18 @@ export default {
             ticket:null,
             statusClass : 'text-warning',
             statusText : "Chưa Thanh Toán",
-            flag : false
+            flag : false,
+            header: {
+              title: "Chi tiết đặt vé - VeXe Online",
+              description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+            }
         }
     },
     beforeCreate(){
         this.$store.dispatch("fetchDetailTicket", localStorage.getItem("ticketId"));
+    },
+    created(){
+      this.$store.dispatch("setHeader", this.header);
     },
     computed:{
       data(){

@@ -21,20 +21,11 @@
                 <div class="login-left">
                   <ul>
                     <li>
-                      <a class="fb" href="#">
-                        <i></i>Sign in with Facebook
-                      </a>
-                    </li>
-                    <li>
-                      <a class="goog" href="#">
-                        <i></i>Sign in with Google
-                      </a>
-                    </li>
-                    <li>
-                      <a class="linkin" href="#">
-                        <i></i>Sign in with Linkedin
-                      </a>
-                    </li>
+                    <LoginFacebook />
+                  </li>
+                  <li>
+                    <LoginGoogle />
+                  </li>
                   </ul>
                 </div>
                 <div class="login-right">
@@ -127,6 +118,8 @@
 </template>
 
 <script>
+import LoginFacebook from "./login/loginFacebook";
+import LoginGoogle from "./login/loginGoogle";
 import {
   required,
   email,
@@ -135,6 +128,10 @@ import {
   sameAs,
 } from "vuelidate/lib/validators";
 export default {
+  components:{
+    LoginFacebook,
+    LoginGoogle,
+  },
   data() {
     return {
       email: "",

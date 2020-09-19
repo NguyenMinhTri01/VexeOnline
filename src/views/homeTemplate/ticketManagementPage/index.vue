@@ -18,7 +18,18 @@ export default {
   components : {
     FormSearchTicket,
     ResultOfTicket
-  }
+  },
+  data() {
+    return {
+     header: {
+        title: "Quản lý vé - VeXe Online",
+        description: "Tốt Nhất Cho Đặt Vé Xe Trực Tuyến - VeXe Online"
+      }
+    };
+  },
+  created() {
+    this.$store.dispatch("setHeader", this.header);
+  },
 }
 </script>
 

@@ -91,34 +91,37 @@ const actions = {
     const decode = jwtDecode(token);
     if (!token) {
       return;
+    }else if(decode.userType === "admin"){
+      const exp = localStorage.getItem("exp");
+      const date = new Date().getTime() / 1000;
+      if (date > exp) {
+        dispatch("logoutAdmin");
+      }
+      setHeader(token);
+      commit("storeLoginSuccess", {
+        token : token,
+        infoUser : decode
+      });
     }
-    const exp = localStorage.getItem("exp");
-    const date = new Date().getTime() / 1000;
-    if (date > exp) {
-      dispatch("logoutAdmin");
-    }
-    setHeader(token);
-    commit("storeLoginSuccess", {
-      token : token,
-      infoUser : decode
-    });
   },
   tryAutoLogin({ commit, dispatch }) {
     const token = localStorage.getItem("token");
     const decode = jwtDecode(token);
     if (!token) {
       return;
+    }else if(decode.userType === "client"){
+      const exp = localStorage.getItem("exp");
+      const date = new Date().getTime() / 1000;
+      if (date > exp) {
+        dispatch("logout");
+      }
+      setHeader(token);
+      commit("storeLoginSuccess", {
+        token : token,
+        infoUser : decode
+      });
     }
-    const exp = localStorage.getItem("exp");
-    const date = new Date().getTime() / 1000;
-    if (date > exp) {
-      dispatch("login");
-    }
-    setHeader(token);
-    commit("storeLoginSuccess", {
-      token : token,
-      infoUser : decode
-    });
+    
   },
   // tryAutoLogin({ commit }) {
   //   const token = localStorage.getItem("token");

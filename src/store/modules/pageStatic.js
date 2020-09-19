@@ -69,7 +69,7 @@ const actions = {
       })
   },
   fetchDetailPageStaticBySlug({ commit }, slug) {
-    commit("storePageStaticRequest");
+    //commit("storePageStaticRequest");
     api.get(`/pagestatics/detail/${slug}`)
       .then(result => {
         commit("storeSetPageStatic", result.data);
