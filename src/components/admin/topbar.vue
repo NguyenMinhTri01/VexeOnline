@@ -156,11 +156,11 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <router-link to="/admin/profile-admin/edit" class="dropdown-item">
+                <!-- <router-link to="/admin/profile-admin/edit" class="dropdown-item">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cập nhập
-                </router-link>
-                <div class="dropdown-divider"></div>
+                </router-link> -->
+                <!-- <div class="dropdown-divider"></div> -->
                 <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Đăng xuất

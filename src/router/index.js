@@ -281,10 +281,10 @@ Vue.use(VueRouter)
           component : () => import ('../views/adminTemplate/ticketPage')
         },
         //admin-profile
-        {
-          path : "/admin/profile-admin/edit",
-          component : () => import ('../views/adminTemplate/profileAdminPage')
-        },
+        // {
+        //   path : "/admin/profile-admin/edit",
+        //   component : () => import ('../views/adminTemplate/profileAdminPage')
+        // },
         {
           path : "*",
           component: () => import ('../views/adminTemplate/pageNotFound')

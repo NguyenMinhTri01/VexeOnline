@@ -104,7 +104,8 @@
 
 <script>
 import moment from "moment";
-import DeleteComfirm from "../../../components/admin/deleteConfirm"
+import DeleteComfirm from "../../../components/admin/deleteConfirm";
+import Loader from "../../../components/loader";
 export default {
   data () {
     return {
@@ -121,7 +122,7 @@ export default {
     }
   },
   components: {
-    DeleteComfirm
+    DeleteComfirm,Loader
   },
   created() {
       this.$store.dispatch("fetchListTickets");
