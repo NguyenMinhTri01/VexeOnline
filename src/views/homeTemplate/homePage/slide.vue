@@ -24,7 +24,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="https://res.cloudinary.com/vexeonline/VexeOnlineMedia/imageDefault/no-image_ljozla"
+                src="https://res.cloudinary.com/vexeonline/image/upload/v1600508606/VexeOnlineMedia/imageDefault/rating-and-review_pc_mq0ij6.png"
                 alt="Chicago"
                 width="1100"
                 height="200"
@@ -32,7 +32,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="https://res.cloudinary.com/vexeonline/VexeOnlineMedia/imageDefault/no-image_ljozla"
+                src="https://res.cloudinary.com/vexeonline/image/upload/v1600508689/VexeOnlineMedia/imageDefault/new-bannerpc_ko4bz6.png"
                 alt="New York"
                 width="1100"
                 height="200"
