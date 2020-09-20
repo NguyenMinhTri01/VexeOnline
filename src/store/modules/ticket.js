@@ -61,6 +61,26 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
+  fetchListLatestTickets({ commit }) {
+    //commit("storeTicketRequest");
+    api.get("/tickets/latest")
+      .then((result) => {
+        commit("storeSetTicket", result.data);
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      });
+  },
+  fetchCountTickets({ commit }) {
+    commit("storeTicketRequest");
+    api.get("/tickets/count")
+      .then((result) => {
+        commit("storeTicketSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      });
+  },
   fetchListHistoryTickets({ commit }) {
     commit("storeTicketRequest");
     api.get("/tickets/history")

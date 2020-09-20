@@ -39,6 +39,16 @@ const actions = {
         commit("storeContactFailed", err);
       });
   },
+  fetchCountContacts({ commit }) {
+    commit("storeContactRequest");
+    api.get("/contacts/count")
+      .then((result) => {
+        commit("storeContactSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeContactFailed", err);
+      });
+  },
   fetchCreateContact({ commit }, contact) {
     commit("storeContactRequest");
     api

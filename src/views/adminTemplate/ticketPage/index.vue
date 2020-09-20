@@ -2,6 +2,11 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Vé</h1>
+      <form class="form-inline">
+        <input type="text" class="form-control" name="id" placeholder="Mã vé">
+        <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> Tìm kiếm</button>
+      </form>
+          <hr>
       <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
       <div class="anonymus">
     <Loader v-if="loading" />

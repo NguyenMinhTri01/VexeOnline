@@ -58,7 +58,16 @@ const actions = {
         commit("storeTripFailed", err);
       });
   },
-
+  fetchCountTrips({ commit }) {
+    commit("storeTripRequest");
+    api.get("/trips/count")
+      .then((result) => {
+        commit("storeTripSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeTripFailed", err);
+      });
+  },
   fetchDetailTrip({ commit }, id) {
     commit("storeTripRequest");
     api.get(`/trips/${id}`)

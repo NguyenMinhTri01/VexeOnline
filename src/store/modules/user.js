@@ -39,6 +39,16 @@ const actions = {
         commit("storeUserFailed", err);
       });
   },
+  fetchCountUsers({ commit }) {
+    commit("storeUserRequest");
+    api.get("/users/count")
+      .then((result) => {
+        commit("storeUserSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeUserFailed", err);
+      });
+  },
   fetchDeleteUser({ commit }, id) {
     api
       .delete(`/users/${id}`)
