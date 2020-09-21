@@ -71,6 +71,16 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
+  fetchSearchByCodeTicket({ commit }) {
+    //commit("storeTicketRequest");
+    api.get("/tickets/searchCode")
+      .then((result) => {
+        commit("storeTicketSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeTicketFailed", err);
+      });
+  },
   fetchCountTickets({ commit }) {
     commit("storeTicketRequest");
     api.get("/tickets/count")

@@ -2,10 +2,18 @@
   <div  class="container-fluid">
       <!-- Page Heading -->
       <h1 class="h3 mb-2 text-gray-800">Quản Lý Vé</h1>
-      <form class="form-inline">
-        <input type="text" class="form-control" name="id" placeholder="Mã vé">
-        <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> Tìm kiếm</button>
-      </form>
+      <div class="row">
+        <div class="col-sm-3">
+          <input type="text" class="form-control" v-model="code" placeholder="Mã vé">
+        </div>
+        <div class="col-sm-3">
+          <button v-on:click="handleSearchCode(code)" class="btn btn-success mr-3"> <i class="fas fa-search"></i> Tìm kiếm</button>
+          <button v-on:click="handleCancleSearch" class="btn btn-danger"> <i class="fas fa-times"></i> Hủy</button>
+        </div>
+      </div>
+        
+        
+      
           <hr>
       <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
       <div class="anonymus">
@@ -123,7 +131,8 @@ export default {
         basePath : "/admin/tickets",
         columsInfoTicket : ['Tên',"email","Số Điện Thoại","Nhà Xe","Tuyến Đường","Loại Xe"],
         keysInfoTicket : ["customerName","email","phone","garageName","routeName","vehicleName"]
-      }
+      },
+      code:'',
     }
   },
   components: {
@@ -138,7 +147,10 @@ export default {
     },
     tickets() { 
       return this.$store.state.ticket.data;
-    }
+    },
+    // ticket() { 
+    //   return this.$store.state.ticket.ticket;
+    // }
   },
 
   
@@ -164,6 +176,11 @@ export default {
           }) 
         }
       }
+    },
+    ticket(value){
+      if(value){
+        //this.data = value
+      }
     }
   },
 
@@ -181,6 +198,14 @@ export default {
     changestatusTicket (id) {
       this.flag = true
       this.$store.dispatch("fetchStatusTicket", id)
+    },
+    handleSearchCode(code){
+      //console.log(code);
+      this.$store.dispatch("fetchSearchByCodeTicket", code)
+      //this.data = this.$store.state.ticket.data;
+    },
+    handleCancleSearch(){
+      this.$store.dispatch("fetchListTickets")
     }
   }
 };
