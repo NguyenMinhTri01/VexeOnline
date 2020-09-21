@@ -3,6 +3,13 @@
     <div v-if="loading" class="notication">
         <Loader  />
     </div>
+    <div v-if="!tickets">
+        <div class="row">
+            <div class="col-sm-12" style="margin: 20px 0 0 0;">
+                <div class="alert alert-danger" v-if="err">{{err.response.data.message}}</div>  
+            </div>
+        </div>
+    </div>
     <div v-else class="row">
         <div class="col-sm-12" style="margin: 20px 0 0 0;">
             <h5 class="text-ticket mb-3">Thông tin khách hàng</h5>
@@ -76,6 +83,9 @@ export default {
         },
         tickets() { 
             return this.$store.state.ticket.data;
+        },
+        err() { 
+            return this.$store.state.ticket.err;
         }
     },
     watch:{
