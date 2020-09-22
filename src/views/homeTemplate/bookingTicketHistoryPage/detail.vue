@@ -12,7 +12,7 @@
                 <h5 class="text-ticket mb-3">Thông tin chi tiết vé: {{ticket.code}}</h5>
                 <hr>
               <div class="row">
-                <div class="col-sm-3">
+                <div class="col-lg-4 col-md-10 mb-5">
                     <div class="row">
                         <div class="col-6 mb-2">
                             <strong>Tên khách hàng:</strong>
@@ -28,7 +28,7 @@
                         <div class="col-6 text-right mb-2">{{ticket.phone}}</div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-lg-5 col-md-6">
                   <div class="row">
                     <div class="col-4 mb-2">
                       <strong>Hãng Xe:</strong>
@@ -62,7 +62,7 @@
                     <div class="col-8 text-right mb-2">{{ticket.tripId.routeId.name}}</div>
                   </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-lg-3 col-md-6">
                   <div class="row">
                     <div class="col-8 mb-2">
                       <strong>Giá Vé:</strong>
@@ -210,7 +210,7 @@ export default {
 
 .btn-cancel {
   border: solid 1px #ccc;
-  width: 25%;
+  width: 30%;
   border-radius: 3px;
   background: white;
 }
