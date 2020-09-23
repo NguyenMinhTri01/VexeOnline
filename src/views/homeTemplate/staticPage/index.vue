@@ -63,7 +63,19 @@ export default {
       }
     },
     
-  }
+  },
+  mounted(){
+window.onscroll = function() {addClassImage ()}
+    function addClassImage () {
+    let tagImages = document.getElementsByTagName("img");
+    for (let i = 0 ; i < tagImages['length'] ; i++) {
+      let classListValue = tagImages[`${i}`].classList.value
+      if (classListValue.indexOf('img-fluid') === -1){
+        tagImages[`${i}`].classList.add('img-fluid')
+        }
+      }
+    }
+  },
 };
 </script>
 

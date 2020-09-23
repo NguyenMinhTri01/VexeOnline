@@ -1,5 +1,6 @@
 <template>
 <body>
+	
   <TopHeader />
   <Header />
   <FooterBtm />
@@ -101,7 +102,7 @@ export default {
   created() {
     this.$store.dispatch("setHeader", this.header);
     this.$store.dispatch("tryAutoLogin");
-  }
+  },
 };
 </script>
 <style scoped>

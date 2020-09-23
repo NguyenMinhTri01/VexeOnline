@@ -2,6 +2,8 @@
   <div id="app">
     <VueHeadful :title="title" :description="description" />
     <router-view/>
+
+    
   </div>
 </template>
 
