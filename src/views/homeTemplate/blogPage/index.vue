@@ -86,7 +86,7 @@ export default {
     Loader
   },
   created() {
-    this.$store.dispatch("fetchListBlogs", this.page);
+    this.$store.dispatch("fetchListPaginationBlogs", this.page);
     this.$store.dispatch("fetchListCountBlogs");
     this.$store.dispatch("setHeader", this.header);
   },
@@ -127,7 +127,7 @@ export default {
       }
     },
     fetchPage(index) {
-      this.$store.dispatch("fetchListBlogs", index);
+      this.$store.dispatch("fetchListPaginationBlogs", index);
     },
   },
 };

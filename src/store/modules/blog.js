@@ -75,9 +75,9 @@ const actions = {
         commit("storeBlogFailed", err);
       });
   },
-  fetchListBlogs({ commit },page=1) {
-    //commit("storeBlogRequest");
-    api.get(`/blogs?page=${page}`)
+  fetchListBlogs({ commit }) {
+    commit("storeBlogRequest");
+    api.get("/blogs")
       .then((result) => {
         commit("storeBlogSuccess", result.data);
       })
@@ -85,7 +85,16 @@ const actions = {
         commit("storeBlogFailed", err);
       });
   },
-
+  fetchListPaginationBlogs({ commit },page=1) {
+    //commit("storeBlogRequest");
+    api.get(`/blogs/pagination?page=${page}`)
+      .then((result) => {
+        commit("storeBlogSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeBlogFailed", err);
+      });
+  },
   fetchListBlogsHot({ commit }) {
     //commit("storeBlogRequest");
     api.get("/blogs/hotBlog")

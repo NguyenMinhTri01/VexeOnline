@@ -40,7 +40,7 @@ export default {
   computed: {
     blogs() {
       return this.$store.state.blog.data;
-    }
+    },
   },
   watch : {
     blogs (value) {
