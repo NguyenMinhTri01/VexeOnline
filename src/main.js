@@ -12,6 +12,10 @@ import "popper.js/dist/umd/popper.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import firebase from "firebase/app";
+import VueFbCustomerChat from "vue-fb-customer-chat";
+
+
+
 
 
 
@@ -27,6 +31,13 @@ const firebaseConfig = {
   measurementId: "G-9SDCXWX7CZ"
 };
 firebase.initializeApp(firebaseConfig);
+
+
+Vue.use(VueFbCustomerChat, {
+  page_id: "112755623913285", //  change 'null' to your Facebook Page ID,
+  theme_color: '#4cb320', // theme color in HEX
+  locale: 'vi_VN', // default 'en_US'
+})
 
 Vue.use( CKEditor );
 Vue.use(VueLazyload);
