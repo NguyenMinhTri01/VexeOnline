@@ -181,9 +181,9 @@ import 'vue2-datepicker/locale/vi';
         watch : {
           trip(value) {
             if (value ){
-              this.route = value.routeId
-              this.garage = value.garageId
-              this.vehicle = value.vehicleId
+              this.route = value.routeId._id
+              this.garage = value.garageId._id
+              this.vehicle = value.vehicleId._id
               this.note = value.note
               this.price = value.price
               const startTime = new Date(value.startTime)
