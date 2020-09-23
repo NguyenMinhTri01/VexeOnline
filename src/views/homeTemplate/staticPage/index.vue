@@ -61,18 +61,6 @@ export default {
         this.loadingPage = false;
       }
     },
-<<<<<<< HEAD
-    
-  },
-  mounted(){
-window.onscroll = function() {addClassImage ()}
-    function addClassImage () {
-    let tagImages = document.getElementsByTagName("img");
-    for (let i = 0 ; i < tagImages['length'] ; i++) {
-      let classListValue = tagImages[`${i}`].classList.value
-      if (classListValue.indexOf('img-fluid') === -1){
-        tagImages[`${i}`].classList.add('img-fluid')
-=======
   },
 
   mounted() {
@@ -85,7 +73,7 @@ window.onscroll = function() {addClassImage ()}
         let classListValue = tagImages[`${i}`].classList.value;
         if (classListValue.indexOf("img-fluid") === -1) {
           tagImages[`${i}`].classList.add("img-fluid");
->>>>>>> 3c817b0665143b99ad52764a7ba1cc66ee147009
+
         }
       }
     }
