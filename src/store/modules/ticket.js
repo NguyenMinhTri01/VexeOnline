@@ -4,7 +4,8 @@ const state = {
   data: null,
   ticket: null,
   err: null,
-  seats: null
+  seats: null,
+  count: null
 };
 
 const mutations = {
@@ -71,9 +72,9 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
-  fetchSearchByCodeTicket({ commit }) {
+  fetchSearchByCodeTicket({ commit },code) {
     //commit("storeTicketRequest");
-    api.get("/tickets/searchCode")
+    api.get(`/tickets/searchCode/${code}`)
       .then((result) => {
         commit("storeTicketSuccess", result.data);
       })
@@ -81,11 +82,22 @@ const actions = {
         commit("storeTicketFailed", err);
       });
   },
+
+  fetchListPaginationTickets({commit},page=1){
+    api.get(`/tickets/pagination?page=${page}`)
+    .then(result=>{ 
+      commit("storeTicketSuccess",result.data)
+    })
+    .catch(err => {
+      commit("storeTicketFailed", err);
+    })
+  },
+
   fetchCountTickets({ commit }) {
-    commit("storeTicketRequest");
+    //commit("storeTicketRequest");
     api.get("/tickets/count")
       .then((result) => {
-        commit("storeTicketSuccess", result.data);
+        state.count = result.data;
       })
       .catch(err => {
         commit("storeTicketFailed", err);

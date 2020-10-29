@@ -4,6 +4,7 @@ const state = {
   data: null,
   trip: null,
   err: null,
+  count:null
 };
 
 const mutations = {
@@ -12,6 +13,7 @@ const mutations = {
     state.data = null;
     state.trip = null;
     state.err = null;
+    state.count = null;
   },
 
   storeTripSuccess(state, payload) {
@@ -62,7 +64,7 @@ const actions = {
     commit("storeTripRequest");
     api.get("/trips/count")
       .then((result) => {
-        commit("storeTripSuccess", result.data);
+        state.count = result.data
       })
       .catch(err => {
         commit("storeTripFailed", err);

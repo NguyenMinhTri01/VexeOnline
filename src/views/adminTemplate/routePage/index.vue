@@ -24,7 +24,8 @@ export default {
         columns: ["Tên Tuyến Đường","Xuất Phát","Kết Thúc","Thời lượng tuyến đường (Giờ)","Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
         keys: ["name","fromStationName","toStationName", "time","hot", "status", "createdAt"],
         buttonAdd : true,
-        basePath : "/admin/routes"
+        basePath : "/admin/routes",
+        namePagination : 'fetchListPaginationRoutes'
       },
       flag : false      
     };
@@ -34,7 +35,8 @@ export default {
     DeleteComfirm
   },
   created() {
-    this.$store.dispatch("fetchListRoutes");
+    this.$store.dispatch("fetchListPaginationRoutes");
+    this.$store.dispatch("fetchCountRoutes");
   },
   computed: {
     routes() {

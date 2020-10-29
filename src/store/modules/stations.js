@@ -4,7 +4,8 @@ const state = {
   data: null,
   station: null,
   err: null,
-  stationsHot : null
+  stationsHot : null,
+  count:null
 };
 
 const mutations = {
@@ -14,6 +15,7 @@ const mutations = {
     state.station = null;
     state.err = null;
     state.stationsHot = null;
+    state.count=null;
   },
 
   storeStationSuccess(state, payload) {
@@ -51,8 +53,7 @@ const mutations = {
     state.stationsHot = stationsHot,
     state.loading = false;
     state.err = null
-  }
-
+  },
   
 };
 
@@ -68,6 +69,26 @@ const actions = {
       });
   },
 
+  fetchListPaginationStations({commit},page=1){
+    //commit("storeStationRequest")
+    api.get(`/stations/pagination?page=${page}`)
+    .then(result=>{
+      commit("storeStationSuccess",result.data)
+    })
+    .catch(err=>{
+      commit("storeStationFailed",err)
+    })
+  },
+
+  fetchCountStations({commit}){
+    api.get("/stations/count")
+    .then(result=>{
+      state.count = result.data
+    })
+    .catch(err=>{
+      commit("storeStationFailed",err)
+    })
+  },
   fetchListStationsHot({ commit }) {
     api.get("/stations/hotStations")
       .then((result) => {

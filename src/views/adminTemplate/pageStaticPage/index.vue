@@ -2,29 +2,29 @@
   <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Quản Lý Trang Tĩnh</h1>
-    <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
-    <DataTable 
-      @eventRemoveItem="handleEventRemoveItem" 
-      :config="configTable"  
+    <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete" /><DataTable
+    @eventRemoveItem="handleEventRemoveItem"
+    :config="configTable"
     />
   </div>
 </template>
 
 <script>
 import DataTable from "../../../components/admin/table";
-import DeleteComfirm from "../../../components/admin/deleteConfirm"
+import DeleteComfirm from "../../../components/admin/deleteConfirm";
 export default {
-    data() {
+  data() {
     return {
-      idOfItem : '',
-      configTable : {
-        nameStore : 'pageStatic',
+      idOfItem: "",
+      configTable: {
+        nameStore: "pageStatic",
         columns: ["Loại Bài Viết", "Thời Gian Tạo"],
         keys: ["name", "createdAt"],
-        buttonAdd : true,
-        basePath : "/admin/pagestatics"
+        buttonAdd: true,
+        basePath: "/admin/pagestatics",
+        namePagination : 'fetchListPaginationPageStatics'
       },
-      flag : false,         
+      flag: false
     };
   },
   components: {
@@ -32,7 +32,8 @@ export default {
     DeleteComfirm
   },
   created() {
-    this.$store.dispatch("fetchListPageStatics");
+    this.$store.dispatch("fetchListPaginationPageStatics");
+    this.$store.dispatch("fetchCountPageStatics");
   },
   computed: {
     pagestatics() {
@@ -40,25 +41,25 @@ export default {
     }
   },
   watch: {
-    pagestatics (value) {
-      if (value && this.flag) this.$toast.success('Thành công', {
-        position : 'bottom-right',
-        duration : 1000
-      })
+    pagestatics(value) {
+      if (value && this.flag)
+        this.$toast.success("Thành công", {
+          position: "bottom-right",
+          duration: 1000
+        });
     }
   },
-  methods : {
+  methods: {
     handleEventRemoveItem(id) {
       this.flag = true;
-      this.idOfItem = id
+      this.idOfItem = id;
     },
     handleEventConfirmDelete() {
-      this.$store.dispatch("fetchDeletePageStatic", this.idOfItem)
+      this.$store.dispatch("fetchDeletePageStatic", this.idOfItem);
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

@@ -4,15 +4,17 @@ const state = {
   data: null,
   err: null,
   route:null,
-  station:null
+  station:null,
+  count:null,
 };
 
 const mutations = {
   storeRouteRequest(state) {
     state.loading = true;
     state.data = null,
-    state.err = null
-    state.route =  null
+    state.err = null,
+    state.route =  null,
+    state.count = null
   },
 
   storeRouteSuccess(state, payload) {
@@ -66,6 +68,26 @@ const actions = {
         commit("storeRouteFailed", err);
       });
   },
+  fetchListPaginationRoutes({commit},page=1){
+    api.get(`/routes/pagination?page=${page}`)
+    .then(result=>{
+      commit("storeRouteSuccess",result.data)
+    })
+    .catch(err => {
+      commit("storeRouteFailed", err);
+    })
+  },
+
+  fetchCountRoutes({commit}){
+    api.get('/routes/count')
+    .then(result=>{
+      state.count = result.data
+    })
+    .catch(err => {
+      commit("storeRouteFailed", err);
+    })
+  },
+
   fetchListRoutesHot({ commit }) {
     commit("storeRouteRequest");
     api.get("/routes/hotRoutes")

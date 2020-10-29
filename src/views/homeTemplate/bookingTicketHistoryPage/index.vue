@@ -109,9 +109,7 @@ export default {
           let newOject = { ...item };
           newOject.totalPrice = this.formatNumber(newOject.totalPrice);
           if (item.createdAt) {
-            newOject.createdAt = `${moment(item.createdAt).format(
-              "LT"
-            )} ${moment(item.createdAt).format("L")}`;
+            newOject.createdAt = `${moment(item.createdAt).format("LT")} ${moment(item.createdAt).format("L")}`;
           }
 
           return newOject;

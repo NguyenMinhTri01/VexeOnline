@@ -22,7 +22,8 @@ export default {
         columns: ["Tên Thành Viên","Email","Số Điện Thoại","Thời Gian Tạo"],
         keys: ["fullName", "email", "phone", "createdAt"],
         buttonAdd : false,
-        basePath : "/admin/users"
+        basePath : "/admin/users",
+        namePagination : 'fetchListPaginationUsers'
       },
       flag : false,        
     };
@@ -32,7 +33,8 @@ export default {
     DeleteComfirm
   },
   created() {
-    this.$store.dispatch("fetchListUsers");
+    this.$store.dispatch("fetchListPaginationUsers");
+    this.$store.dispatch("fetchCountUsers");
   },
   computed: {
     users() {

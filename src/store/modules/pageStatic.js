@@ -3,7 +3,8 @@ const state = {
   loading: false,
   data: null,
   err: null,
-  pagestatic:null
+  pagestatic:null,
+  count:null
 };
 
 const mutations = {
@@ -11,7 +12,8 @@ const mutations = {
     state.loading = true;
     state.data = null,
     state.err = null,
-    state.pageStatic = null
+    state.pageStatic = null,
+    state.count = null
   },
 
   storePageStaticSuccess(state, payload) {
@@ -56,6 +58,26 @@ const actions = {
       .catch(err => {
         commit("storePageStaticFailed", err);
       });
+  },
+
+  fetchListPaginationPageStatics({commit},page=1){
+    api.get(`/pagestatics/pagination?page=${page}`)
+    .then(result=>{
+      commit("storePageStaticSuccess",result.data)
+    })
+    .catch(err => {
+      commit("storePageStaticFailed", err);
+    })
+  },
+
+  fetchCountPageStatics({commit}){
+    api.get('/pagestatics/count')
+    .then(result=>{
+      state.count = result.data
+    })
+    .catch(err => {
+      commit("storePageStaticFailed", err);
+    })
   },
 
   fetchDetailPageStatic({ commit }, id) {

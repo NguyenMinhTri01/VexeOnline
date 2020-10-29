@@ -66,7 +66,7 @@ const actions = {
   //       commit("storeBlogFailed", err);
   //     });
   // },
-  fetchListCountBlogs({ commit }) {
+  fetchCountBlogs({ commit }) {
     api.get("/blogs/countBlog")
       .then((result) => {
         state.count = result.data

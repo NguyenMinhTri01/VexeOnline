@@ -22,7 +22,8 @@ export default {
         columns: [ "Tên Khách Hàng","Email","Số Điện Thoại","Nội Dung","Thời Gian Tạo"],
         keys: ["name", "email", "phone", "content", "createdAt"],
         buttonAdd : false,
-        basePath : "/admin/contacts"
+        basePath : "/admin/contacts",
+        namePagination : 'fetchListPaginationContacts'
       },
       flag : false,        
     };
@@ -32,7 +33,8 @@ export default {
     DeleteComfirm
   },
   created() {
-    this.$store.dispatch("fetchListContacts");
+    this.$store.dispatch("fetchListPaginationContacts");
+    this.$store.dispatch("fetchCountContacts");
   },
   computed: {
     contacts() {

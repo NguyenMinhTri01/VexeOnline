@@ -52,8 +52,8 @@
                   </a>
                 </li>
                 <template v-for="(item,index) in new Array(Math.ceil(this.counts/3))">
-                  <li :key="`s-${index}`" class="page-item">
-                    <a v-on:click="fetchPage(index+1)" class="page-link">{{index+1}}</a>
+                  <li :key="`s-${index}`" v-on:click="fetchPage(index+1)" :class="{'active':flag==index+1}" class="page-item" >
+                    <a class="page-link">{{index+1}}</a>
                   </li>
                 </template>
 
@@ -65,6 +65,7 @@
                 </li>
               </ul>
             </nav>
+            
           </div>
           <BlogRight />
           <div class="clearfix"></div>
@@ -87,7 +88,7 @@ export default {
   },
   created() {
     this.$store.dispatch("fetchListPaginationBlogs", this.page);
-    this.$store.dispatch("fetchListCountBlogs");
+    this.$store.dispatch("fetchCountBlogs");
     this.$store.dispatch("setHeader", this.header);
   },
   computed: {
@@ -107,6 +108,7 @@ export default {
   },
   data() {
     return {
+      flag:1,
       page: 1,
       loadingPage:true,
       header: {
@@ -128,6 +130,7 @@ export default {
     },
     fetchPage(index) {
       this.$store.dispatch("fetchListPaginationBlogs", index);
+      this.flag=index
     },
   },
 };

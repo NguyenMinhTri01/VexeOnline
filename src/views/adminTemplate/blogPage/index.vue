@@ -25,7 +25,8 @@ export default {
         columns: ["Tên Bài Viết","Ảnh", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
         keys: ["name","avatar", "hot", "status", "createdAt"],
         buttonAdd : true,
-        basePath : "/admin/blogs"
+        basePath : "/admin/blogs",
+        namePagination : 'fetchListPaginationBlogs'
       },
       flag : false,      
     };
@@ -35,7 +36,8 @@ export default {
     DeleteComfirm
   },
   created() {
-    this.$store.dispatch("fetchListBlogs");
+    this.$store.dispatch("fetchListPaginationBlogs");
+    this.$store.dispatch("fetchCountBlogs");
   },
   computed: {
     blogs() {

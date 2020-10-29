@@ -112,6 +112,33 @@
       </div>
     </div>
   </div>
+  <nav aria-label="Page navigation example">
+        <ul
+        class="pagination animated wow fadeInUp animated"
+        data-wow-duration="1200ms"
+        data-wow-delay="500ms"
+        style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;"
+      >
+        <li class="page-item">
+          <a v-on:click="previousPage" class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <template v-for="(item,index) in new Array(Math.ceil(this.count/5))">
+          <li :key="`s-${index}`" v-on:click="fetchPage(index+1)" :class="{'active':page==index+1}" class="page-item" >
+            <a class="page-link">{{index+1}}</a>
+          </li>
+        </template>
+
+        <li class="page-item">
+          <a v-on:click="nextPage" class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -133,13 +160,15 @@ export default {
         keysInfoTicket : ["customerName","email","phone","garageName","routeName","vehicleName"]
       },
       code:'',
+      page: 1,
     }
   },
   components: {
     DeleteComfirm,Loader
   },
   created() {
-      this.$store.dispatch("fetchListTickets");
+      this.$store.dispatch("fetchListPaginationTickets");
+      this.$store.dispatch("fetchCountTickets");
   },
   computed: {
     loading () {
@@ -148,6 +177,9 @@ export default {
     tickets() { 
       return this.$store.state.ticket.data;
     },
+    count(){
+      return this.$store.state.ticket.count;
+    }
     // ticket() { 
     //   return this.$store.state.ticket.ticket;
     // }
@@ -205,8 +237,25 @@ export default {
       //this.data = this.$store.state.ticket.data;
     },
     handleCancleSearch(){
-      this.$store.dispatch("fetchListTickets")
-    }
+      this.$store.dispatch("fetchListPaginationTickets")
+    },
+
+
+    //pagination
+    nextPage() {
+      if (this.page < Math.ceil(this.count / 5)) this.page += 1;
+      this.fetchPage(this.page);
+    },
+    previousPage() {
+      if (this.page > 1) {
+        this.page -= 1;
+        this.fetchPage(this.page);
+      }
+    },
+    fetchPage(index) {
+      this.$store.dispatch('fetchListPaginationTickets', index);
+      this.page=index
+    },
   }
 };
 </script>
@@ -222,7 +271,7 @@ export default {
 
     ul li {
       cursor: pointer !important;
-      margin: 5px;
+      /* margin: 5px; */
     }
 
     ._delete {

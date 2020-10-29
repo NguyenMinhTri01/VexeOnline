@@ -3,6 +3,7 @@ const state = {
   loading: false,
   data: null,
   err: null,
+  count: null,
 };
 
 const mutations = {
@@ -10,6 +11,7 @@ const mutations = {
     state.loading = true;
     state.data = null,
     state.err = null
+    state.count = null
   },
 
   storeContactSuccess(state, payload) {
@@ -39,11 +41,20 @@ const actions = {
         commit("storeContactFailed", err);
       });
   },
+  fetchListPaginationContacts({commit},page=1){
+    api.get(`/contacts/pagination?page=${page}`)
+    .then(result=>{
+      commit("storeContactSuccess",result.data)
+    })
+    .catch(err => {
+      commit("storeContactFailed", err);
+    })
+  },
   fetchCountContacts({ commit }) {
     commit("storeContactRequest");
     api.get("/contacts/count")
       .then((result) => {
-        commit("storeContactSuccess", result.data);
+        state.count = result.data;
       })
       .catch(err => {
         commit("storeContactFailed", err);

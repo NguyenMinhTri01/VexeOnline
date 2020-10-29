@@ -3,6 +3,7 @@ const state = {
   loading: false,
   data: null,
   err: null,
+  count: null
 };
 
 const mutations = {
@@ -10,6 +11,7 @@ const mutations = {
     state.loading = true;
     state.data = null,
     state.err = null
+    state.count = null
   },
 
   storeUserSuccess(state, payload) {
@@ -39,11 +41,22 @@ const actions = {
         commit("storeUserFailed", err);
       });
   },
+
+  fetchListPaginationUsers({commit},page=1){
+    api.get(`/users/pagination?page=${page}`)
+    .then(result=>{
+      commit("storeUserSuccess",result.data)
+    })
+    .catch(err => {
+      commit("storeUserFailed", err);
+    })
+  },
+
   fetchCountUsers({ commit }) {
     commit("storeUserRequest");
     api.get("/users/count")
       .then((result) => {
-        commit("storeUserSuccess", result.data);
+        state.count = result.data
       })
       .catch(err => {
         commit("storeUserFailed", err);

@@ -13,8 +13,9 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import firebase from "firebase/app";
 import VueFbCustomerChat from "vue-fb-customer-chat";
+import Paginate from 'vuejs-paginate'
 
-
+Vue.component('paginate', Paginate)
 
 
 
@@ -43,7 +44,10 @@ Vue.use( CKEditor );
 Vue.use(VueLazyload);
 Vue.use(Vuelidate);
 Vue.use(VueToast);
+// Vue.use(Paginate);
 Vue.config.productionTip = false
+
+
 
 new Vue({
   router,

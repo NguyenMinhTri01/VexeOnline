@@ -27,7 +27,8 @@ export default {
         columns : ["Tên","Ảnh", "Địa Chỉ", "Nổi Bật", "Trạng Thái", "Thời Gian Tạo"],
         keys : ["name", "avatar", "address", "hot", "status", "createdAt"],
         buttonAdd : true,
-        basePath : "/admin/stations"
+        basePath : "/admin/stations",
+        namePagination : 'fetchListPaginationStations'
       },
       flag : false
     }
@@ -37,12 +38,14 @@ export default {
     DeleteComfirm
   },
   created() {
-      this.$store.dispatch("fetchListStations");
+      this.$store.dispatch("fetchListPaginationStations");
+      this.$store.dispatch("fetchCountStations");
   },
   computed: {
     stations() { 
       return this.$store.state.stations.data;
-    }
+    },
+    
   },
   watch : {
     stations (value ) {

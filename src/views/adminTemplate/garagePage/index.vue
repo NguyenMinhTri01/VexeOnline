@@ -5,6 +5,7 @@
       <DeleteComfirm @eventConfirmDelete="handleEventConfirmDelete"/>
       <DataTable 
         @eventChangeStatus="handleEventChangeStatus"
+        @eventChangeHot="handleEventChangeHot"
         @eventRemoveItem="handleEventRemoveItem" 
         :config="configTable"
       />
@@ -22,10 +23,11 @@ export default {
       flag : false,
       configTable : {
         nameStore : 'garage',
-        columns : ["Tên","Ảnh", "Địa Chỉ", "Trạng Thái", "Thời Gian Tạo"],
-        keys : ["name", "avatar", "address", "status", "createdAt"],
+        columns : ["Tên","Ảnh", "Địa Chỉ", "Trạng Thái","Nổi Bật", "Thời Gian Tạo"],
+        keys : ["name", "avatar", "address", "status","hot", "createdAt"],
         buttonAdd : true,
-        basePath : "/admin/garages"
+        basePath : "/admin/garages",
+        namePagination : 'fetchListPaginationGarages'
       }
     }
   },
@@ -34,7 +36,8 @@ export default {
     DeleteComfirm
   },
     created() {
-      this.$store.dispatch("fetchListGarages");
+      this.$store.dispatch("fetchListPaginationGarages");
+      this.$store.dispatch("fetchCountGarages");
   },
   computed: {
     garages() {
@@ -56,6 +59,10 @@ export default {
     handleEventChangeStatus (id) {
       this.flag = true
       this.$store.dispatch("fetchStatusGarage", id)
+    },
+    handleEventChangeHot (id){
+      this.flag = true;
+      this.$store.dispatch("fetchHotGarage",id)
     },
     handleEventRemoveItem (id) {
       this.flag = true

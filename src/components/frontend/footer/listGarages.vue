@@ -18,11 +18,11 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("fetchListGarages");
+    this.$store.dispatch("fetchListHotGarages");
   },
   computed: {
     listData() {
-      return this.$store.state.garage.data;
+      return this.$store.state.garage.garageHot;
     },
   },
   watch: {

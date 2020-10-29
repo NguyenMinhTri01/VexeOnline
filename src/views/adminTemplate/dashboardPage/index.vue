@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loadingTrip && loadingUser && loadingTicket && loadingContact" />
-    <div v-if="ticketsCount && tripsCount && usersCount && contactsCount" class="container-fluid">
+    <div v-else class="container-fluid">
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Trang quản trị hệ thống</h1>
@@ -179,16 +179,16 @@ export default {
   },
   computed: {
     tripsCount() {
-      return this.$store.state.trip.data;
+      return this.$store.state.trip.count;
     },
     contactsCount() {
-      return this.$store.state.contact.data;
+      return this.$store.state.contact.count;
     },
     ticketsCount() {
-      return this.$store.state.ticket.data;
+      return this.$store.state.ticket.count;
     },
     usersCount() {
-      return this.$store.state.user.data;
+      return this.$store.state.user.count;
     },
     loadingTrip() {
       return this.$store.state.trip.loading;

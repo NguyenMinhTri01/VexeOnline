@@ -3,7 +3,9 @@ const state = {
   loading: false,
   data: null,
   garage: null,
-  err: null
+  err: null,
+  garageHot:null,
+  count:null
 };
 
 const mutations = {
@@ -12,6 +14,7 @@ const mutations = {
     state.data = null;
     state.garage = null;
     state.err = null;
+    state.garageHot = null;
   },
 
   storeGarageSuccess(state, payload) {
@@ -41,6 +44,11 @@ const mutations = {
     state.loading = false;
     state.err = null
   },
+  storeSetGarageHot(state,garage){
+    state.garageHot = garage;
+    state.loading = false;
+    state.err = null;
+  },
   storeDeleteGarageInData(state, id) {
     state.data = state.data.filter(garage => garage._id != id)
   }
@@ -56,6 +64,34 @@ const actions = {
       .catch(err => {
         commit("storeGarageFailed", err);
       });
+  },
+  fetchListPaginationGarages({commit},page=1){
+    api.get(`/garages/pagination?page=${page}`)
+    .then(result=>{
+      commit("storeGarageSuccess",result.data)
+    })
+    .catch(err => {
+      commit("storeGarageFailed", err);
+    })
+  },
+
+  fetchCountGarages({commit}){
+    api.get('/garages/count')
+    .then(result=>{
+      state.count = result.data
+    })
+    .catch(err => {
+      commit("storeGarageFailed", err);
+    })
+  },
+
+  fetchListHotGarages({commit}){
+    commit("storeGarageRequest");
+    api.get("/garages/hotGarages")
+    .then(result=>{
+      commit("storeSetGarageHot",result.data);
+    })
+    .catch(err=>commit("storeGarageFailed",err))
   },
 
   fetchDetailGarage({ commit }, id) {
@@ -96,6 +132,15 @@ const actions = {
       .catch(err => {
         commit("storeGarageFailed", err);
       })
+  },
+  fetchHotGarage({commit},id){
+    api.get(`/garages/hot/${id}`)
+    .then(result=>{
+      commit("storeUpdateGarage",result.data);
+    })
+    .catch(err=>{
+      commit("storeGarageFailed",err);
+    })
   },
   postGarage({ commit, dispatch }, objectData) {
     commit("storeGarageRequest");
