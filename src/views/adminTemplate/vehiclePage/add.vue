@@ -17,6 +17,7 @@
                       name="name"
                       autocomplete="off"
                       @blur="$v.name.$touch()"
+                      placeholder="Tên loại xe"
                     />
                     <p
                       v-if="$v.name.$dirty && !$v.name.required"
@@ -35,6 +36,7 @@
                       autocomplete="off"
                       v-model="numberOfSeats"
                       @blur="$v.numberOfSeats.$touch()"
+                      placeholder="Số lượng chỗ ngồi"
                     />
                     <p
                       v-if="$v.numberOfSeats.$dirty && !$v.numberOfSeats.required"
@@ -49,7 +51,7 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Các tiện ích trên xe (nếu có)</label>
-                <textarea v-model="utilities" class="form-control" name="utilities" id cols="10" rows="3" @blur="$v.utilities.$touch()"></textarea>
+                <textarea v-model="utilities" class="form-control" name="utilities" id cols="10" rows="3" @blur="$v.utilities.$touch()" placeholder="Tiện ích"></textarea>
                 <p
                   v-if="$v.utilities.$dirty && (!$v.utilities.minLength || !$v.utilities.maxLength)"
                   class="alert-danger mt-2"
