@@ -5,7 +5,7 @@
     <!--- /banner-1 ---->
     <!--- bus-tp ---->
     <Loader v-if="loading" />
-    <template v-else>
+    <template v-else-if="!loading && data">
       <div  class="bus-tp" id="myHeader">
         <div class="container">
           <div class="row">
@@ -154,6 +154,17 @@
         </div>
       </div>
     </template>
+    <template v-else>
+      <div class="container">
+        <div style="margin:20px 0 20px 0">
+          <h3 class="text-center">Vé xe từ {{fromStation}} đi {{toStation}}</h3>
+        <img style="margin:0 auto;width:100%" src="../../../assets/frontend/images/route-no-schedule.png" class="img-fluid text-center" alt="img">
+        <h4 class="text-center">Chuyến đang cập nhật</h4>
+        <p class="text-center">Hiện tại vexe-online chưa có thông tin nhà xe đi từ {{fromStation}} đến {{toStation}} vào {{time}}.
+Xin quý khách vui lòng chọn ngày đi khác hoặc tuyến đường khác.</p>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -170,6 +181,8 @@ export default {
     return {
       data: null,
       content: "",
+      fromStation: localStorage.getItem("fromStation"),
+      toStation: localStorage.getItem("toStation"),
       time: null,
       header: {
         title: "Vé xe từ "+localStorage.getItem("fromStation") +" đi "+ localStorage.getItem("toStation") + " - VeXe Online",
