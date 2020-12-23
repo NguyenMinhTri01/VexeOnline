@@ -60,8 +60,20 @@ const actions = {
         commit("storeTripFailed", err);
       });
   },
+
+  fetchListPaginationTrips({ commit }, page=1) {
+    // commit("storeTripRequest");
+    api.get(`/trips/pagination?page=${page}`)
+      .then((result) => {
+        commit("storeTripSuccess", result.data);
+      })
+      .catch(err => {
+        commit("storeTripFailed", err);
+      });
+  },
+
   fetchCountTrips({ commit }) {
-    commit("storeTripRequest");
+    // commit("storeTripRequest");
     api.get("/trips/count")
       .then((result) => {
         state.count = result.data

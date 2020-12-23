@@ -23,13 +23,15 @@ export default {
         columns: [ "Tên", "Ảnh", "Số Lượng Ghế", "Trạng Thái", "Các tiện ích", "Thời Gian Tạo"],
         keys: ["name", "avatar", "numberOfSeats", "status","utilities", "createdAt"],
         buttonAdd : true,
-        basePath : "/admin/vehicles"
+        basePath : "/admin/vehicles",
+        namePagination : 'fetchListPaginationVehicles'
       },
       flag : false,
     };
   },
   created() {
-      this.$store.dispatch("fetchListVehicles");
+      this.$store.dispatch("fetchListPaginationVehicles");
+      this.$store.dispatch("fetchCountVehicles");
   },
   components: {
     DataTable,

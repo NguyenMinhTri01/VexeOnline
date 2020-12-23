@@ -25,7 +25,8 @@ export default {
         columns : ["Tuyến Đường","Nhà Xe", "Loại Xe", "Thời gian xuất Phát", "Thời gian kết Thúc","Giá","Trạng Thái", "Thời Gian Tạo"],
         keys : ["routeName", "garageName", "vehicleName", "startTime", "endTime", "price","statusNumber","createdAt"],
         buttonAdd : true,
-        basePath : "/admin/trips"
+        basePath : "/admin/trips",
+        namePagination : 'fetchListPaginationTrips'
       }
     }
   },
@@ -34,7 +35,8 @@ export default {
     DeleteComfirm
   },
   created() {
-      this.$store.dispatch("fetchListTrips");
+      this.$store.dispatch("fetchListPaginationTrips");
+      this.$store.dispatch("fetchCountTrips");
   },
   computed: {
     trips() { 

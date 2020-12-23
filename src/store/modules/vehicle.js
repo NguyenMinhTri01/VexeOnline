@@ -3,7 +3,8 @@ const state = {
   loading: false,
   data: null,
   vehicle: null,
-  err: null
+  err: null,
+  count:null
 };
 
 const mutations = {
@@ -12,6 +13,7 @@ const mutations = {
     state.data = null;
     state.vehicle = null;
     state.err = null;
+    state.count = null;
   },
 
   storeVehicleSuccess(state, payload) {
@@ -59,6 +61,28 @@ const actions = {
       .catch(err => {
         commit("storeVehicleFailed", err);
       });
+  },
+
+  fetchListPaginationVehicles({commit},page=1){
+    // commit("storeVehicleRequest")
+    api.get(`/vehicles/pagination?page=${page}`)
+    .then(result=>{
+      commit("storeVehicleSuccess",result.data)
+    })
+    .catch(err=>{
+      commit("storeVehicleFailed",err)
+    })
+  },
+
+  fetchCountVehicles({commit}){
+    commit("storeVehicleRequest")
+    api.get("/vehicles/count")
+    .then(result=>{
+      state.count = result.data
+    })
+    .catch(err=>{
+      commit("storeVehicleFailed",err)
+    })
   },
 
   fetchDetailVehicle({ commit }, id) {
