@@ -12,9 +12,10 @@ const state = {
 const mutations = {
   storeBlogRequest(state) {
     state.loading = true;
-    state.data = null,
-    state.err = null
-    state.blog =  null
+    state.data = null;
+    state.err = null;
+    state.blog =  null;
+    state.count = null;
     //state.blogsHot = null
   },
   storeBlogSuccess(state, payload) {
