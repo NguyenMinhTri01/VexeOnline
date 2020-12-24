@@ -93,7 +93,7 @@ export default {
         localStorage.setItem("date", formData.date);
 
         //console.log(formData)
-        //this.$store.dispatch("searchTrip", formData);
+        this.$store.dispatch("searchTrip", formData);
         this.$router.push('/chuyen-di');
       }
     }

@@ -51,7 +51,7 @@
                     <span class="sr-only">Previous</span>
                   </a>
                 </li>
-                <template v-for="(item,index) in new Array(Math.ceil(this.counts/3))">
+                <template v-for="(item,index) in new Array(Math.ceil(this.counts/5))">
                   <li :key="`s-${index}`" v-on:click="fetchPage(index+1)" :class="{'active':flag==index+1}" class="page-item" >
                     <a class="page-link">{{index+1}}</a>
                   </li>

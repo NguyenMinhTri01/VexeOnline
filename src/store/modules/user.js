@@ -53,7 +53,7 @@ const actions = {
   },
 
   fetchCountUsers({ commit }) {
-    commit("storeUserRequest");
+    // commit("storeUserRequest");
     api.get("/users/count")
       .then((result) => {
         state.count = result.data
