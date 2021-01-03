@@ -125,7 +125,7 @@ export default {
     },    
     handleCancle(value,seat){
       this.listSeatOrder.splice(value,1);
-      
+      this.listNameSeatOrder.splice(value,1);
 
       //C1-Dom Component
       // this.$refs.seat.forEach(item=>{

@@ -29,7 +29,7 @@ export default {
   },
   watch:{
     unSeatSelect(){
-      if(this.unSeatSelect.SoGhe === this.seat.SoGhe){
+      if(this.unSeatSelect.code === this.seat.code){
         this.statusClass=false;
       }
     }
