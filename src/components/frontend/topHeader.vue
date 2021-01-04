@@ -107,6 +107,7 @@ export default {
   methods: {
     handleLogoutFE() {
       this.$store.dispatch("logout");
+      this.$router.replace('/');
       //this.user = null;
     }
   },
